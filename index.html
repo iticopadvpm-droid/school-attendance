@@ -464,9 +464,10 @@ async function loadTeacherData(){
           attendance:att,
           linkId:t.linkId,
         };
-      }catch(e){}
+      }catch(e){console.error("Error loading teacher",t.teacherUid,":",e.code,e.message);}
     }));
-  }catch(e){console.error(e);}
+    console.log("teacherData loaded for UIDs:", Object.keys(S.teacherData));
+  }catch(e){console.error("loadTeacherData outer error:",e);}
 }
 
 // ── HM: GET ALL COMBINED DATA ──
