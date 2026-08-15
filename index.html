@@ -339,6 +339,7 @@ function bindEvents(root){
       if(p==="attendance")loadAttPageData();
       else if(p==="students")loadStudents().then(refreshPage);
       else if(p==="attbook")loadABData();
+      else if(p==="monthly"||p==="defaulters"||p==="tc")loadMonthlyData();
       else if(p==="settings")refreshPage();
       else if(p==="teachers")loadTeacherData().then(refreshPage);
       else refreshPage();
@@ -1240,8 +1241,8 @@ function handleChange(e){
   else if(t.id==="att-year"){S.attState.year=parseInt(v)||TODAY.getFullYear();loadAttPageData();}
   else if(t.id==="att-day"){S.attState.day=parseInt(v);refreshPage();}
   else if(t.id==="mr-div"){const[id]=v.split("|");S.monthRep.divId=id;refreshPage();}
-  else if(t.id==="mr-month"){S.monthRep.month=parseInt(v);refreshPage();}
-  else if(t.id==="mr-year"){S.monthRep.year=parseInt(v)||TODAY.getFullYear();refreshPage();}
+  else if(t.id==="mr-month"){S.monthRep.month=parseInt(v);loadMonthlyData();}
+  else if(t.id==="mr-year"){S.monthRep.year=parseInt(v)||TODAY.getFullYear();loadMonthlyData();}
   else if(t.id==="ab-div"){const[id]=v.split("|");S.abState.divId=id;refreshPage();}
   else if(t.id==="ab-month"){S.abState.month=parseInt(v);loadABData();}
   else if(t.id==="ab-year"){S.abState.year=parseInt(v)||TODAY.getFullYear();loadABData();}
@@ -1343,6 +1344,16 @@ async function loadABData(){
     if(!S.abState.divId&&S.divisions.length)S.abState.divId=S.divisions[0].id;
     refreshPage();}
   catch(e){toast(e.message,"error");refreshPage();}finally{setLoading(false);}
+}
+async function loadMonthlyData(){
+  setLoading(true);
+  try{
+    await Promise.all([loadDivisions(),loadStudents(),loadHolidays()]);
+    // Load ALL attendance so monthly calculations are accurate
+    await loadAllAtt();
+    if(!S.monthRep.divId&&S.divisions.length)S.monthRep.divId=S.divisions[0].id;
+    refreshPage();
+  }catch(e){toast(e.message,"error");refreshPage();}finally{setLoading(false);}
 }
 
 // ── AUTH SCREENS ──
