@@ -342,6 +342,7 @@ function bindEvents(root){
       else if(p==="monthly"||p==="defaulters"||p==="tc")loadMonthlyData();
       else if(p==="settings")refreshPage();
       else if(p==="teachers")loadTeacherData().then(refreshPage);
+      else if(p==="dashboard")loadAll().then(refreshPage);
       else refreshPage();
       document.getElementById("main-sidebar")?.classList.remove("open");
       document.getElementById("mob-ov")?.classList.remove("show");
@@ -452,10 +453,8 @@ async function loadTeacherData(){
           getDocs(collection(db,"schools",t.teacherUid,"divisions")),
           getDocs(collection(db,"schools",t.teacherUid,"students")),
         ]);
-        const {year,month}=S.attState;
-        const from=year+"-"+pad(month+1)+"-01",to=year+"-"+pad(month+1)+"-"+pad(dIM(year,month));
         const aSnap=await getDocs(collection(db,"schools",t.teacherUid,"attendance"));
-        const att={};aSnap.docs.forEach(d=>{if(d.id>=from&&d.id<=to)att[d.id]=d.data();});
+        const att={};aSnap.docs.forEach(d=>{att[d.id]=d.data();});
         S.teacherData[t.teacherUid]={
           profile:pSnap.exists()?pSnap.data():{name:t.teacherName},
           divisions:dSnap.docs.map(d=>({id:d.id,...d.data()})),
@@ -525,12 +524,16 @@ async function generateSchoolCode(){
 }
 async function loadAll(){
   await Promise.all([loadDivisions(),loadStudents(),loadHolidays()]);
-  await loadAttMonth(S.attState.year,S.attState.month);
-  if(!S.attState.divId&&S.divisions.length)S.attState.divId=S.divisions[0].id;
-  if(!S.monthRep.divId&&S.divisions.length)S.monthRep.divId=S.divisions[0].id;
-  if(!S.abState.divId&&S.divisions.length)S.abState.divId=S.divisions[0].id;
+  // HM loads all attendance for full reports; teacher loads current month only
+  if(S.role==="hm")await loadAllAtt();
+  else await loadAttMonth(S.attState.year,S.attState.month);
   if(S.role==="teacher")await loadSchoolLink();
   if(S.role==="hm")await loadTeacherData();
+  // Set default divIds from combined divisions
+  const allDivs=S.role==="hm"?getAllDivisions():S.divisions;
+  if(!S.attState.divId&&S.divisions.length)S.attState.divId=S.divisions[0].id;
+  if(!S.monthRep.divId&&allDivs.length)S.monthRep.divId=allDivs[0].id;
+  if(!S.abState.divId&&allDivs.length)S.abState.divId=allDivs[0].id;
 }
 
 // ── RENDER FUNCTIONS ──
@@ -1340,18 +1343,23 @@ async function loadAttPageData(){
 }
 async function loadABData(){
   setLoading(true);
-  try{await Promise.all([loadStudents(),loadAllAtt(),loadHolidays()]);
-    if(!S.abState.divId&&S.divisions.length)S.abState.divId=S.divisions[0].id;
-    refreshPage();}
-  catch(e){toast(e.message,"error");refreshPage();}finally{setLoading(false);}
+  try{
+    await Promise.all([loadStudents(),loadAllAtt(),loadHolidays()]);
+    if(S.role==="hm")await loadTeacherData();
+    const allDivs=S.role==="hm"?getAllDivisions():S.divisions;
+    if(!S.abState.divId&&allDivs.length)S.abState.divId=allDivs[0].id;
+    refreshPage();
+  }catch(e){toast(e.message,"error");refreshPage();}finally{setLoading(false);}
 }
 async function loadMonthlyData(){
   setLoading(true);
   try{
     await Promise.all([loadDivisions(),loadStudents(),loadHolidays()]);
-    // Load ALL attendance so monthly calculations are accurate
     await loadAllAtt();
-    if(!S.monthRep.divId&&S.divisions.length)S.monthRep.divId=S.divisions[0].id;
+    if(S.role==="hm")await loadTeacherData();
+    // Set default divId from own or teacher divisions
+    const allDivs=S.role==="hm"?getAllDivisions():S.divisions;
+    if(!S.monthRep.divId&&allDivs.length)S.monthRep.divId=allDivs[0].id;
     refreshPage();
   }catch(e){toast(e.message,"error");refreshPage();}finally{setLoading(false);}
 }
