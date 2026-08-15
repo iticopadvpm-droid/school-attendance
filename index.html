@@ -291,14 +291,18 @@ const NAV=[
   {id:"settings",label:"Settings",icon:"&#9881;&#65039;"},
 ];
 
+let _refreshing=false;
 function refreshPage(){
+  if(_refreshing)return;
+  _refreshing=true;
   const pc=document.getElementById("page-content");
   const pt=document.getElementById("page-title");
-  if(!pc)return;
+  if(!pc){_refreshing=false;return;}
   const nav=NAV.find(n=>n.id===S.page);
   if(pt)pt.textContent=nav?.label||"";
   document.querySelectorAll(".nav-item").forEach(el=>el.classList.toggle("active",el.dataset.page===S.page));
   pc.innerHTML=renderPage();
+  _refreshing=false;
   bindPage();
 }
 function renderPage(){
@@ -330,9 +334,11 @@ function bindPage(){
     });
   });
   document.querySelectorAll("[data-action]").forEach(btn=>btn.addEventListener("click",e=>handleClick(e)));
-  document.querySelectorAll("input,select,textarea").forEach(el=>{
+  document.querySelectorAll("select").forEach(el=>{
     el.addEventListener("change",e=>handleChange(e));
-    el.addEventListener("input",e=>handleChange(e));
+  });
+  document.querySelectorAll("input[type=number],input[type=date],input[type=checkbox]").forEach(el=>{
+    el.addEventListener("change",e=>handleChange(e));
   });
 }
 
@@ -1294,7 +1300,7 @@ function handleChange(e){
   else if(t.id==="att-year"){S.attState.year=parseInt(v)||TODAY.getFullYear();loadAttPageData();}
   else if(t.id==="att-day"){S.attState.day=parseInt(v);refreshPage();}
   else if(t.id==="mr-div"){S.monthRep.divId=v;refreshPage();}
-  else if(t.id==="mr-month"){S.monthRep.month=parseInt(v);loadAttPageData();}
+  else if(t.id==="mr-month"){S.monthRep.month=parseInt(v);refreshPage();}
   else if(t.id==="mr-year"){S.monthRep.year=parseInt(v)||TODAY.getFullYear();refreshPage();}
   else if(t.id==="ab-div"){S.attBookState.divId=v;refreshPage();}
   else if(t.id==="ab-month"){S.attBookState.month=parseInt(v);loadAttBookData();}
