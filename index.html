@@ -872,29 +872,60 @@ function renderTC(){
   const isHM=S.role==="hm";
   const allStus=isHM?getAllStudents():S.students;
   const allDivs=isHM?getAllDivisions():S.divisions;
-  const stuOpts=allStus.map(s=>{
-    const div=allDivs.find(d=>d.id===s.divId);
-    return'<option value="'+s.id+'|'+( s._owner||"me")+'">'+s.name+' (Roll '+(s.roll||"?")+(div?', Std '+div.std+' Div '+div.div:"")+')';
-  }).join("");
-  const selVal=document.getElementById("tc-stu")?.value||( allStus[0]?.id+"|"+(allStus[0]?._owner||"me"))||"";
-  const [selId,selOwner]=(selVal+"|me").split("|");
-  const stu=allStus.find(s=>s.id===selId);
+
+  // Get selected division
+  const selDivId=document.getElementById("tc-div")?.value||allDivs[0]?.id||"";
+  const selDiv=allDivs.find(d=>d.id===selDivId);
+  const selOwner=selDiv?._owner||"me";
+
+  // Students in selected division only
+  const divStus=allStus.filter(s=>s.divId===selDivId);
+
+  // Get selected student
+  const selStuId=document.getElementById("tc-stu")?.value||divStus[0]?.id||"";
+  const stu=divStus.find(s=>s.id===selStuId)||divStus[0];
   const div=stu?allDivs.find(d=>d.id===stu.divId):null;
   const att=isHM?getAttFor(selOwner):S.attendance;
-  let tc=null;if(stu){tc=calcAtt(stu.id,"2025-06-01",todayDk(),att);}
+  let tc=null;if(stu)tc=calcAtt(stu.id,"2025-06-01",todayDk(),att);
+
+  const divOpts=allDivs.map(d=>'<option value="'+d.id+'"'+(selDivId===d.id?" selected":"")+'>Std '+d.std+' Div '+d.div+(d._ownerName&&isHM?" ("+d._ownerName+")":"")+'</option>').join("");
+  const stuOpts=divStus.length
+    ?divStus.map(s=>'<option value="'+s.id+'"'+(stu?.id===s.id?" selected":"")+'>'+s.name+' (Roll '+(s.roll||"?")+')' +'</option>').join("")
+    :'<option value="">No students in this division</option>';
+
   return'<div class="card mb16"><div class="card-header"><h3>&#128196; Transfer Certificate &mdash; Attendance</h3></div>'
-    +'<div class="card-body"><div class="form-row mb12">'
-    +'<div><label class="form-label">Select Student</label><select id="tc-stu">'+stuOpts+'</select></div>'
+    +'<div class="card-body">'
+    +'<div class="form-row3 mb12">'
+    +'<div><label class="form-label">Division</label><select id="tc-div">'+divOpts+'</select></div>'
+    +'<div><label class="form-label">Student</label><select id="tc-stu">'+stuOpts+'</select></div>'
     +'<div><label class="form-label">TC Date</label><input type="date" id="tc-date" value="'+todayDk()+'"/></div>'
     +'</div></div></div>'
-    +(stu&&tc?'<div class="card"><div class="card-header"><h3>'+stu.name+'</h3><span class="text-muted text-sm">'+(div?'Std '+div.std+' Div '+div.div:"")+'</span></div>'
-    +'<div class="card-body"><div class="form-row3">'
-    +'<div style="text-align:center;padding:16px;background:var(--surface2);border-radius:var(--radius2)"><div style="font-size:28px;font-weight:800;color:var(--primary)">'+tc.working+'</div><div style="font-size:11px;color:var(--text3);margin-top:4px">Working Days</div></div>'
-    +'<div style="text-align:center;padding:16px;background:var(--surface2);border-radius:var(--radius2)"><div style="font-size:28px;font-weight:800;color:var(--success)">'+tc.present+'</div><div style="font-size:11px;color:var(--text3);margin-top:4px">Days Present</div></div>'
-    +'<div style="text-align:center;padding:16px;background:var(--surface2);border-radius:var(--radius2)"><div style="font-size:28px;font-weight:800;color:'+(tc.pct>=PCT_WARN?"var(--success)":"var(--danger)")+'">'+tc.pct+'%</div><div style="font-size:11px;color:var(--text3);margin-top:4px">Attendance %</div></div>'
-    +'</div><div class="mt12 flex gap8"><button class="btn btn-primary btn-sm" data-action="print-tc" data-sid="'+stu.id+'">&#128424; Print TC Attendance</button></div></div></div>':"");
+    +(stu&&tc?'<div class="card"><div class="card-header">'
+    +'<h3>'+stu.name+'</h3>'
+    +'<span class="text-muted text-sm">'+(div?'Std '+div.std+' Div '+div.div:"")+'</span></div>'
+    +'<div class="card-body">'
+    +'<div class="form-row3 mb12">'
+    +'<div style="text-align:center;padding:16px;background:var(--surface2);border-radius:var(--radius2)">'
+    +'<div style="font-size:28px;font-weight:800;color:var(--primary)">'+tc.working+'</div>'
+    +'<div style="font-size:11px;color:var(--text3);margin-top:4px">Working Days</div></div>'
+    +'<div style="text-align:center;padding:16px;background:var(--surface2);border-radius:var(--radius2)">'
+    +'<div style="font-size:28px;font-weight:800;color:var(--success)">'+tc.present+'</div>'
+    +'<div style="font-size:11px;color:var(--text3);margin-top:4px">Days Present</div></div>'
+    +'<div style="text-align:center;padding:16px;background:var(--surface2);border-radius:var(--radius2)">'
+    +'<div style="font-size:28px;font-weight:800;color:'+(tc.pct>=PCT_WARN?"var(--success)":"var(--danger)")+'">'+tc.pct+'%</div>'
+    +'<div style="font-size:11px;color:var(--text3);margin-top:4px">Attendance %</div></div>'
+    +'</div>'
+    +'<table style="width:100%;font-size:13px;margin-bottom:14px"><tbody>'
+    +'<tr><td style="padding:4px 0;color:var(--text3)">Student Name</td><td style="font-weight:600">'+stu.name+'</td>'
+    +'<td style="padding:4px 0;color:var(--text3)">Adm No</td><td>'+(stu.admNo||"&mdash;")+'</td></tr>'
+    +'<tr><td style="padding:4px 0;color:var(--text3)">Standard</td><td>'+(div?'Std '+div.std+' Div '+div.div:"&mdash;")+'</td>'
+    +'<td style="padding:4px 0;color:var(--text3)">Roll No</td><td>'+(stu.roll||"&mdash;")+'</td></tr>'
+    +'<tr><td style="padding:4px 0;color:var(--text3)">Academic Year</td><td>'+(S.profile?.academicYear||"2025-2026")+'</td>'
+    +'<td style="padding:4px 0;color:var(--text3)">Absent Days</td><td style="color:var(--danger);font-weight:600">'+tc.absent+'</td></tr>'
+    +'</tbody></table>'
+    +'<div class="flex gap8"><button class="btn btn-primary btn-sm" data-action="print-tc" data-sid="'+stu.id+'">&#128424; Print TC Attendance</button></div>'
+    +'</div></div>':"");
 }
-
 function renderHolidays(){
   const hols=Object.entries(S.holidays).sort(([a],[b])=>a.localeCompare(b));
   const rows=hols.map(([dk,h])=>'<tr><td>'+fmtDate(dk)+'</td><td class="fw600">'+h.name+'</td><td>'+(h.type||"Holiday")+'</td>'
@@ -1293,7 +1324,7 @@ function handleChange(e){
   else if(t.id==="ab-year"){S.abState.year=parseInt(v)||TODAY.getFullYear();loadABData();}
   else if(t.id==="def-month"){S.monthRep.month=parseInt(v);refreshPage();}
   else if(t.id==="def-year"){S.monthRep.year=parseInt(v)||TODAY.getFullYear();refreshPage();}
-  else if(t.id==="stu-div-filter"||t.id==="tc-stu"){if(t.id==="tc-stu"){const[id,own]=(t.value+"|me").split("|");}refreshPage();}
+  else if(t.id==="stu-div-filter"||t.id==="tc-stu"||t.id==="tc-div"){refreshPage();}
   else if(t.id==="mr-date"){S.printDetails.printDate=t.checked;}
 }
 
