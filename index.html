@@ -8,12 +8,8 @@
 *{box-sizing:border-box;margin:0;padding:0}
 :root{
   --primary:#1565c0;--primary-dark:#0d47a1;--primary-light:#e3f2fd;
-  --success:#16a34a;--success-bg:#f0fdf4;--success-border:#bbf7d0;
-  --danger:#dc2626;--danger-bg:#fef2f2;--danger-border:#fecaca;
-  --warn:#b45309;--warn-bg:#fffbeb;--warn-border:#fde68a;
-  --accent:#7c3aed;
-  --surface:#ffffff;--surface2:#f8fafc;--surface3:#f1f5f9;
-  --border:#e2e8f0;--border2:#cbd5e1;
+  --success:#16a34a;--danger:#dc2626;--warn:#b45309;--accent:#7c3aed;
+  --surface:#fff;--surface2:#f8fafc;--border:#e2e8f0;--border2:#cbd5e1;
   --text1:#0f172a;--text2:#334155;--text3:#64748b;
   --radius:6px;--radius2:10px;--shadow:0 1px 3px rgba(0,0,0,.08);
 }
@@ -28,16 +24,18 @@ button:active{transform:scale(.97)}
 .btn-success{background:var(--success);color:#fff}
 .btn-danger{background:var(--danger);color:#fff}
 .btn-sm{padding:5px 12px;font-size:12px}
-.btn-icon{background:none;border:none;padding:4px;color:var(--text3);border-radius:var(--radius)}
-.btn-icon:hover{background:var(--surface2);color:var(--text1)}
+.btn-icon{background:none;border:none;padding:4px 6px;color:var(--text3);border-radius:var(--radius)}
+.btn-icon:hover{background:var(--surface2)}
+/* Layout */
 .app{display:flex;height:100vh;overflow:hidden}
-.sidebar{width:220px;background:var(--surface);border-right:1px solid var(--border);display:flex;flex-direction:column;flex-shrink:0;overflow-y:auto}
-.sidebar-logo{padding:16px;border-bottom:1px solid var(--border)}
-.sidebar-logo .school-name{font-size:13px;font-weight:700;color:var(--primary);line-height:1.3}
-.sidebar-logo .hm-name{font-size:11px;color:var(--text3);margin-top:2px}
-.avatar{width:36px;height:36px;border-radius:50%;background:var(--primary);color:#fff;display:flex;align-items:center;justify-content:center;font-weight:700;font-size:15px;flex-shrink:0}
+.sidebar{width:220px;background:var(--surface);border-right:1px solid var(--border);display:flex;flex-direction:column;flex-shrink:0;overflow-y:auto;transition:width .25s}
+.sidebar-logo{padding:14px 16px;border-bottom:1px solid var(--border)}
+.school-name{font-size:13px;font-weight:700;color:var(--primary);line-height:1.3;word-break:break-word}
+.user-role{font-size:10px;font-weight:700;padding:1px 6px;border-radius:8px;display:inline-block;margin-top:3px}
+.role-hm{background:#dbeafe;color:#1d4ed8}
+.role-teacher{background:#dcfce7;color:#15803d}
 nav{flex:1;padding:8px 0}
-.nav-item{display:flex;align-items:center;gap:10px;padding:10px 16px;cursor:pointer;color:var(--text2);font-size:13px;font-weight:500;transition:background .12s;border-left:3px solid transparent}
+.nav-item{display:flex;align-items:center;gap:10px;padding:10px 16px;cursor:pointer;color:var(--text2);font-size:13px;font-weight:500;border-left:3px solid transparent;transition:background .12s}
 .nav-item:hover{background:var(--surface2)}
 .nav-item.active{background:var(--primary-light);color:var(--primary);border-left-color:var(--primary);font-weight:600}
 .nav-sep{height:1px;background:var(--border);margin:6px 12px}
@@ -47,49 +45,50 @@ nav{flex:1;padding:8px 0}
 .topbar h2{font-size:16px;font-weight:700;flex:1}
 .content{flex:1;overflow-y:auto;padding:20px}
 .page-content{max-width:1100px;margin:0 auto}
+/* Cards */
 .card{background:var(--surface);border:1px solid var(--border);border-radius:var(--radius2);box-shadow:var(--shadow);margin-bottom:16px}
-.card-header{padding:14px 18px;border-bottom:1px solid var(--border);display:flex;align-items:center;justify-content:space-between}
+.card-header{padding:14px 18px;border-bottom:1px solid var(--border);display:flex;align-items:center;justify-content:space-between;gap:10px}
 .card-header h3{font-size:14px;font-weight:700}
 .card-body{padding:16px 18px}
 .card-body.p0{padding:0}
+/* Grid */
 .grid2{display:grid;grid-template-columns:1fr 1fr;gap:12px}
 .grid3{display:grid;grid-template-columns:1fr 1fr 1fr;gap:12px}
 .grid4{display:grid;grid-template-columns:repeat(4,1fr);gap:12px}
-.flex{display:flex;align-items:center}
-.flex-wrap{flex-wrap:wrap}
-.gap8{gap:8px}.gap12{gap:12px}
+.flex{display:flex;align-items:center}.gap8{gap:8px}.gap12{gap:12px}.flex-wrap{flex-wrap:wrap}
+/* Stat cards */
 .stat-card{background:var(--surface);border:1px solid var(--border);border-radius:var(--radius2);padding:16px;text-align:center}
-.stat-val{font-size:28px;font-weight:800;line-height:1}
+.stat-val{font-size:26px;font-weight:800;line-height:1}
 .stat-lbl{font-size:11px;color:var(--text3);margin-top:4px;text-transform:uppercase;letter-spacing:.04em}
+/* Forms */
 .form-group{margin-bottom:14px}
 .form-label{display:block;font-size:12px;font-weight:600;color:var(--text2);margin-bottom:4px;text-transform:uppercase;letter-spacing:.04em}
 .form-row{display:grid;grid-template-columns:1fr 1fr;gap:12px}
 .form-row3{display:grid;grid-template-columns:1fr 1fr 1fr;gap:12px}
+/* Table */
 .tbl{width:100%;border-collapse:collapse;font-size:13px}
 .tbl th{background:var(--surface2);padding:9px 12px;text-align:left;font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:.04em;border-bottom:2px solid var(--border);color:var(--text3)}
 .tbl td{padding:10px 12px;border-bottom:1px solid var(--border);vertical-align:middle}
 .tbl tr:last-child td{border-bottom:none}
 .tbl tr:hover td{background:var(--surface2)}
+/* Badges */
 .badge{display:inline-flex;align-items:center;padding:2px 8px;border-radius:12px;font-size:11px;font-weight:600}
-.badge-green{background:#dcfce7;color:#15803d}
-.badge-red{background:#fee2e2;color:#dc2626}
-.badge-blue{background:#dbeafe;color:#1d4ed8}
-.badge-amber{background:#fef3c7;color:#b45309}
-.badge-purple{background:#f3e8ff;color:#7c3aed}
-.badge-gray{background:#f1f5f9;color:#64748b}
+.badge-blue{background:#dbeafe;color:#1d4ed8}.badge-green{background:#dcfce7;color:#15803d}
+.badge-red{background:#fee2e2;color:#dc2626}.badge-amber{background:#fef3c7;color:#b45309}
+.badge-purple{background:#f3e8ff;color:#7c3aed}.badge-gray{background:#f1f5f9;color:#64748b}
+/* Attendance buttons */
 .att-card{background:var(--surface);border:1px solid var(--border);border-radius:var(--radius2);margin-bottom:8px;overflow:hidden}
 .att-card-header{display:flex;align-items:center;gap:10px;padding:10px 14px}
-.att-sl{width:28px;height:28px;border-radius:50%;background:var(--surface2);display:flex;align-items:center;justify-content:center;font-size:12px;font-weight:700;color:var(--text2);flex-shrink:0}
-.att-name{flex:1;font-weight:600;font-size:14px}
-.att-roll{font-size:11px;color:var(--text3)}
+.att-sl{width:28px;height:28px;border-radius:50%;background:var(--surface2);display:flex;align-items:center;justify-content:center;font-size:12px;font-weight:700;flex-shrink:0}
 .att-btns{display:flex;gap:6px;flex-wrap:wrap;padding:8px 14px 10px;border-top:1px solid var(--border)}
-.att-btn{padding:6px 12px;border-radius:6px;border:1px solid var(--border);font-size:13px;font-weight:600;background:var(--surface2);color:var(--text3)}
-.att-btn.P{background:#dcfce7;color:#15803d;border-color:#86efac}
-.att-btn.A{background:#fee2e2;color:#dc2626;border-color:#fca5a5}
-.att-btn.L{background:#dbeafe;color:#1d4ed8;border-color:#93c5fd}
-.att-btn.ML{background:#fef3c7;color:#b45309;border-color:#fcd34d}
-.att-btn.OD{background:#f3e8ff;color:#7c3aed;border-color:#c4b5fd}
-.att-btn.Late{background:#fff7ed;color:#c2410c;border-color:#fdba74}
+.att-btn{padding:6px 14px;border-radius:6px;border:1px solid var(--border);font-size:13px;font-weight:600;background:var(--surface2);color:var(--text3)}
+.att-btn.P,.att-btn.P:hover{background:#dcfce7;color:#15803d;border-color:#86efac}
+.att-btn.A,.att-btn.A:hover{background:#fee2e2;color:#dc2626;border-color:#fca5a5}
+.att-btn.L,.att-btn.L:hover{background:#dbeafe;color:#1d4ed8;border-color:#93c5fd}
+.att-btn.ML,.att-btn.ML:hover{background:#fef3c7;color:#b45309;border-color:#fcd34d}
+.att-btn.OD,.att-btn.OD:hover{background:#f3e8ff;color:#7c3aed;border-color:#c4b5fd}
+.att-btn.Late,.att-btn.Late:hover{background:#fff7ed;color:#c2410c;border-color:#fdba74}
+/* Chips */
 .chip{display:inline-flex;align-items:center;padding:2px 8px;border-radius:12px;font-size:11px;font-weight:600;border:1px solid}
 .chip-P{background:#dcfce7;color:#15803d;border-color:#86efac}
 .chip-A{background:#fee2e2;color:#dc2626;border-color:#fca5a5}
@@ -98,83 +97,81 @@ nav{flex:1;padding:8px 0}
 .chip-OD{background:#f3e8ff;color:#7c3aed;border-color:#c4b5fd}
 .chip-Late{background:#fff7ed;color:#c2410c;border-color:#fdba74}
 .chip-none{background:#f1f5f9;color:#94a3b8;border-color:#e2e8f0;font-style:italic}
-.text-sm{font-size:12px}.text-xs{font-size:11px}
-.text-muted{color:var(--text3)}.text-danger{color:var(--danger)}
-.text-success{color:var(--success)}.text-primary{color:var(--primary)}
+/* Misc */
+.text-sm{font-size:12px}.text-xs{font-size:11px}.text-muted{color:var(--text3)}
+.text-danger{color:var(--danger)}.text-success{color:var(--success)}.text-primary{color:var(--primary)}
 .fw600{font-weight:600}.fw700{font-weight:700}
 .mb8{margin-bottom:8px}.mb12{margin-bottom:12px}.mb16{margin-bottom:16px}
-.mt8{margin-top:8px}.mt12{margin-top:12px}
-.pct-ok{color:var(--success);font-weight:700}
-.pct-warn{color:var(--warn);font-weight:700}
-.pct-bad{color:var(--danger);font-weight:700}
-.auth-wrap{min-height:100vh;display:flex;align-items:center;justify-content:center;background:linear-gradient(135deg,#1565c0 0%,#0d47a1 100%)}
-.auth-card{background:#fff;border-radius:16px;padding:36px 32px;width:100%;max-width:400px;box-shadow:0 8px 32px rgba(0,0,0,.18)}
-.auth-logo{text-align:center;margin-bottom:24px}
-.auth-logo .icon{font-size:48px;margin-bottom:8px}
-.auth-logo h1{font-size:22px;font-weight:800;color:var(--primary)}
-.auth-logo p{font-size:13px;color:var(--text3);margin-top:4px}
-.auth-tabs{display:flex;border-bottom:2px solid var(--border);margin-bottom:20px}
+.mt8{margin-top:8px}.mt12{margin-top:12px}.mt16{margin-top:16px}
+.pct-ok{color:var(--success);font-weight:700}.pct-warn{color:var(--warn);font-weight:700}.pct-bad{color:var(--danger);font-weight:700}
+/* Auth */
+.auth-wrap{min-height:100vh;display:flex;align-items:center;justify-content:center;background:linear-gradient(135deg,#1565c0,#0d47a1);padding:20px}
+.auth-card{background:#fff;border-radius:16px;padding:32px 28px;width:100%;max-width:420px;box-shadow:0 8px 32px rgba(0,0,0,.18)}
+.auth-logo{text-align:center;margin-bottom:20px}
+.auth-logo h1{font-size:20px;font-weight:800;color:var(--primary);margin-top:8px}
+.auth-logo p{font-size:12px;color:var(--text3);margin-top:3px}
+.role-tabs{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-bottom:20px}
+.role-tab{padding:14px;border:2px solid var(--border);border-radius:10px;text-align:center;cursor:pointer;transition:all .15s}
+.role-tab.active{border-color:var(--primary);background:var(--primary-light)}
+.role-tab .icon{font-size:24px;display:block;margin-bottom:4px}
+.role-tab .label{font-size:13px;font-weight:700;color:var(--text2)}
+.role-tab.active .label{color:var(--primary)}
+.auth-tabs{display:flex;border-bottom:2px solid var(--border);margin-bottom:18px}
 .auth-tab{flex:1;padding:8px;text-align:center;font-size:13px;font-weight:600;color:var(--text3);cursor:pointer;border-bottom:2px solid transparent;margin-bottom:-2px}
 .auth-tab.active{color:var(--primary);border-bottom-color:var(--primary)}
-.pin-wrap{min-height:100vh;display:flex;align-items:center;justify-content:center;background:linear-gradient(135deg,#1565c0 0%,#0d47a1 100%)}
-.pin-card{background:#fff;border-radius:16px;padding:32px 28px;width:100%;max-width:340px;text-align:center;box-shadow:0 8px 32px rgba(0,0,0,.18)}
-.pin-dots{display:flex;justify-content:center;gap:14px;margin:20px 0}
-.pin-dot{width:14px;height:14px;border-radius:50%;background:#e5e7eb;border:2px solid #d1d5db;transition:background .15s}
+/* PIN */
+.pin-wrap{min-height:100vh;display:flex;align-items:center;justify-content:center;background:linear-gradient(135deg,#1565c0,#0d47a1)}
+.pin-card{background:#fff;border-radius:16px;padding:32px 28px;width:100%;max-width:320px;text-align:center;box-shadow:0 8px 32px rgba(0,0,0,.18)}
+.pin-dots{display:flex;justify-content:center;gap:14px;margin:18px 0}
+.pin-dot{width:13px;height:13px;border-radius:50%;background:#e5e7eb;border:2px solid #d1d5db;transition:background .15s}
 .pin-dot.filled{background:var(--primary);border-color:var(--primary)}
-.pin-keypad{display:grid;grid-template-columns:repeat(3,1fr);gap:10px;max-width:240px;margin:0 auto}
-.pin-key{padding:16px;border:1px solid var(--border);border-radius:10px;background:var(--surface);font-size:20px;font-weight:600;color:var(--text1)}
+.pin-keypad{display:grid;grid-template-columns:repeat(3,1fr);gap:10px;max-width:220px;margin:0 auto}
+.pin-key{padding:14px;border:1px solid var(--border);border-radius:10px;background:var(--surface);font-size:20px;font-weight:600;color:var(--text1)}
 .pin-key:hover{background:var(--surface2)}
+/* Modal */
 #modal-slot .modal-backdrop{position:fixed;inset:0;background:rgba(0,0,0,.45);z-index:100;display:flex;align-items:center;justify-content:center;padding:16px}
-#modal-slot .modal{background:#fff;border-radius:14px;width:100%;max-width:480px;max-height:90vh;overflow-y:auto;box-shadow:0 16px 48px rgba(0,0,0,.22)}
+#modal-slot .modal{background:#fff;border-radius:14px;width:100%;max-width:500px;max-height:90vh;overflow-y:auto;box-shadow:0 16px 48px rgba(0,0,0,.22)}
 .modal-header{padding:16px 20px;border-bottom:1px solid var(--border);display:flex;align-items:center;justify-content:space-between}
 .modal-header h3{font-size:16px;font-weight:700}
 .modal-body{padding:20px}
 .modal-footer{padding:14px 20px;border-top:1px solid var(--border);display:flex;justify-content:flex-end;gap:10px}
-.loading-overlay{position:fixed;inset:0;background:rgba(255,255,255,.82);z-index:200;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:14px}
+/* Loading & Toast */
+.loading-overlay{position:fixed;inset:0;background:rgba(255,255,255,.85);z-index:200;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:14px}
 .spinner{width:36px;height:36px;border:3px solid var(--border);border-top-color:var(--primary);border-radius:50%;animation:spin .7s linear infinite}
 @keyframes spin{to{transform:rotate(360deg)}}
 #toast-slot{position:fixed;bottom:20px;right:20px;z-index:300;display:flex;flex-direction:column;gap:8px}
 .toast{padding:10px 16px;border-radius:10px;font-size:13px;font-weight:600;box-shadow:0 4px 12px rgba(0,0,0,.15);animation:slideIn .2s ease;max-width:320px}
-.toast-ok{background:#15803d;color:#fff}
-.toast-error{background:#dc2626;color:#fff}
-.toast-info{background:#1565c0;color:#fff}
+.toast-ok{background:#15803d;color:#fff}.toast-error{background:#dc2626;color:#fff}.toast-info{background:#1565c0;color:#fff}
 @keyframes slideIn{from{transform:translateX(100%);opacity:0}to{transform:translateX(0);opacity:1}}
-.sync-dot{width:8px;height:8px;border-radius:50%;display:inline-block}
-.sync-ok{background:var(--success)}
-.sync-syncing{background:#f59e0b;animation:pulse .8s infinite}
-.sync-error{background:var(--danger)}
+/* Sync */
+.sync-dot{width:8px;height:8px;border-radius:50%;display:inline-block;margin-right:4px}
+.sync-ok{background:var(--success)}.sync-syncing{background:#f59e0b;animation:pulse .8s infinite}.sync-error{background:var(--danger)}
 @keyframes pulse{0%,100%{opacity:1}50%{opacity:.4}}
-.ab-wrap{overflow-x:auto;background:#fff;border:1px solid var(--border);border-radius:var(--radius2)}
-.ab-table{border-collapse:collapse;font-size:11px;min-width:100%}
-.ab-table th,.ab-table td{border:1px solid #000;padding:0;text-align:center;white-space:nowrap}
-.ab-table th{background:#f0f4f8;font-size:10px;font-weight:700;padding:4px 3px}
-.ab-table td{height:30px;min-width:20px;vertical-align:middle}
-.ab-name{text-align:left!important;padding:0 6px!important;min-width:140px!important;font-weight:500;font-size:12px}
-.ab-sl{min-width:26px!important}
-.ab-num{min-width:22px!important;font-size:10px}
-.day-sun{background:#fee2e2!important;color:#991b1b!important}
-.day-hol{background:#fed7aa!important;color:#9a3412!important}
-.cell-sun{background:#fff5f5!important}
-.cell-hol{background:#fff7ed!important}
-@media print{
-  .sidebar,.topbar,.no-print,.sidebar-toggle,.mobile-overlay{display:none!important}
-  .main{margin:0!important}
-  .content{padding:0!important;overflow:visible!important}
-  body{background:#fff}
-  .card{box-shadow:none;border:1px solid #ccc}
-}
-.sidebar-toggle{display:none;background:none;border:none;font-size:24px;cursor:pointer;padding:2px 8px;color:var(--text2);line-height:1;margin-right:6px;border-radius:6px;flex-shrink:0}
+/* School code box */
+.school-code-box{background:linear-gradient(135deg,#1565c0,#7c3aed);color:#fff;border-radius:12px;padding:20px;text-align:center;margin-bottom:16px}
+.school-code-box .code{font-size:36px;font-weight:900;letter-spacing:8px;margin:10px 0}
+.school-code-box .label{font-size:12px;opacity:.8;text-transform:uppercase;letter-spacing:.05em}
+/* Info box */
+.info-box{padding:12px 14px;border-radius:var(--radius);font-size:13px;margin-bottom:12px}
+.info-box-blue{background:#eff6ff;border:1px solid #bfdbfe;color:#1e40af}
+.info-box-green{background:#f0fdf4;border:1px solid #bbf7d0;color:#15803d}
+.info-box-amber{background:#fffbeb;border:1px solid #fde68a;color:#b45309}
+/* Mobile */
+.sidebar-toggle{display:none;background:none;border:none;font-size:22px;cursor:pointer;padding:4px 8px;color:var(--text2);border-radius:6px;flex-shrink:0}
 .mobile-overlay{display:none;position:fixed;inset:0;background:rgba(0,0,0,.4);z-index:49}
 .mobile-overlay.show{display:block}
 @media(max-width:700px){
   .sidebar-toggle{display:block!important}
-  .sidebar{width:0!important;min-width:0!important;overflow:hidden;position:fixed;height:100vh;z-index:50;left:0;top:0;transition:width .25s}
-  .sidebar.mobile-open{width:230px!important;min-width:230px!important;box-shadow:4px 0 24px rgba(0,0,0,.2)}
-  .main{margin-left:0!important;width:100%}
+  .sidebar{width:0!important;overflow:hidden;position:fixed;height:100vh;z-index:50;left:0;top:0}
+  .sidebar.open{width:230px!important;box-shadow:4px 0 24px rgba(0,0,0,.2)}
   .grid2,.grid3,.grid4{grid-template-columns:1fr 1fr!important}
   .form-row,.form-row3{grid-template-columns:1fr!important}
   .content{padding:12px}
-  .topbar{padding-left:4px}
+}
+@media print{
+  .sidebar,.topbar,.no-print{display:none!important}
+  .content{padding:0!important;overflow:visible!important}
+  body{background:#fff}
 }
 </style>
 </head>
@@ -185,7 +182,7 @@ nav{flex:1;padding:8px 0}
 <script type="module">
 import{initializeApp}from"https://www.gstatic.com/firebasejs/10.12.0/firebase-app.js";
 import{getAuth,createUserWithEmailAndPassword,signInWithEmailAndPassword,sendPasswordResetEmail,signOut,onAuthStateChanged}from"https://www.gstatic.com/firebasejs/10.12.0/firebase-auth.js";
-import{getFirestore,doc,getDoc,setDoc,updateDoc,deleteDoc,collection,getDocs,writeBatch,enableIndexedDbPersistence}from"https://www.gstatic.com/firebasejs/10.12.0/firebase-firestore.js";
+import{getFirestore,doc,getDoc,setDoc,updateDoc,deleteDoc,collection,getDocs,writeBatch,query,where,enableIndexedDbPersistence}from"https://www.gstatic.com/firebasejs/10.12.0/firebase-firestore.js";
 
 const firebaseConfig={
   apiKey:"AIzaSyDyzxiTHjyTLYobC96LPWa4VPDbMEM066E",
@@ -200,6 +197,7 @@ const auth=getAuth(app);
 const db=getFirestore(app);
 enableIndexedDbPersistence(db).catch(()=>{});
 
+// ── CONSTANTS ──
 const MONTHS=["January","February","March","April","May","June","July","August","September","October","November","December"];
 const STANDARDS=["1","2","3","4","5","6","7","8","9","10","11","12"];
 const DIVISIONS=["A","B","C","D","E","F"];
@@ -215,99 +213,112 @@ const KERALA_HOLIDAYS=[
   {date:"2026-01-26",name:"Republic Day"},{date:"2026-03-31",name:"Vishu"}
 ];
 
-function pad(n){return String(n).padStart(2,"0");}
-function daysInMonth(y,m){return new Date(y,m+1,0).getDate();}
-function uid(){return Math.random().toString(36).slice(2)+Date.now().toString(36);}
-function fmtDate(dk){if(!dk)return"";const dt=new Date(dk+"T00:00:00");return dt.getDate()+" "+MONTHS[dt.getMonth()]+" "+dt.getFullYear();}
-function todayDk(){return TODAY.getFullYear()+"-"+pad(TODAY.getMonth()+1)+"-"+pad(TODAY.getDate());}
-function genToken(){const a=new Uint8Array(16);crypto.getRandomValues(a);return Array.from(a).map(b=>b.toString(16).padStart(2,"0")).join("").substring(0,24);}
+// ── UTILS ──
+const pad=n=>String(n).padStart(2,"0");
+const dIM=(y,m)=>new Date(y,m+1,0).getDate();
+const uid=()=>Math.random().toString(36).slice(2)+Date.now().toString(36);
+const todayDk=()=>TODAY.getFullYear()+"-"+pad(TODAY.getMonth()+1)+"-"+pad(TODAY.getDate());
+const fmtDate=dk=>{if(!dk)return"";const d=new Date(dk+"T00:00:00");return d.getDate()+" "+MONTHS[d.getMonth()]+" "+d.getFullYear();};
+const genCode=()=>Math.floor(100000+Math.random()*900000).toString();
+const genToken=()=>{const a=new Uint8Array(16);crypto.getRandomValues(a);return Array.from(a).map(b=>b.toString(16).padStart(2,"0")).join("").slice(0,20);};
+async function hashPin(pin){
+  const buf=await crypto.subtle.digest("SHA-256",new TextEncoder().encode("SCH_ATT_"+pin+"_KERALA_2025"));
+  return Array.from(new Uint8Array(buf)).map(b=>b.toString(16).padStart(2,"0")).join("");
+}
 
+// ── STATE ──
 const S={
-  user:null,profile:null,isUnlocked:false,syncStatus:"ok",page:"dashboard",
+  user:null,profile:null,role:null,isUnlocked:false,
+  page:"dashboard",syncStatus:"ok",
   divisions:[],students:[],attendance:{},holidays:{},
-  teacherLinks:[],teacherLink:null,teacherLog:[],
+  linkedTeachers:[],   // HM only: list of linked teacher profiles
+  teacherData:{},      // HM only: {teacherUid:{divisions,students,attendance}}
+  schoolLink:null,     // Teacher only: linked HM info
   printDetails:{hmName:"",schoolName:"",printDate:true},
   attState:{divId:"",year:TODAY.getFullYear(),month:TODAY.getMonth(),day:TODAY.getDate()},
   monthRep:{divId:"",year:TODAY.getFullYear(),month:TODAY.getMonth()},
-  attBookState:{divId:"",year:TODAY.getFullYear(),month:TODAY.getMonth()},
+  abState:{divId:"",year:TODAY.getFullYear(),month:TODAY.getMonth()},
 };
 
-function up(){return"schools/"+S.user.uid;}
-const divRef=(id)=>doc(db,up(),"divisions",id);
-const divsRef=()=>collection(db,up(),"divisions");
-const stuRef=(id)=>doc(db,up(),"students",id);
-const stusRef=()=>collection(db,up(),"students");
-const attRef=(dk)=>doc(db,up(),"attendance",dk);
-const attColRef=()=>collection(db,up(),"attendance");
-const holRef=(dk)=>doc(db,up(),"holidays",dk);
-const holsRef=()=>collection(db,up(),"holidays");
-const profileRef=()=>doc(db,up(),"_meta","profile");
-const tchInstRef=()=>doc(db,up(),"_meta","teacher_instructors");
-const tchLinkRef=()=>doc(db,up(),"_meta","teacher_link");
-const tchLogRef=()=>doc(db,up(),"_meta","teacher_log");
-const pubTchRef=(t)=>doc(db,"teacherlinks",t);
-const pubPLRef=(t)=>doc(db,"schoolparentlinks",t);
-const schMarksRef=(k)=>doc(db,"schoolmarks",k);
+// ── FIRESTORE REFS ──
+// Each user has their own space
+const myPath=()=>"schools/"+S.user.uid;
+const divRef=id=>doc(db,myPath(),"divisions",id);
+const divsCol=()=>collection(db,myPath(),"divisions");
+const stuRef=id=>doc(db,myPath(),"students",id);
+const stusCol=()=>collection(db,myPath(),"students");
+const attRef=dk=>doc(db,myPath(),"attendance",dk);
+const attCol=()=>collection(db,myPath(),"attendance");
+const holRef=dk=>doc(db,myPath(),"holidays",dk);
+const holsCol=()=>collection(db,myPath(),"holidays");
+const profileRef=()=>doc(db,myPath(),"_meta","profile");
+// School codes (HM)
+const codeRef=code=>doc(db,"schoolCodes",code);
+// School links
+const linkRef=id=>doc(db,"schoolLinks",id);
+const linksCol=()=>collection(db,"schoolLinks");
+// Teacher reading HM's holidays
+const hmHolRef=(hmUid,dk)=>doc(db,"schools",hmUid,"holidays",dk);
+const hmHolsCol=(hmUid)=>collection(db,"schools",hmUid,"holidays");
 
+// ── UI HELPERS ──
 function setSyncStatus(s){S.syncStatus=s;const el=document.getElementById("sync-dot");if(el)el.className="sync-dot sync-"+s;}
+let _loading=false;
 function setLoading(on,msg="Loading..."){
-  let el=document.getElementById("loading-overlay");
-  if(on){if(!el){el=document.createElement("div");el.id="loading-overlay";el.className="loading-overlay";
-    el.innerHTML='<div class="spinner"></div><p style="color:#64748b;font-size:14px">'+msg+'</p>';document.body.appendChild(el);}
-    else el.querySelector("p").textContent=msg;
-  }else{if(el)el.remove();}
+  let el=document.getElementById("lo");
+  if(on&&!_loading){_loading=true;if(!el){el=document.createElement("div");el.id="lo";el.className="loading-overlay";el.innerHTML='<div class="spinner"></div><p style="color:#64748b;font-size:14px">'+msg+'</p>';document.body.appendChild(el);}else el.querySelector("p").textContent=msg;}
+  else if(!on&&_loading){_loading=false;if(el)el.remove();}
 }
 function toast(msg,type="ok",dur=3000){
-  const slot=document.getElementById("toast-slot");
   const t=document.createElement("div");t.className="toast toast-"+type;t.textContent=msg;
-  slot.appendChild(t);setTimeout(()=>t.remove(),dur);
-}
-async function hashPin(pin){
-  const raw="SCH_ATT_"+pin+"_KERALA_2025";
-  const buf=await crypto.subtle.digest("SHA-256",new TextEncoder().encode(raw));
-  return Array.from(new Uint8Array(buf)).map(b=>b.toString(16).padStart(2,"0")).join("");
+  document.getElementById("toast-slot").appendChild(t);setTimeout(()=>t.remove(),dur);
 }
 function showModal(html){
   document.getElementById("modal-slot").innerHTML='<div class="modal-backdrop"><div class="modal">'+html+'</div></div>';
-  // Bind actions inside modal
-  document.querySelectorAll("#modal-slot [data-action]").forEach(btn=>btn.addEventListener("click",e=>handleClick(e)));
-  document.querySelectorAll("#modal-slot input,#modal-slot select").forEach(el=>{el.addEventListener("change",e=>handleChange(e));});
+  document.querySelectorAll("#modal-slot [data-action]").forEach(b=>b.addEventListener("click",e=>handleClick(e)));
+  document.querySelectorAll("#modal-slot select").forEach(e=>e.addEventListener("change",handleChange));
 }
 function closeModal(){document.getElementById("modal-slot").innerHTML="";}
 window.closeModal=closeModal;
 
-const NAV=[
-  {id:"dashboard",label:"Dashboard",icon:"📊"},
-  {id:"divisions",label:"Divisions",icon:"🏫"},
-  {id:"students",label:"Students",icon:"👥"},
-  {id:"attendance",label:"Mark Attendance",icon:"✅"},
-  {sep:true},
-  {id:"monthly",label:"Monthly Report",icon:"📋"},
-  {id:"attbook",label:"Attendance Book",icon:"📖"},
-  {id:"defaulters",label:"Defaulter List",icon:"&#9888;&#65039;"},
-  {id:"tc",label:"TC / Certificate",icon:"📄"},
-  {sep:true},
-  {id:"holidays",label:"Holidays",icon:"&#128197;"},
-  {id:"settings",label:"Settings",icon:"&#9881;&#65039;"},
-];
+// ── NAV ──
+function getNav(){
+  const isHM=S.role==="hm";
+  const base=[
+    {id:"dashboard",label:"Dashboard",icon:"&#128202;"},
+    ...(isHM?[{id:"teachers",label:"My Teachers",icon:"&#128105;&#8205;&#127979;"}]:[]),
+    {id:"divisions",label:"Divisions",icon:"&#127979;"},
+    {id:"students",label:"Students",icon:"&#128101;"},
+    {id:"attendance",label:"Mark Attendance",icon:"&#9989;"},
+    {sep:true},
+    {id:"monthly",label:"Monthly Report",icon:"&#128203;"},
+    {id:"attbook",label:"Attendance Book",icon:"&#128214;"},
+    {id:"defaulters",label:"Defaulter List",icon:"&#9888;&#65039;"},
+    {id:"tc",label:"TC / Certificate",icon:"&#128196;"},
+    {sep:true},
+    {id:"holidays",label:"Holidays",icon:"&#128197;"},
+    {id:"settings",label:"Settings",icon:"&#9881;&#65039;"},
+  ];
+  return base;
+}
 
 let _refreshing=false;
 function refreshPage(){
-  if(_refreshing)return;
-  _refreshing=true;
+  if(_refreshing)return;_refreshing=true;
   const pc=document.getElementById("page-content");
   const pt=document.getElementById("page-title");
   if(!pc){_refreshing=false;return;}
-  const nav=NAV.find(n=>n.id===S.page);
+  const nav=getNav().find(n=>n.id===S.page);
   if(pt)pt.textContent=nav?.label||"";
   document.querySelectorAll(".nav-item").forEach(el=>el.classList.toggle("active",el.dataset.page===S.page));
   pc.innerHTML=renderPage();
   _refreshing=false;
-  bindPage();
+  bindEvents(pc);
 }
 function renderPage(){
   switch(S.page){
     case"dashboard":return renderDashboard();
+    case"teachers":return renderTeachers();
     case"divisions":return renderDivisions();
     case"students":return renderStudents();
     case"attendance":return renderAttendance();
@@ -320,245 +331,344 @@ function renderPage(){
     default:return"<p>Page not found</p>";
   }
 }
-function bindPage(){
-  document.querySelectorAll("[data-page]").forEach(el=>{
+function bindEvents(root){
+  root=root||document;
+  root.querySelectorAll("[data-page]").forEach(el=>{
     el.addEventListener("click",()=>{
-      S.page=el.dataset.page;
-      if(S.page==="attendance")loadAttPageData();
-      else if(S.page==="students")loadStudents().then(refreshPage);
-      else if(S.page==="attbook")loadAttBookData();
-      else if(S.page==="settings")loadTeacherData().then(refreshPage);
+      const p=el.dataset.page;S.page=p;
+      if(p==="attendance")loadAttPageData();
+      else if(p==="students")loadStudents().then(refreshPage);
+      else if(p==="attbook")loadABData();
+      else if(p==="settings")refreshPage();
+      else if(p==="teachers")loadTeacherData().then(refreshPage);
       else refreshPage();
-      document.getElementById("main-sidebar")?.classList.remove("mobile-open");
-      document.getElementById("mobile-overlay")?.classList.remove("show");
+      document.getElementById("main-sidebar")?.classList.remove("open");
+      document.getElementById("mob-ov")?.classList.remove("show");
     });
   });
-  document.querySelectorAll("[data-action]").forEach(btn=>btn.addEventListener("click",e=>handleClick(e)));
-  document.querySelectorAll("select").forEach(el=>{
-    el.addEventListener("change",e=>handleChange(e));
-  });
-  document.querySelectorAll("input[type=number],input[type=date],input[type=checkbox]").forEach(el=>{
-    el.addEventListener("change",e=>handleChange(e));
-  });
+  root.querySelectorAll("[data-action]").forEach(b=>b.addEventListener("click",handleClick));
+  root.querySelectorAll("select").forEach(e=>e.addEventListener("change",handleChange));
+  root.querySelectorAll("input[type=number],input[type=date],input[type=checkbox]").forEach(e=>e.addEventListener("change",handleChange));
 }
 
-async function loadProfile(){const snap=await getDoc(profileRef());return snap.exists()?snap.data():null;}
+// ── FIRESTORE CRUD ──
+async function loadProfile(){const s=await getDoc(profileRef());return s.exists()?s.data():null;}
 async function saveProfile(p){await setDoc(profileRef(),p);S.profile=p;}
-async function loadDivisions(){const snap=await getDocs(divsRef());S.divisions=snap.docs.map(d=>({id:d.id,...d.data()}));S.divisions.sort((a,b)=>parseInt(a.std)-parseInt(b.std)||a.div.localeCompare(b.div));}
-async function loadStudents(){const snap=await getDocs(stusRef());S.students=snap.docs.map(d=>({id:d.id,...d.data()}));S.students.sort((a,b)=>{const ra=parseInt(a.roll)||9999,rb=parseInt(b.roll)||9999;return ra-rb||a.name.localeCompare(b.name);});}
-async function loadAttendanceMonth(y,m){
-  const snap=await getDocs(attColRef());
-  const from=y+"-"+pad(m+1)+"-01",to=y+"-"+pad(m+1)+"-"+pad(daysInMonth(y,m));
-  snap.docs.forEach(d=>{if(d.id>=from&&d.id<=to)S.attendance[d.id]=d.data();});
+async function loadDivisions(){
+  const s=await getDocs(divsCol());
+  S.divisions=s.docs.map(d=>({id:d.id,...d.data()}));
+  S.divisions.sort((a,b)=>parseInt(a.std)-parseInt(b.std)||a.div.localeCompare(b.div));
 }
-async function loadAllAttendance(){const snap=await getDocs(attColRef());snap.docs.forEach(d=>{S.attendance[d.id]=d.data();});}
-async function loadHolidays(){const snap=await getDocs(holsRef());S.holidays={};snap.docs.forEach(d=>{S.holidays[d.id]=d.data();});}
-async function loadTeacherData(){
-  try{
-    const[a,b,c]=await Promise.all([getDoc(tchInstRef()),getDoc(tchLinkRef()),getDoc(tchLogRef())]);
-    S.teacherLinks=a.exists()?(a.data().list||[]):[];
-    S.teacherLink=b.exists()?b.data():null;
-    S.teacherLog=c.exists()?(c.data().entries||[]):[];
-  }catch(e){}
+async function loadStudents(){
+  const s=await getDocs(stusCol());
+  S.students=s.docs.map(d=>({id:d.id,...d.data()}));
+  S.students.sort((a,b)=>(parseInt(a.roll)||9999)-(parseInt(b.roll)||9999)||a.name.localeCompare(b.name));
 }
-async function saveAtt(dk,sid,status,meta){
+async function loadAttMonth(y,m){
+  const from=y+"-"+pad(m+1)+"-01",to=y+"-"+pad(m+1)+"-"+pad(dIM(y,m));
+  const s=await getDocs(attCol());
+  s.docs.forEach(d=>{if(d.id>=from&&d.id<=to)S.attendance[d.id]=d.data();});
+}
+async function loadAllAtt(){const s=await getDocs(attCol());s.docs.forEach(d=>{S.attendance[d.id]=d.data();});}
+async function loadHolidays(){
+  const s=await getDocs(holsCol());S.holidays={};
+  s.docs.forEach(d=>{S.holidays[d.id]=d.data();});
+  // If teacher linked to HM, merge HM's holidays
+  if(S.role==="teacher"&&S.schoolLink?.hmUid){
+    try{const hs=await getDocs(hmHolsCol(S.schoolLink.hmUid));hs.docs.forEach(d=>{S.holidays[d.id]=d.data();});}catch(e){}
+  }
+}
+async function saveAtt(dk,sid,val,meta){
   setSyncStatus("syncing");
-  const record=meta?{status,...meta}:{status};
+  const rec=meta?{status:val,...meta}:{status:val};
   try{
-    const ref=attRef(dk);const snap=await getDoc(ref);
-    if(snap.exists())await updateDoc(ref,{[sid]:record,_updated:Date.now()});
-    else await setDoc(ref,{[sid]:record,_updated:Date.now()});
-    if(!S.attendance[dk])S.attendance[dk]={};
-    S.attendance[dk][sid]=record;setSyncStatus("ok");
-  }catch(e){setSyncStatus("error");throw e;}
-}
-async function markAllAtt(dk,sids,status,meta){
-  setSyncStatus("syncing");
-  try{
-    const ref=attRef(dk);const snap=await getDoc(ref);
-    const data=snap.exists()?snap.data():{};const now=Date.now();
-    sids.forEach(sid=>{const cur=data[sid]||{};data[sid]=meta?{status,...buildMeta(meta,cur)}:{status};});
-    data._updated=now;
-    if(snap.exists())await updateDoc(ref,data);else await setDoc(ref,data);
-    sids.forEach(sid=>{if(!S.attendance[dk])S.attendance[dk]={};S.attendance[dk][sid]=data[sid];});
+    const r=attRef(dk);const s=await getDoc(r);
+    if(s.exists())await updateDoc(r,{[sid]:rec,_updated:Date.now()});
+    else await setDoc(r,{[sid]:rec,_updated:Date.now()});
+    if(!S.attendance[dk])S.attendance[dk]={};S.attendance[dk][sid]=rec;
     setSyncStatus("ok");
   }catch(e){setSyncStatus("error");throw e;}
 }
-async function syncTeacherMarks(dk){
-  const token=S.teacherLink?.token;if(!token)return;
+async function markAllAtt(dk,sids,val,meta){
+  setSyncStatus("syncing");
   try{
-    const snap=await getDoc(schMarksRef(token+"_"+dk));
-    if(!snap.exists())return;
-    const marks=snap.data();
-    const ref=attRef(dk);const existing=await getDoc(ref);
-    const data=existing.exists()?existing.data():{};
-    let changed=false;
-    Object.entries(marks).forEach(([sid,rec])=>{
-      if(sid.startsWith("_"))return;
-      if(!data[sid]||(rec._updated>=(data[sid]._updated||0))){data[sid]=rec;changed=true;}
-    });
-    if(changed){data._updated=Date.now();if(existing.exists())await updateDoc(ref,data);else await setDoc(ref,data);Object.assign(S.attendance[dk]||{},data);S.attendance[dk]=data;}
-  }catch(e){}
+    const r=attRef(dk);const s=await getDoc(r);
+    const data=s.exists()?s.data():{};const now=Date.now();
+    sids.forEach(sid=>{const cur=data[sid]||{};data[sid]=meta?{status:val,...buildMeta(meta,cur)}:{status:val};});
+    data._updated=now;
+    if(s.exists())await updateDoc(r,data);else await setDoc(r,data);
+    sids.forEach(sid=>{if(!S.attendance[dk])S.attendance[dk]={};S.attendance[dk][sid]=data[sid];});
+    setSyncStatus("ok");
+  }catch(e){setSyncStatus("error");throw e;}
 }
 function buildMeta(lbl,existing){
   const now=Date.now();
   if(!existing?.by)return{by:lbl.name,byId:lbl.id,at:now};
   return{by:existing.by,byId:existing.byId,at:existing.at,editedBy:lbl.name,editedById:lbl.id,editedAt:now};
 }
-function currentUser(){return{name:S.profile?.hmName||"HM",id:"hm"};}
-function getStudentsInDiv(divId){return S.students.filter(s=>s.divId===divId);}
-function calcAtt(sid,from,to){
-  let working=0,present=0,absent=0,leave=0,od=0,late=0;
-  for(const[dk,rec]of Object.entries(S.attendance)){
+function currentUser(){return{name:S.profile?.name||S.profile?.hmName||"User",id:S.user?.uid||"u"};}
+
+// ── CALCULATIONS ──
+function stusInDiv(divId){return S.students.filter(s=>s.divId===divId);}
+function calcAtt(sid,from,to,att,hols){
+  att=att||S.attendance;hols=hols||S.holidays;
+  let working=0,present=0,absent=0,leave=0;
+  for(const[dk,rec]of Object.entries(att)){
     if(dk<from||dk>to)continue;
-    const dt=new Date(dk+"T00:00:00");if(dt.getDay()===0)continue;if(S.holidays[dk])continue;
+    const dt=new Date(dk+"T00:00:00");if(dt.getDay()===0||hols[dk])continue;
     const r=rec[sid];if(!r)continue;
     const st=typeof r==="object"?r.status:r;working++;
-    if(st==="P")present++;else if(st==="A")absent++;else if(st==="L"||st==="ML")leave++;
-    else if(st==="OD"){present++;od++;}else if(st==="Late"){present++;late++;}
+    if(st==="P"||st==="OD"||st==="Late")present++;
+    else if(st==="A")absent++;
+    else leave++;
   }
   const pct=working>0?Math.round(present/working*100):0;
-  return{working,present,absent,leave,od,late,pct};
+  return{working,present,absent,leave,pct};
 }
-function workingDays(y,m){
-  const days=[];
-  for(let d=1;d<=daysInMonth(y,m);d++){
-    const dk=y+"-"+pad(m+1)+"-"+pad(d);
-    const dt=new Date(dk+"T00:00:00");
-    if(dt.getDay()!==0&&!S.holidays[dk])days.push(dk);
+function workDays(y,m,hols){
+  hols=hols||S.holidays;const days=[];
+  for(let d=1;d<=dIM(y,m);d++){
+    const dk=y+"-"+pad(m+1)+"-"+pad(d);const dt=new Date(dk+"T00:00:00");
+    if(dt.getDay()!==0&&!hols[dk])days.push(dk);
   }
   return days;
 }
-function pctClass(p){return p>=PCT_WARN?"pct-ok":p>=(PCT_WARN-10)?"pct-warn":"pct-bad";}
+function pctCls(p){return p>=PCT_WARN?"pct-ok":p>=(PCT_WARN-10)?"pct-warn":"pct-bad";}
+
+// ── HM: LOAD LINKED TEACHER DATA ──
+async function loadTeacherData(){
+  if(S.role!=="hm")return;
+  try{
+    // Get all active links for this HM
+    const s=await getDocs(query(linksCol(),where("hmUid","==",S.user.uid),where("status","==","active")));
+    S.linkedTeachers=s.docs.map(d=>({linkId:d.id,...d.data()}));
+    // Load each teacher's profile, divisions, students, attendance
+    S.teacherData={};
+    await Promise.all(S.linkedTeachers.map(async t=>{
+      try{
+        const [pSnap,dSnap,sSnap]=await Promise.all([
+          getDoc(doc(db,"schools",t.teacherUid,"_meta","profile")),
+          getDocs(collection(db,"schools",t.teacherUid,"divisions")),
+          getDocs(collection(db,"schools",t.teacherUid,"students")),
+        ]);
+        const {year,month}=S.attState;
+        const from=year+"-"+pad(month+1)+"-01",to=year+"-"+pad(month+1)+"-"+pad(dIM(year,month));
+        const aSnap=await getDocs(collection(db,"schools",t.teacherUid,"attendance"));
+        const att={};aSnap.docs.forEach(d=>{if(d.id>=from&&d.id<=to)att[d.id]=d.data();});
+        S.teacherData[t.teacherUid]={
+          profile:pSnap.exists()?pSnap.data():{name:t.teacherName},
+          divisions:dSnap.docs.map(d=>({id:d.id,...d.data()})),
+          students:sSnap.docs.map(d=>({id:d.id,...d.data()})),
+          attendance:att,
+          linkId:t.linkId,
+        };
+      }catch(e){}
+    }));
+  }catch(e){console.error(e);}
+}
+
+// ── HM: GET ALL COMBINED DATA ──
+function getAllStudents(){
+  // Own + all linked teachers'
+  const own=S.students.map(s=>({...s,_owner:"me",_ownerName:S.profile?.name||"HM"}));
+  const others=Object.entries(S.teacherData).flatMap(([uid,d])=>
+    d.students.map(s=>({...s,_owner:uid,_ownerName:d.profile?.name||"Teacher"}))
+  );
+  return [...own,...others];
+}
+function getAllDivisions(){
+  const own=S.divisions.map(d=>({...d,_owner:"me"}));
+  const others=Object.entries(S.teacherData).flatMap(([uid,d])=>
+    d.divisions.map(x=>({...x,_owner:uid,_ownerName:d.profile?.name||"Teacher"}))
+  );
+  return [...own,...others];
+}
+function getAttFor(owner){
+  if(owner==="me")return S.attendance;
+  return S.teacherData[owner]?.attendance||{};
+}
+
+// ── SCHOOL CODE / LINK SYSTEM ──
+async function loadSchoolLink(){
+  if(S.role!=="teacher")return;
+  try{
+    const s=await getDocs(query(linksCol(),where("teacherUid","==",S.user.uid),where("status","==","active")));
+    S.schoolLink=s.docs.length?{linkId:s.docs[0].id,...s.docs[0].data()}:null;
+  }catch(e){}
+}
+async function joinSchool(code){
+  const snap=await getDoc(codeRef(code));
+  if(!snap.exists()||!snap.data().active)throw new Error("Invalid or expired school code");
+  const{hmUid,schoolName}=snap.data();
+  // Check not already linked
+  const existing=await getDocs(query(linksCol(),where("teacherUid","==",S.user.uid),where("hmUid","==",hmUid)));
+  if(!existing.empty)throw new Error("Already linked to this school");
+  const lId=uid();
+  await setDoc(linkRef(lId),{
+    hmUid,schoolName,teacherUid:S.user.uid,
+    teacherName:S.profile?.name||"Teacher",
+    teacherEmail:S.user.email,
+    status:"active",linkedAt:Date.now()
+  });
+  S.schoolLink={linkId:lId,hmUid,schoolName,status:"active"};
+}
+async function generateSchoolCode(){
+  // Remove old code first
+  if(S.profile?.schoolCode){
+    try{await setDoc(codeRef(S.profile.schoolCode),{active:false},{merge:true});}catch(e){}
+  }
+  const code=genCode();
+  await setDoc(codeRef(code),{hmUid:S.user.uid,schoolName:S.profile?.schoolName||"School",active:true,created:Date.now()});
+  const p={...S.profile,schoolCode:code};await saveProfile(p);
+  return code;
+}
 async function loadAll(){
   await Promise.all([loadDivisions(),loadStudents(),loadHolidays()]);
-  await loadAttendanceMonth(S.attState.year,S.attState.month);
+  await loadAttMonth(S.attState.year,S.attState.month);
   if(!S.attState.divId&&S.divisions.length)S.attState.divId=S.divisions[0].id;
   if(!S.monthRep.divId&&S.divisions.length)S.monthRep.divId=S.divisions[0].id;
-  if(!S.attBookState.divId&&S.divisions.length)S.attBookState.divId=S.divisions[0].id;
-  await loadTeacherData();
+  if(!S.abState.divId&&S.divisions.length)S.abState.divId=S.divisions[0].id;
+  if(S.role==="teacher")await loadSchoolLink();
+  if(S.role==="hm")await loadTeacherData();
 }
 
-// DASHBOARD
+// ── RENDER FUNCTIONS ──
 function renderDashboard(){
-  const dk=todayDk();const todayDt=new Date(dk+"T00:00:00");
-  const isSun=todayDt.getDay()===0;const isHol=!!S.holidays[dk];
-  let markedToday=0,presentToday=0;
-  S.students.forEach(s=>{const r=S.attendance[dk]?.[s.id];if(r){markedToday++;const st=typeof r==="object"?r.status:r;if(st==="P"||st==="OD"||st==="Late")presentToday++;}});
-  const{year,month}=S.attState;const from=year+"-"+pad(month+1)+"-01",to=year+"-"+pad(month+1)+"-"+pad(daysInMonth(year,month));
-  let below75=0;S.students.forEach(s=>{const r=calcAtt(s.id,from,to);if(r.working>0&&r.pct<PCT_WARN)below75++;});
-  const todayLog=(S.teacherLog||[]).filter(e=>e.at&&new Date(e.at).toDateString()===TODAY.toDateString());
-  const todayLabel=TODAY.toLocaleDateString("en-IN",{weekday:"long",day:"numeric",month:"long",year:"numeric"});
+  const dk=todayDk();const dt=new Date(dk+"T00:00:00");
+  const isSun=dt.getDay()===0,isHol=!!S.holidays[dk];
+  const isHM=S.role==="hm";
+  const allDivs=isHM?getAllDivisions():S.divisions;
+  const allStus=isHM?getAllStudents():S.students;
+  const today=TODAY.toLocaleDateString("en-IN",{weekday:"long",day:"numeric",month:"long",year:"numeric"});
   const hr=TODAY.getHours();
-  return`
-<div class="mb16" style="background:linear-gradient(135deg,#1565c0,#0d47a1);color:#fff;border-radius:12px;padding:20px 24px">
-  <div style="font-size:12px;opacity:.8;text-transform:uppercase;letter-spacing:.05em">${hr<12?"Good Morning":"Good Afternoon"}</div>
-  <div style="font-size:20px;font-weight:700;margin-top:4px">${S.profile?.schoolName||"School Attendance System"}</div>
-  <div style="font-size:13px;opacity:.8;margin-top:2px">📅 ${todayLabel}${isHol?" 🎉 "+S.holidays[dk].name:isSun?" — Sunday":""}${isHol||isSun?" (No School)":""}</div>
-</div>
-<div class="grid4 mb16">
-  <div class="stat-card"><div class="stat-val" style="color:var(--primary)">${S.divisions.length}</div><div class="stat-lbl">Divisions</div></div>
-  <div class="stat-card"><div class="stat-val" style="color:var(--primary)">${S.students.length}</div><div class="stat-lbl">Students</div></div>
-  <div class="stat-card"><div class="stat-val" style="color:var(--success)">${markedToday}</div><div class="stat-lbl">Marked Today</div></div>
-  <div class="stat-card"><div class="stat-val" style="color:var(--danger)">${below75}</div><div class="stat-lbl">Below 75%</div></div>
-</div>
-${todayLog.length?`<div class="card mb16" style="border-left:4px solid var(--primary)">
-  <div class="card-header"><h3>🔔 Teacher Activity Today</h3></div>
-  <div class="card-body p0">${todayLog.map(e=>{
-    const t=e.at?new Date(e.at).toLocaleTimeString("en-IN",{hour:"2-digit",minute:"2-digit"}):"";
-    return'<div style="padding:10px 16px;border-bottom:1px solid var(--border);font-size:13px"><span class="fw600">'+e.name+'</span> marked <strong>'+e.count+'</strong> students in <strong>'+e.divName+'</strong> <span class="text-muted">at '+t+'</span></div>';
-  }).join("")}</div></div>`:""}
-<div class="card mb16">
-  <div class="card-header" style="justify-content:space-between">
-    <h3>Divisions Overview</h3>
-    <button class="btn btn-primary btn-sm" data-page="attendance">Mark Attendance</button>
-  </div>
-  <div class="card-body p0">
-    ${S.divisions.length===0
-      ?'<div style="text-align:center;padding:30px;color:var(--text3)">No divisions added. <button class="btn-icon text-primary" data-page="divisions">Add divisions \u2192</button></div>'
-      :`<table class="tbl"><thead><tr><th>Division</th><th>Strength</th><th>Today Present</th><th>Month %</th><th>Action</th></tr></thead><tbody>
-      ${S.divisions.map(div=>{
-        const stus=getStudentsInDiv(div.id);
-        const todayPres=stus.filter(s=>{const r=S.attendance[dk]?.[s.id];const st=typeof r==="object"?r?.status:r;return st==="P"||st==="OD"||st==="Late";}).length;
-        const todayMk=stus.filter(s=>S.attendance[dk]?.[s.id]).length;
-        const ms=stus.map(s=>calcAtt(s.id,from,to));
-        const avg=ms.length?Math.round(ms.reduce((a,b)=>a+b.pct,0)/ms.length):0;
-        return'<tr><td><span class="fw600">Std '+div.std+' Div '+div.div+'</span> <span class="text-muted text-xs">'+(div.medium||"")+'</span></td>'
-          +'<td>'+stus.length+'</td>'
-          +'<td>'+(isHol||isSun?"&mdash;":todayPres+"/"+stus.length+' <span class="text-muted text-xs">('+todayMk+' marked)</span>')+'</td>'
-          +'<td><span class="'+pctClass(avg)+'">'+avg+'%</span></td>'
-          +'<td><button class="btn btn-secondary btn-sm" data-action="go-att" data-divid="'+div.id+'">Mark</button></td></tr>';
-      }).join("")}</tbody></table>`
-    }
-  </div>
-</div>
-<div class="card">
-  <div class="card-header"><h3>Quick Actions</h3></div>
-  <div class="card-body" style="display:flex;gap:10px;flex-wrap:wrap">
-    <button class="btn btn-primary" data-page="attendance">&#9989; Mark Attendance</button>
-    <button class="btn btn-secondary" data-page="monthly">&#128203; Monthly Report</button>
-    <button class="btn btn-secondary" data-page="defaulters">&#9888;&#65039; Defaulter List</button>
-    <button class="btn btn-secondary" data-page="attbook">&#128214; Attendance Book</button>
-    <button class="btn btn-secondary" data-page="tc">&#128196; TC / Certificate</button>
-  </div>
-</div>`;
+  let markedToday=0,presentToday=0;
+  allStus.forEach(s=>{
+    const att=isHM?getAttFor(s._owner||"me"):S.attendance;
+    const r=att[dk]?.[s.id];if(r){markedToday++;const st=typeof r==="object"?r.status:r;if(st==="P"||st==="OD"||st==="Late")presentToday++;}
+  });
+  const {year,month}=S.monthRep;const from=year+"-"+pad(month+1)+"-01",to=year+"-"+pad(month+1)+"-"+pad(dIM(year,month));
+  let below75=0;
+  allStus.forEach(s=>{const att=isHM?getAttFor(s._owner||"me"):S.attendance;const r=calcAtt(s.id,from,to,att);if(r.working>0&&r.pct<PCT_WARN)below75++;});
+  const divRows=allDivs.map(div=>{
+    const owner=div._owner||"me";const att=isHM?getAttFor(owner):S.attendance;
+    const sts=isHM?getAllStudents().filter(s=>s.divId===div.id&&s._owner===owner):stusInDiv(div.id);
+    const tp=sts.filter(s=>{const r=att[dk]?.[s.id];const st=typeof r==="object"?r?.status:r;return st==="P"||st==="OD"||st==="Late";}).length;
+    const tm=sts.filter(s=>att[dk]?.[s.id]).length;
+    const ms=sts.map(s=>calcAtt(s.id,from,to,att));
+    const avg=ms.length?Math.round(ms.reduce((a,b)=>a+b.pct,0)/ms.length):0;
+    const ownerLabel=isHM&&div._owner!=="me"?'<span class="badge badge-blue" style="margin-left:4px;font-size:10px">'+div._ownerName+'</span>':"";
+    return'<tr><td><span class="fw600">Std '+div.std+' Div '+div.div+'</span>'+ownerLabel+'</td>'
+      +'<td>'+sts.length+'</td>'
+      +'<td>'+(isHol||isSun?"&mdash;":tp+"/"+sts.length+" ("+tm+" marked)")+'</td>'
+      +'<td><span class="'+pctCls(avg)+'">'+avg+'%</span></td>'
+      +(isHM?'':'<td><button class="btn btn-secondary btn-sm" data-action="go-att" data-divid="'+div.id+'">Mark</button></td>')
+      +'</tr>';
+  }).join("");
+  return'<div class="mb16" style="background:linear-gradient(135deg,#1565c0,#0d47a1);color:#fff;border-radius:12px;padding:20px 24px">'
+    +'<div style="font-size:12px;opacity:.8;text-transform:uppercase;letter-spacing:.05em">'+(hr<12?"Good Morning":"Good Afternoon")+(isHM?" &mdash; Headmaster":"")+'</div>'
+    +'<div style="font-size:20px;font-weight:700;margin-top:4px">'+(S.profile?.schoolName||"School Attendance System")+'</div>'
+    +'<div style="font-size:13px;opacity:.8;margin-top:2px">&#128197; '+today+(isHol?" &#127881; "+S.holidays[dk].name:isSun?" &mdash; Sunday":"")+(isHol||isSun?" (No School)":"")+'</div>'
+    +'</div>'
+    +'<div class="grid4 mb16">'
+    +'<div class="stat-card"><div class="stat-val" style="color:var(--primary)">'+allDivs.length+'</div><div class="stat-lbl">Divisions</div></div>'
+    +'<div class="stat-card"><div class="stat-val" style="color:var(--primary)">'+allStus.length+'</div><div class="stat-lbl">Students</div></div>'
+    +'<div class="stat-card"><div class="stat-val" style="color:var(--success)">'+markedToday+'</div><div class="stat-lbl">Marked Today</div></div>'
+    +'<div class="stat-card"><div class="stat-val" style="color:var(--danger)">'+below75+'</div><div class="stat-lbl">Below 75%</div></div>'
+    +'</div>'
+    +(isHM&&S.linkedTeachers.length>0?
+      '<div class="info-box info-box-blue mb16">&#128279; <strong>'+S.linkedTeachers.length+' teacher(s) linked</strong> &mdash; showing combined school data</div>'
+      :isHM?'<div class="info-box info-box-amber mb16">&#128279; No teachers linked yet. Share your School Code from Settings.</div>':
+      S.schoolLink?'<div class="info-box info-box-green mb16">&#128279; Linked to <strong>'+S.schoolLink.schoolName+'</strong></div>':"")
+    +'<div class="card mb16">'
+    +'<div class="card-header" style="justify-content:space-between"><h3>Divisions Overview</h3>'
+    +(isHM?"":'<button class="btn btn-primary btn-sm" data-page="attendance">Mark Attendance</button>')
+    +'</div><div class="card-body p0">'
+    +(allDivs.length===0?'<div style="text-align:center;padding:30px;color:var(--text3)">No divisions yet. <button class="btn-icon text-primary" data-page="divisions">Add divisions &#8594;</button></div>'
+      :'<div style="overflow-x:auto"><table class="tbl"><thead><tr><th>Division</th><th>Students</th><th>Today</th><th>Month %</th>'+(isHM?"":'<th>Action</th>')+'</tr></thead><tbody>'+divRows+'</tbody></table></div>')
+    +'</div></div>'
+    +'<div class="card"><div class="card-header"><h3>Quick Actions</h3></div>'
+    +'<div class="card-body" style="display:flex;gap:10px;flex-wrap:wrap">'
+    +(isHM?'<button class="btn btn-secondary" data-page="teachers">&#128105;&#8205;&#127979; My Teachers</button>':'<button class="btn btn-primary" data-page="attendance">&#9989; Mark Attendance</button>')
+    +'<button class="btn btn-secondary" data-page="monthly">&#128203; Monthly Report</button>'
+    +'<button class="btn btn-secondary" data-page="defaulters">&#9888;&#65039; Defaulter List</button>'
+    +'<button class="btn btn-secondary" data-page="attbook">&#128214; Attendance Book</button>'
+    +'<button class="btn btn-secondary" data-page="tc">&#128196; TC / Certificate</button>'
+    +'</div></div>';
 }
 
-// DIVISIONS
+function renderTeachers(){
+  // HM only
+  const teachers=S.linkedTeachers.map(t=>{
+    const td=S.teacherData[t.teacherUid]||{};
+    const divs=td.divisions||[];const stus=td.students||[];
+    const dk=todayDk();const att=td.attendance||{};
+    const marked=stus.filter(s=>att[dk]?.[s.id]).length;
+    return'<tr>'
+      +'<td class="fw600">'+t.teacherName+'</td>'
+      +'<td class="text-muted text-sm">'+t.teacherEmail+'</td>'
+      +'<td>'+divs.map(d=>'Std '+d.std+' Div '+d.div).join(", ")+'</td>'
+      +'<td>'+stus.length+'</td>'
+      +'<td>'+(stus.length?marked+"/"+stus.length+" marked":"&mdash;")+'</td>'
+      +'<td><button class="btn btn-sm" style="background:#fee2e2;color:#dc2626;border-color:#fca5a5" data-action="unlink-teacher" data-lid="'+t.linkId+'">Unlink</button></td>'
+      +'</tr>';
+  }).join("");
+  const code=S.profile?.schoolCode;
+  return'<div class="card mb16">'
+    +'<div class="card-header"><h3>&#128279; School Code</h3></div>'
+    +'<div class="card-body">'
+    +(code?'<div class="school-code-box"><div class="label">Share this code with your class teachers</div><div class="code">'+code+'</div><div class="label">Teachers enter this code when registering or in Settings</div></div>'
+      +'<div class="flex gap8"><button class="btn btn-secondary btn-sm" onclick="navigator.clipboard?.writeText(\''+code+'\').then(()=>toast(\'Code copied!\'))">Copy Code</button>'
+      +'<button class="btn btn-sm" style="background:#fff7ed;border:1px solid #fdba74;color:#c2410c" data-action="regen-code">Generate New Code</button></div>'
+      :'<button class="btn btn-primary" data-action="gen-code">Generate School Code</button>')
+    +'</div></div>'
+    +'<div class="card">'
+    +'<div class="card-header"><h3>&#128105;&#8205;&#127979; Linked Teachers ('+S.linkedTeachers.length+')</h3></div>'
+    +'<div class="card-body p0">'
+    +(S.linkedTeachers.length===0?'<div style="text-align:center;padding:30px;color:var(--text3)">No teachers linked yet. Share your school code with class teachers.</div>'
+      :'<div style="overflow-x:auto"><table class="tbl"><thead><tr><th>Name</th><th>Email</th><th>Divisions</th><th>Students</th><th>Today</th><th>Action</th></tr></thead><tbody>'+teachers+'</tbody></table></div>')
+    +'</div></div>';
+}
+
 function renderDivisions(){
-  return`<div class="card">
-  <div class="card-header"><h3>Divisions (${S.divisions.length})</h3><button class="btn btn-primary btn-sm" data-action="add-div">+ Add Division</button></div>
-  <div class="card-body p0">
-    ${S.divisions.length===0
-      ?'<div style="text-align:center;padding:30px;color:var(--text3)">No divisions yet.</div>'
-      :`<table class="tbl"><thead><tr><th>#</th><th>Division</th><th>Medium</th><th>Class Teacher</th><th>Students</th><th>Actions</th></tr></thead><tbody>
-      ${S.divisions.map((div,i)=>{
-        const count=getStudentsInDiv(div.id).length;
-        return'<tr><td>'+(i+1)+'</td><td class="fw600">Std '+div.std+' &mdash; Div '+div.div+'</td>'
-          +'<td>'+(div.medium||"&mdash;")+'</td><td>'+(div.classTeacher||"&mdash;")+'</td><td>'+count+'</td>'
-          +'<td><button class="btn btn-secondary btn-sm" data-action="edit-div" data-id="'+div.id+'">Edit</button>'
-          +' <button class="btn btn-sm" style="background:#fee2e2;color:#dc2626;border-color:#fca5a5;margin-left:4px" data-action="del-div" data-id="'+div.id+'">&times;</button></td></tr>';
-      }).join("")}</tbody></table>`}
-  </div></div>`;
+  const rows=S.divisions.map((d,i)=>'<tr><td>'+(i+1)+'</td><td class="fw600">Std '+d.std+' &mdash; Div '+d.div+'</td>'
+    +'<td>'+(d.medium||"&mdash;")+'</td><td>'+(d.classTeacher||"&mdash;")+'</td><td>'+stusInDiv(d.id).length+'</td>'
+    +'<td><button class="btn btn-secondary btn-sm" data-action="edit-div" data-id="'+d.id+'">Edit</button>'
+    +' <button class="btn btn-sm" style="background:#fee2e2;color:#dc2626;border-color:#fca5a5;margin-left:4px" data-action="del-div" data-id="'+d.id+'">&times;</button></td></tr>').join("");
+  return'<div class="card"><div class="card-header"><h3>Divisions ('+S.divisions.length+')</h3>'
+    +'<button class="btn btn-primary btn-sm" data-action="add-div">+ Add Division</button></div>'
+    +'<div class="card-body p0">'+(S.divisions.length===0?'<div style="text-align:center;padding:30px;color:var(--text3)">No divisions yet.</div>'
+    :'<table class="tbl"><thead><tr><th>#</th><th>Division</th><th>Medium</th><th>Class Teacher</th><th>Students</th><th>Actions</th></tr></thead><tbody>'+rows+'</tbody></table>')
+    +'</div></div>';
 }
 
-// STUDENTS
 function renderStudents(){
   const fv=document.getElementById("stu-div-filter")?.value||"all";
   const studs=fv==="all"?S.students:S.students.filter(s=>s.divId===fv);
   const divOpts='<option value="all">All Divisions</option>'+S.divisions.map(d=>'<option value="'+d.id+'"'+(fv===d.id?' selected':'')+'>Std '+d.std+' Div '+d.div+'</option>').join("");
-  return`<div class="card mb16">
-  <div class="card-header"><h3>Students (${studs.length})</h3>
-    <div class="flex gap8">
-      <select id="stu-div-filter" style="width:180px">${divOpts}</select>
-      <button class="btn btn-primary btn-sm" data-action="add-student">+ Add Student</button>
-    </div>
-  </div>
-  <div class="card-body p0">
-    ${studs.length===0
-      ?'<div style="text-align:center;padding:30px;color:var(--text3)">No students found.</div>'
-      :`<div style="overflow-x:auto"><table class="tbl">
-      <thead><tr><th>#</th><th>Roll</th><th>Name</th><th>Division</th><th>Adm No</th><th>Parent Phone</th><th>Actions</th></tr></thead>
-      <tbody>${studs.map((s,i)=>{
-        const div=S.divisions.find(d=>d.id===s.divId);
-        return'<tr><td>'+(i+1)+'</td><td>'+(s.roll||"&mdash;")+'</td><td class="fw600">'+s.name+'</td>'
-          +'<td>'+(div?'Std '+div.std+' Div '+div.div:"&mdash;")+'</td>'
-          +'<td>'+(s.admNo||"&mdash;")+'</td><td>'+(s.parentPhone||"&mdash;")+'</td>'
-          +'<td><button class="btn btn-secondary btn-sm" data-action="edit-student" data-id="'+s.id+'">Edit</button>'
-          +' <button class="btn btn-sm" style="background:#fee2e2;color:#dc2626;border-color:#fca5a5;margin-left:4px" data-action="del-student" data-id="'+s.id+'">&times;</button></td></tr>';
-      }).join("")}</tbody></table></div>`}
-  </div></div>`;
+  const rows=studs.map((s,i)=>{
+    const div=S.divisions.find(d=>d.id===s.divId);
+    return'<tr><td>'+(i+1)+'</td><td>'+(s.roll||"&mdash;")+'</td><td class="fw600">'+s.name+'</td>'
+      +'<td>'+(div?'Std '+div.std+' Div '+div.div:"&mdash;")+'</td>'
+      +'<td>'+(s.admNo||"&mdash;")+'</td><td>'+(s.parentPhone||"&mdash;")+'</td>'
+      +'<td><button class="btn btn-secondary btn-sm" data-action="edit-stu" data-id="'+s.id+'">Edit</button>'
+      +' <button class="btn btn-sm" style="background:#fee2e2;color:#dc2626;border-color:#fca5a5;margin-left:4px" data-action="del-stu" data-id="'+s.id+'">&times;</button></td></tr>';
+  }).join("");
+  return'<div class="card"><div class="card-header"><h3>Students ('+studs.length+')</h3>'
+    +'<div class="flex gap8"><select id="stu-div-filter" style="width:180px">'+divOpts+'</select>'
+    +'<button class="btn btn-primary btn-sm" data-action="add-stu">+ Add Student</button></div></div>'
+    +'<div class="card-body p0">'+(studs.length===0?'<div style="text-align:center;padding:30px;color:var(--text3)">No students found.</div>'
+    :'<div style="overflow-x:auto"><table class="tbl"><thead><tr><th>#</th><th>Roll</th><th>Name</th><th>Division</th><th>Adm No</th><th>Parent Phone</th><th>Actions</th></tr></thead><tbody>'+rows+'</tbody></table></div>')
+    +'</div></div>';
 }
 
-// MARK ATTENDANCE
 function renderAttendance(){
   const{divId,year,month,day}=S.attState;
-  const maxDay=daysInMonth(year,month);const d=Math.min(day,maxDay);
+  const maxDay=dIM(year,month);const d=Math.min(day,maxDay);
   const dk=year+"-"+pad(month+1)+"-"+pad(d);
   const dt=new Date(dk+"T00:00:00");
-  const dowLabel=["Sunday","Monday","Tuesday","Wednesday","Thursday","Friday","Saturday"][dt.getDay()];
-  const isSun=dt.getDay()===0;const isHol=!!S.holidays[dk];
-  const students=getStudentsInDiv(divId);
+  const dow=["Sunday","Monday","Tuesday","Wednesday","Thursday","Friday","Saturday"][dt.getDay()];
+  const isSun=dt.getDay()===0,isHol=!!S.holidays[dk];
+  const students=stusInDiv(divId);
   const divOpts=S.divisions.map(dv=>'<option value="'+dv.id+'"'+(divId===dv.id?" selected":"")+'>Std '+dv.std+' Div '+dv.div+'</option>').join("");
   const mOpts=MONTHS.map((m,i)=>'<option value="'+i+'"'+(month===i?" selected":"")+'>'+m+'</option>').join("");
   const dOpts=Array.from({length:maxDay},(_,i)=>'<option value="'+(i+1)+'"'+(d===i+1?" selected":"")+'>'+(i+1)+'</option>').join("");
@@ -568,503 +678,375 @@ function renderAttendance(){
   const cards=students.map((s,idx)=>{
     const r=S.attendance[dk]?.[s.id];const st=typeof r==="object"?r?.status:r;const by=typeof r==="object"?r:null;
     const chip=st?'<span class="chip chip-'+st+'">'+st+'</span>':'<span class="chip chip-none">&mdash;</span>';
-    const byLine=by?.by?'<span style="font-size:10px;color:var(--text3);display:block">&#x1F4DD; '+by.by+(by.editedBy?" &#9999;&#65039; "+by.editedBy:"")+'</span>':"";
-    const btns=ATT_STATUS.map(v=>'<button class="att-btn '+(st===v?v:"")+'" data-action="mark-att" data-sid="'+s.id+'" data-dk="'+dk+'" data-val="'+v+'">'+v+'</button>').join("");
-    return'<div class="att-card">'
-      +'<div class="att-card-header"><span class="att-sl">'+(idx+1)+'</span>'
-      +'<div style="flex:1"><div class="att-name">'+s.name+'</div>'
-      +'<div class="att-roll text-xs text-muted">Roll: '+(s.roll||"&mdash;")+'</div>'+byLine+'</div>'+chip+'</div>'
+    const byLine=by?.by?'<div style="font-size:10px;color:var(--text3)">&#x1F4DD; '+by.by+(by.editedBy?" &#9999; "+by.editedBy:"")+'</div>':"";
+    const btns=ATT_STATUS.map(v=>'<button class="att-btn '+(st===v?v:"")+'" data-action="mark" data-sid="'+s.id+'" data-dk="'+dk+'" data-val="'+v+'">'+v+'</button>').join("");
+    return'<div class="att-card"><div class="att-card-header"><span class="att-sl">'+(idx+1)+'</span>'
+      +'<div style="flex:1"><div style="font-weight:600;font-size:14px">'+s.name+'</div>'
+      +'<div style="font-size:11px;color:var(--text3)">Roll: '+(s.roll||"&mdash;")+'</div>'+byLine+'</div>'+chip+'</div>'
       +'<div class="att-btns">'+btns+'</div></div>';
   }).join("");
-  return`
-<div class="card mb12"><div class="card-body" style="padding:12px 14px">
-  <div style="display:grid;grid-template-columns:1fr 1fr;gap:8px;margin-bottom:10px">
-    <div><label class="form-label">Division</label><select id="att-div">${divOpts}</select></div>
-    <div><label class="form-label">Month</label><select id="att-month">${mOpts}</select></div>
-  </div>
-  <div style="display:grid;grid-template-columns:1fr 1fr 1fr;gap:8px;margin-bottom:10px">
-    <div><label class="form-label">Day</label><select id="att-day">${dOpts}</select></div>
-    <div><label class="form-label">Year</label><input type="number" id="att-year" value="${year}"/></div>
-    <div style="padding-top:18px"><span style="font-size:12px;font-weight:600;color:${isSun?"var(--danger)":"var(--text2)"}">${dowLabel}</span>${isHol?'<div style="font-size:10px;color:var(--warn)">&#127881; '+S.holidays[dk].name+'</div>':""}</div>
-  </div>
-  <div style="display:flex;gap:6px;flex-wrap:wrap">
-    <button class="btn btn-success btn-sm" data-action="mark-all" data-val="P">All Present</button>
-    <button class="btn btn-danger btn-sm" data-action="mark-all" data-val="A">All Absent</button>
-    <button class="btn btn-sm" style="background:#fff7ed;border:1px solid #fdba74;color:#c2410c" data-action="mark-all" data-val="Late">All Late</button>
-    <button class="btn btn-sm" style="background:#e0f2fe;border:1px solid #7dd3fc;color:#0369a1" data-action="share-att">&#128228; Share</button>
-    <button class="btn btn-sm" style="background:#f3e8ff;border:1px solid #c4b5fd;color:#7c3aed" data-action="sync-teacher">&#8635; Sync Teacher</button>
-  </div>
-</div></div>
-${isSun||isHol?'<div style="text-align:center;padding:30px;background:#fff;border:1px solid var(--border);border-radius:var(--radius2);color:var(--text3);font-size:14px">'+(isSun?"&#127774; Sunday &mdash; No School":"&#127881; "+S.holidays[dk].name+" &mdash; Holiday")+'</div>'
-:students.length?`<div style="margin-bottom:8px;padding:8px 12px;background:var(--surface);border:1px solid var(--border);border-radius:var(--radius2);font-size:12px;display:flex;gap:14px;flex-wrap:wrap">
-  <span>&#9989; Present: <strong style="color:var(--success)">${present}</strong></span>
-  <span>&#10060; Absent: <strong style="color:var(--danger)">${absent}</strong></span>
-  <span>&#128203; Leave: <strong style="color:var(--warn)">${leave}</strong></span>
-  <span>&#9634; Unmarked: <strong style="color:var(--text3)">${unmarked}</strong></span>
-  <span style="margin-left:auto;font-size:11px;color:var(--text3)">${dk}</span>
-</div>${cards}`
-:'<div style="text-align:center;padding:30px;color:var(--text3)">No students in this division. <button class="btn-icon text-primary" data-page="students">Add students \u2192</button></div>'}`;
+  return'<div class="card mb12"><div class="card-body" style="padding:12px 14px">'
+    +'<div style="display:grid;grid-template-columns:1fr 1fr;gap:8px;margin-bottom:10px">'
+    +'<div><label class="form-label">Division</label><select id="att-div">'+divOpts+'</select></div>'
+    +'<div><label class="form-label">Month</label><select id="att-month">'+mOpts+'</select></div></div>'
+    +'<div style="display:grid;grid-template-columns:1fr 1fr 1fr;gap:8px;margin-bottom:10px">'
+    +'<div><label class="form-label">Day</label><select id="att-day">'+dOpts+'</select></div>'
+    +'<div><label class="form-label">Year</label><input type="number" id="att-year" value="'+year+'"/></div>'
+    +'<div style="padding-top:18px"><span style="font-size:12px;font-weight:600;color:'+(isSun?"var(--danger)":"var(--text2)")+'">'+dow+'</span>'
+    +(isHol?'<div style="font-size:10px;color:var(--warn)">&#127881; '+S.holidays[dk].name+'</div>':"")+'</div></div>'
+    +'<div style="display:flex;gap:6px;flex-wrap:wrap">'
+    +'<button class="btn btn-success btn-sm" data-action="mark-all" data-val="P">All Present</button>'
+    +'<button class="btn btn-danger btn-sm" data-action="mark-all" data-val="A">All Absent</button>'
+    +'<button class="btn btn-sm" style="background:#fff7ed;border:1px solid #fdba74;color:#c2410c" data-action="mark-all" data-val="Late">All Late</button>'
+    +'<button class="btn btn-sm" style="background:#e0f2fe;border:1px solid #7dd3fc;color:#0369a1" data-action="share-att">&#128228; Share</button>'
+    +'</div></div></div>'
+    +(isSun||isHol?'<div style="text-align:center;padding:30px;background:#fff;border:1px solid var(--border);border-radius:var(--radius2);color:var(--text3)">'+(isSun?"&#127774; Sunday":"&#127881; "+S.holidays[dk].name)+" &mdash; No School</div>"
+    :students.length?'<div style="margin-bottom:8px;padding:8px 12px;background:var(--surface);border:1px solid var(--border);border-radius:var(--radius2);font-size:12px;display:flex;gap:14px;flex-wrap:wrap">'
+      +'<span>&#9989; <strong style="color:var(--success)">'+present+'</strong> Present</span>'
+      +'<span>&#10060; <strong style="color:var(--danger)">'+absent+'</strong> Absent</span>'
+      +'<span>&#128203; <strong style="color:var(--warn)">'+leave+'</strong> Leave</span>'
+      +'<span style="color:var(--text3)">'+unmarked+' unmarked</span>'
+      +'<span style="margin-left:auto;font-size:11px;color:var(--text3)">'+dk+'</span></div>'+cards
+    :'<div style="text-align:center;padding:30px;color:var(--text3)">No students in this division. <button class="btn-icon text-primary" data-page="students">Add students &#8594;</button></div>');
 }
 
-// MONTHLY REPORT
 function renderMonthly(){
   const{divId,year,month}=S.monthRep;
-  const divOpts=S.divisions.map(d=>'<option value="'+d.id+'"'+(divId===d.id?" selected":"")+'>Std '+d.std+' Div '+d.div+'</option>').join("");
+  const isHM=S.role==="hm";
+  // For HM, allow selecting from all divisions
+  const allDivs=isHM?getAllDivisions():S.divisions;
+  const divOpts=allDivs.map(d=>'<option value="'+d.id+'|'+(d._owner||"me")+'"'+((divId===d.id)?" selected":"")+'>Std '+d.std+' Div '+d.div+(d._ownerName&&isHM?" ("+d._ownerName+")":"")+'</option>').join("");
   const mOpts=MONTHS.map((m,i)=>'<option value="'+i+'"'+(month===i?" selected":"")+'>'+m+'</option>').join("");
-  const from=year+"-"+pad(month+1)+"-01",to=year+"-"+pad(month+1)+"-"+pad(daysInMonth(year,month));
-  const wDays=workingDays(year,month).length;
-  const students=getStudentsInDiv(divId);
-  const divObj=S.divisions.find(d=>d.id===divId);
+  const from=year+"-"+pad(month+1)+"-01",to=year+"-"+pad(month+1)+"-"+pad(dIM(year,month));
+  const wDays=workDays(year,month).length;
+  // Find owner of selected division
+  const selDiv=allDivs.find(d=>d.id===divId);
+  const owner=selDiv?._owner||"me";
+  const att=isHM?getAttFor(owner):S.attendance;
+  const students=isHM?getAllStudents().filter(s=>s.divId===divId&&s._owner===owner):stusInDiv(divId);
+  const divObj=S.divisions.find(d=>d.id===divId)||selDiv;
   const pd=S.printDetails;
   const rows=students.map((s,i)=>{
-    const r=calcAtt(s.id,from,to);
+    const r=calcAtt(s.id,from,to,att);
     return'<tr><td style="text-align:center">'+(i+1)+'</td><td style="text-align:center">'+(s.roll||"&mdash;")+'</td>'
-      +'<td style="font-weight:600">'+s.name+'</td>'
-      +'<td style="text-align:center">'+wDays+'</td><td style="text-align:center">'+r.present+'</td>'
-      +'<td style="text-align:center">'+r.absent+'</td><td style="text-align:center">'+r.leave+'</td>'
-      +'<td style="text-align:center"><span class="'+pctClass(r.pct)+'">'+r.pct+'%</span></td>'
+      +'<td style="font-weight:600">'+s.name+'</td><td style="text-align:center">'+wDays+'</td>'
+      +'<td style="text-align:center">'+r.present+'</td><td style="text-align:center">'+r.absent+'</td><td style="text-align:center">'+r.leave+'</td>'
+      +'<td style="text-align:center"><span class="'+pctCls(r.pct)+'">'+r.pct+'%</span></td>'
       +'<td style="text-align:center;font-size:11px;color:var(--danger)">'+(r.pct<PCT_WARN?"Short":"")+'</td></tr>';
   }).join("");
-  return`
-<div class="card mb16">
-  <div class="card-header"><h3>Monthly Report</h3></div>
-  <div class="card-body">
-    <div class="form-row3 mb12">
-      <div><label class="form-label">Division</label><select id="mr-div">${divOpts}</select></div>
-      <div><label class="form-label">Month</label><select id="mr-month">${mOpts}</select></div>
-      <div><label class="form-label">Year</label><input type="number" id="mr-year" value="${year}"/></div>
-    </div>
-    <div class="form-row mb12">
-      <div><label class="form-label">HM Name (for print)</label><input id="mr-hm" value="${pd.hmName||S.profile?.hmName||""}"/></div>
-      <div><label class="form-label">School Name (for print)</label><input id="mr-school" value="${pd.schoolName||S.profile?.schoolName||""}"/></div>
-    </div>
-    <div style="display:flex;gap:12px;align-items:center;flex-wrap:wrap">
-      <label style="display:flex;align-items:center;gap:6px;cursor:pointer;font-size:13px">
-        <input type="checkbox" id="mr-date" ${pd.printDate?"checked":""} style="width:auto"/> Print today's date
-      </label>
-      <button class="btn btn-primary btn-sm" data-action="print-monthly">&#128424;&#65039; Print Report</button>
-    </div>
-  </div>
-</div>
-<div class="card">
-  <div class="card-header">
-    <h3>${divObj?'Std '+divObj.std+' Div '+divObj.div:""} &mdash; ${MONTHS[month]} ${year}</h3>
-    <span class="text-muted text-sm">Working days: ${wDays}</span>
-  </div>
-  <div class="card-body p0"><div style="overflow-x:auto">
-    <table class="tbl"><thead><tr><th>Sl</th><th>Roll</th><th>Name</th><th>Working Days</th><th>Present</th><th>Absent</th><th>Leave</th><th>%</th><th>Remark</th></tr></thead>
-    <tbody>${rows||'<tr><td colspan="9" style="text-align:center;padding:24px;color:var(--text3)">No data.</td></tr>'}</tbody>
-    </table>
-  </div></div>
-</div>`;
+  return'<div class="card mb16"><div class="card-header"><h3>Monthly Report</h3></div><div class="card-body">'
+    +'<div class="form-row3 mb12">'
+    +'<div><label class="form-label">Division</label><select id="mr-div">'+divOpts+'</select></div>'
+    +'<div><label class="form-label">Month</label><select id="mr-month">'+mOpts+'</select></div>'
+    +'<div><label class="form-label">Year</label><input type="number" id="mr-year" value="'+year+'"/></div></div>'
+    +'<div class="form-row mb12">'
+    +'<div><label class="form-label">HM Name (print)</label><input id="mr-hm" value="'+(pd.hmName||S.profile?.hmName||S.profile?.name||"")+'"/></div>'
+    +'<div><label class="form-label">School Name (print)</label><input id="mr-school" value="'+(pd.schoolName||S.profile?.schoolName||"")+'"/></div></div>'
+    +'<div style="display:flex;gap:12px;align-items:center;flex-wrap:wrap">'
+    +'<label style="display:flex;align-items:center;gap:6px;cursor:pointer;font-size:13px"><input type="checkbox" id="mr-date"'+(pd.printDate?" checked":"")+'style="width:auto"/> Print today\'s date</label>'
+    +'<button class="btn btn-primary btn-sm" data-action="print-monthly">&#128424; Print Report</button></div></div></div>'
+    +'<div class="card"><div class="card-header"><h3>'+(divObj?'Std '+divObj.std+' Div '+divObj.div:"")+" &mdash; "+MONTHS[month]+" "+year+'</h3><span class="text-muted text-sm">Working days: '+wDays+'</span></div>'
+    +'<div class="card-body p0"><div style="overflow-x:auto"><table class="tbl"><thead><tr><th>Sl</th><th>Roll</th><th>Name</th><th>Working</th><th>Present</th><th>Absent</th><th>Leave</th><th>%</th><th>Remark</th></tr></thead>'
+    +'<tbody>'+( rows||'<tr><td colspan="9" style="text-align:center;padding:24px;color:var(--text3)">No data</td></tr>')+'</tbody></table></div></div></div>';
 }
 
-// ATTENDANCE BOOK
 function renderAttBook(){
-  const{divId,year,month}=S.attBookState;
-  const divOpts=S.divisions.map(d=>'<option value="'+d.id+'"'+(divId===d.id?" selected":"")+'>Std '+d.std+' Div '+d.div+'</option>').join("");
+  const{divId,year,month}=S.abState;
+  const isHM=S.role==="hm";const allDivs=isHM?getAllDivisions():S.divisions;
+  const divOpts=allDivs.map(d=>'<option value="'+d.id+'|'+(d._owner||"me")+'"'+(divId===d.id?" selected":"")+'>Std '+d.std+' Div '+d.div+(d._ownerName&&isHM?" ("+d._ownerName+")":"")+'</option>').join("");
   const mOpts=MONTHS.map((m,i)=>'<option value="'+i+'"'+(month===i?" selected":"")+'>'+m+'</option>').join("");
-  const students=getStudentsInDiv(divId);
-  const totalDays=daysInMonth(year,month);
-  const days=Array.from({length:totalDays},(_,i)=>i+1);
-  const dayHeaders=days.map(d=>{
+  const selDiv=allDivs.find(d=>d.id===divId);const owner=selDiv?._owner||"me";
+  const att=isHM?getAttFor(owner):S.attendance;
+  const students=isHM?getAllStudents().filter(s=>s.divId===divId&&s._owner===owner):stusInDiv(divId);
+  const totalDays=dIM(year,month);const days=Array.from({length:totalDays},(_,i)=>i+1);
+  const dayHdrs=days.map(d=>{
     const dk=year+"-"+pad(month+1)+"-"+pad(d);const dt=new Date(dk+"T00:00:00");
-    const dow=dt.getDay();const isSun=dow===0;const isHol=!!S.holidays[dk];
+    const dow=dt.getDay();const isSun=dow===0,isHol=!!S.holidays[dk];
     const dn=["Su","Mo","Tu","We","Th","Fr","Sa"][dow];
     const cls=isSun?"day-sun":isHol?"day-hol":"";
-    return'<th class="ab-num '+cls+'" style="min-width:20px">'+d+'<br><span style="font-size:8px;font-weight:400">'+dn+'</span></th>';
+    return'<th class="'+cls+'" style="min-width:20px;font-size:10px;padding:3px 1px;border:1px solid #000">'+d+'<br><span style="font-size:8px;font-weight:400">'+dn+'</span></th>';
   }).join("");
   const rows=students.map((s,idx)=>{
     let poss=0,pres=0;
     const cells=days.map(d=>{
       const dk=year+"-"+pad(month+1)+"-"+pad(d);const dt=new Date(dk+"T00:00:00");
-      const isSun=dt.getDay()===0;const isHol=!!S.holidays[dk];
-      if(isSun)return'<td class="cell-sun">-</td>';if(isHol)return'<td class="cell-hol">H</td>';
-      const r=S.attendance[dk]?.[s.id];const st=typeof r==="object"?r?.status:r;poss++;
-      let mark="",color="";
-      if(st==="P"){pres++;mark="\u2713";color="#16a34a";}
-      else if(st==="OD"){pres++;mark="OD";color="#7c3aed";}
-      else if(st==="Late"){pres++;mark="L8";color="#c2410c";}
-      else if(st==="A"){mark="A";color="#dc2626";}
-      else if(st==="L"){mark="CL";color="#1d4ed8";}
-      else if(st==="ML"){mark="ML";color="#b45309";}
-      return'<td style="color:'+color+';font-size:9px;font-weight:700">'+mark+'</td>';
+      const isSun=dt.getDay()===0,isHol=!!S.holidays[dk];
+      if(isSun)return'<td style="background:#fff5f5;border:1px solid #ddd">-</td>';
+      if(isHol)return'<td style="background:#fff7ed;border:1px solid #ddd;font-size:9px">H</td>';
+      const r=att[dk]?.[s.id];const st=typeof r==="object"?r?.status:r;poss++;
+      let mark="",col="";
+      if(st==="P"){pres++;mark="\u2713";col="#16a34a";}else if(st==="OD"){pres++;mark="OD";col="#7c3aed";}
+      else if(st==="Late"){pres++;mark="L8";col="#c2410c";}else if(st==="A"){mark="A";col="#dc2626";}
+      else if(st==="L"){mark="CL";col="#1d4ed8";}else if(st==="ML"){mark="ML";col="#b45309";}
+      return'<td style="border:1px solid #ddd;color:'+col+';font-size:9px;font-weight:700;text-align:center">'+mark+'</td>';
     }).join("");
     const pct=poss>0?Math.round(pres/poss*100):0;
-    return'<tr><td class="ab-sl">'+(idx+1)+'</td><td class="ab-sl">'+(s.roll||"")+'</td><td class="ab-name">'+s.name+'</td>'
-      +cells+'<td style="font-weight:700;font-size:11px">'+pres+'</td>'
-      +'<td style="font-weight:700;font-size:11px"><span class="'+pctClass(pct)+'">'+pct+'%</span></td></tr>';
-  }).join("");
-  const totRow=days.map(d=>{
-    const dk=year+"-"+pad(month+1)+"-"+pad(d);const dt=new Date(dk+"T00:00:00");
-    if(dt.getDay()===0||S.holidays[dk])return'<td style="background:#f5f5f5"></td>';
-    const cnt=students.filter(s=>{const r=S.attendance[dk]?.[s.id];const st=typeof r==="object"?r?.status:r;return st==="P"||st==="OD"||st==="Late";}).length;
-    return'<td style="font-size:9px;font-weight:700">'+cnt+'</td>';
+    return'<tr><td style="border:1px solid #ddd;text-align:center;font-size:11px">'+(idx+1)+'</td>'
+      +'<td style="border:1px solid #ddd;text-align:center;font-size:11px">'+(s.roll||"")+'</td>'
+      +'<td style="border:1px solid #ddd;padding:0 5px;font-size:11px;font-weight:500;min-width:120px">'+s.name+'</td>'
+      +cells+'<td style="border:1px solid #ddd;text-align:center;font-size:11px;font-weight:700">'+pres+'</td>'
+      +'<td style="border:1px solid #ddd;text-align:center;font-size:11px;font-weight:700"><span class="'+pctCls(pct)+'">'+pct+'%</span></td></tr>';
   }).join("");
   const holChips=Object.entries(S.holidays).filter(([dk])=>dk.startsWith(year+"-"+pad(month+1)))
-    .map(([dk,h])=>'<span style="background:#fff7ed;border:1px solid #fed7aa;border-radius:4px;padding:2px 8px;font-size:11px">&#128992; '+dk.split("-")[2]+" "+MONTHS[month].slice(0,3)+" &mdash; "+h.name+'</span>').join("");
-  return`
-<div class="card mb12"><div class="card-body" style="padding:12px 14px">
-  <div style="display:flex;gap:8px;flex-wrap:wrap;align-items:flex-end">
-    <div><label class="form-label">Division</label><select id="ab-div" style="width:180px">${divOpts}</select></div>
-    <div><label class="form-label">Month</label><select id="ab-month" style="width:140px">${mOpts}</select></div>
-    <div><label class="form-label">Year</label><input type="number" id="ab-year" value="${year}" style="width:90px"/></div>
-    <button class="btn btn-primary btn-sm" style="margin-top:18px" data-action="print-attbook">&#128424;&#65039; Print Register</button>
-  </div>
-  ${holChips?'<div class="mt8 flex flex-wrap gap8">'+holChips+'</div>':""}
-</div></div>
-<div class="ab-wrap">
-<table class="ab-table">
-<thead><tr>
-  <th class="ab-sl">#</th><th class="ab-sl">Roll</th><th class="ab-name" style="text-align:left">Name</th>
-  ${dayHeaders}
-  <th style="min-width:28px;font-size:9px">Pres</th><th style="min-width:28px;font-size:9px">%</th>
-</tr></thead>
-<tbody>
-  ${rows||'<tr><td colspan="'+(totalDays+5)+'" style="padding:20px;text-align:center;color:var(--text3)">No students.</td></tr>'}
-  <tr style="background:#e8f5e9">
-    <td colspan="3" style="text-align:right;font-size:9px;font-weight:700;padding-right:6px">Total Present</td>
-    ${totRow}<td colspan="2"></td>
-  </tr>
-</tbody></table></div>
-<div class="card mt12" style="padding:10px 14px;font-size:11px;color:var(--text3)">
-  <strong>Legend:</strong> &#10003;=Present &nbsp; A=Absent &nbsp; CL=Casual Leave &nbsp; ML=Medical Leave &nbsp; OD=On Duty &nbsp; L8=Late &nbsp; H=Holiday &nbsp; -=Sunday
-</div>`;
+    .map(([dk,h])=>'<span style="background:#fff7ed;border:1px solid #fed7aa;border-radius:4px;padding:2px 8px;font-size:11px">&#128992; '+dk.split("-")[2]+" "+MONTHS[month].slice(0,3)+" &mdash; "+h.name+'</span>').join(" ");
+  return'<div class="card mb12"><div class="card-body" style="padding:12px 14px">'
+    +'<div style="display:flex;gap:8px;flex-wrap:wrap;align-items:flex-end">'
+    +'<div><label class="form-label">Division</label><select id="ab-div" style="width:180px">'+divOpts+'</select></div>'
+    +'<div><label class="form-label">Month</label><select id="ab-month" style="width:140px">'+mOpts+'</select></div>'
+    +'<div><label class="form-label">Year</label><input type="number" id="ab-year" value="'+year+'" style="width:90px"/></div>'
+    +'<button class="btn btn-primary btn-sm" style="margin-top:18px" data-action="print-ab">&#128424; Print Register</button></div>'
+    +(holChips?'<div style="margin-top:10px;display:flex;gap:6px;flex-wrap:wrap">'+holChips+'</div>':"")
+    +'</div></div>'
+    +'<div style="overflow-x:auto;background:#fff;border:1px solid var(--border);border-radius:var(--radius2)">'
+    +'<table style="border-collapse:collapse;font-size:11px;min-width:100%"><thead><tr>'
+    +'<th style="border:1px solid #000;min-width:24px;font-size:9px;background:#f0f4f8">#</th>'
+    +'<th style="border:1px solid #000;min-width:28px;font-size:9px;background:#f0f4f8">Roll</th>'
+    +'<th style="border:1px solid #000;min-width:120px;text-align:left;padding:0 4px;font-size:9px;background:#f0f4f8">Name</th>'
+    +dayHdrs
+    +'<th style="border:1px solid #000;min-width:26px;font-size:9px;background:#f0f4f8">Pres</th>'
+    +'<th style="border:1px solid #000;min-width:28px;font-size:9px;background:#f0f4f8">%</th></tr></thead>'
+    +'<tbody>'+( rows||'<tr><td colspan="'+(totalDays+5)+'" style="padding:20px;text-align:center;color:var(--text3)">No students</td></tr>')+'</tbody></table></div>'
+    +'<div class="card mt12" style="padding:10px 14px;font-size:11px;color:var(--text3)"><strong>Legend:</strong> &#10003;=Present &nbsp; A=Absent &nbsp; CL=Casual Leave &nbsp; ML=Medical Leave &nbsp; OD=On Duty &nbsp; L8=Late &nbsp; H=Holiday &nbsp; -=Sunday</div>';
 }
 
-// DEFAULTERS
 function renderDefaulters(){
   const{year,month}=S.monthRep;
-  const from=year+"-"+pad(month+1)+"-01",to=year+"-"+pad(month+1)+"-"+pad(daysInMonth(year,month));
+  const isHM=S.role==="hm";
   const mOpts=MONTHS.map((m,i)=>'<option value="'+i+'"'+(month===i?" selected":"")+'>'+m+'</option>').join("");
-  const defaulters=S.students.map(s=>{
-    const div=S.divisions.find(d=>d.id===s.divId);const r=calcAtt(s.id,from,to);return{...s,div,att:r};
+  const from=year+"-"+pad(month+1)+"-01",to=year+"-"+pad(month+1)+"-"+pad(dIM(year,month));
+  const allStus=isHM?getAllStudents():S.students;
+  const defaulters=allStus.map(s=>{
+    const div=(isHM?getAllDivisions():S.divisions).find(d=>d.id===s.divId);
+    const att=isHM?getAttFor(s._owner||"me"):S.attendance;
+    const r=calcAtt(s.id,from,to,att);return{...s,div,att:r};
   }).filter(s=>s.att.working>0&&s.att.pct<PCT_WARN).sort((a,b)=>a.att.pct-b.att.pct);
-  const rows=defaulters.map((s,i)=>'<tr>'
-    +'<td>'+(i+1)+'</td><td>'+(s.roll||"&mdash;")+'</td><td class="fw600">'+s.name+'</td>'
+  const rows=defaulters.map((s,i)=>'<tr><td>'+(i+1)+'</td><td>'+(s.roll||"&mdash;")+'</td><td class="fw600">'+s.name+'</td>'
     +'<td>'+(s.div?'Std '+s.div.std+' Div '+s.div.div:"&mdash;")+'</td>'
-    +'<td>'+s.att.working+'</td><td>'+s.att.present+'</td><td>'+s.att.absent+'</td>'
+    +(isHM?'<td class="text-sm text-muted">'+(s._ownerName||"")+'</td>':"")
+    +'<td>'+s.att.working+'</td><td>'+s.att.present+'</td>'
     +'<td><span class="pct-bad">'+s.att.pct+'%</span></td>'
-    +'<td style="font-size:11px;color:var(--danger)">'+Math.ceil(s.att.working*PCT_WARN/100-s.att.present)+' days short</td>'
+    +'<td style="font-size:11px;color:var(--danger)">'+Math.ceil(s.att.working*PCT_WARN/100-s.att.present)+' days</td>'
     +'<td>'+(s.parentPhone||"&mdash;")+'</td></tr>').join("");
-  return`
-<div class="card mb16">
-  <div class="card-header"><h3>&#9888;&#65039; Defaulter List (Below ${PCT_WARN}%)</h3></div>
-  <div class="card-body" style="display:flex;gap:8px;flex-wrap:wrap;align-items:flex-end">
-    <div><label class="form-label">Month</label><select id="def-month" style="width:140px">${mOpts}</select></div>
-    <div><label class="form-label">Year</label><input type="number" id="def-year" value="${year}" style="width:90px"/></div>
-    <button class="btn btn-primary btn-sm" style="margin-top:18px" data-action="print-defaulters">&#128424;&#65039; Print Notice</button>
-  </div>
-</div>
-<div class="card">
-  <div class="card-header"><h3>Defaulters &mdash; ${MONTHS[month]} ${year}</h3><span class="badge badge-red">${defaulters.length} students</span></div>
-  <div class="card-body p0">
-    ${defaulters.length===0
-      ?'<div style="text-align:center;padding:30px;color:var(--success)">&#9989; No defaulters! All above '+PCT_WARN+'%</div>'
-      :`<div style="overflow-x:auto"><table class="tbl">
-      <thead><tr><th>#</th><th>Roll</th><th>Name</th><th>Division</th><th>Working</th><th>Present</th><th>Absent</th><th>%</th><th>Shortage</th><th>Parent Phone</th></tr></thead>
-      <tbody>${rows}</tbody></table></div>`}
-  </div>
-</div>`;
+  return'<div class="card mb16"><div class="card-header"><h3>&#9888;&#65039; Defaulter List (Below '+PCT_WARN+'%)</h3></div>'
+    +'<div class="card-body" style="display:flex;gap:8px;flex-wrap:wrap;align-items:flex-end">'
+    +'<div><label class="form-label">Month</label><select id="def-month" style="width:140px">'+mOpts+'</select></div>'
+    +'<div><label class="form-label">Year</label><input type="number" id="def-year" value="'+year+'" style="width:90px"/></div>'
+    +'<button class="btn btn-primary btn-sm" style="margin-top:18px" data-action="print-def">&#128424; Print</button></div></div>'
+    +'<div class="card"><div class="card-header"><h3>'+MONTHS[month]+' '+year+'</h3><span class="badge badge-red">'+defaulters.length+' students</span></div>'
+    +'<div class="card-body p0">'+(defaulters.length===0?'<div style="text-align:center;padding:30px;color:var(--success)">&#9989; No defaulters! All above '+PCT_WARN+'%</div>'
+    :'<div style="overflow-x:auto"><table class="tbl"><thead><tr><th>#</th><th>Roll</th><th>Name</th><th>Division</th>'+(isHM?'<th>Teacher</th>':"")+'<th>Working</th><th>Present</th><th>%</th><th>Shortage</th><th>Parent Phone</th></tr></thead><tbody>'+rows+'</tbody></table></div>')
+    +'</div></div>';
 }
 
-// TC
 function renderTC(){
-  const stuOpts=S.students.map(s=>{
-    const div=S.divisions.find(d=>d.id===s.divId);
-    return'<option value="'+s.id+'">'+s.name+' (Roll '+(s.roll||"?")+(div?', Std '+div.std+' Div '+div.div:"")+')';
-  }).join("");
-  const selId=document.getElementById("tc-student")?.value||S.students[0]?.id||"";
+  const stuOpts=S.students.map(s=>{const div=S.divisions.find(d=>d.id===s.divId);return'<option value="'+s.id+'">'+s.name+' (Roll '+(s.roll||"?")+(div?', Std '+div.std+' Div '+div.div:"")+')';}).join("");
+  const selId=document.getElementById("tc-stu")?.value||S.students[0]?.id||"";
   const stu=S.students.find(s=>s.id===selId);const div=stu?S.divisions.find(d=>d.id===stu.divId):null;
-  let tcData=null;
-  if(stu){const from="2025-06-01";const r=calcAtt(stu.id,from,todayDk());tcData=r;}
-  return`
-<div class="card mb16">
-  <div class="card-header"><h3>&#128196; Transfer Certificate &mdash; Attendance</h3></div>
-  <div class="card-body">
-    <div class="form-row mb12">
-      <div><label class="form-label">Select Student</label><select id="tc-student">${stuOpts}</select></div>
-      <div><label class="form-label">TC Date</label><input type="date" id="tc-date" value="${todayDk()}"/></div>
-    </div>
-  </div>
-</div>
-${stu&&tcData?`<div class="card mb16">
-  <div class="card-header"><h3>${stu.name}</h3><span class="text-muted text-sm">${div?'Std '+div.std+' Div '+div.div:""}</span></div>
-  <div class="card-body">
-    <div class="form-row3">
-      <div style="text-align:center;padding:16px;background:var(--surface2);border-radius:var(--radius2)">
-        <div style="font-size:28px;font-weight:800;color:var(--primary)">${tcData.working}</div>
-        <div style="font-size:11px;color:var(--text3);margin-top:4px">Working Days</div>
-      </div>
-      <div style="text-align:center;padding:16px;background:var(--surface2);border-radius:var(--radius2)">
-        <div style="font-size:28px;font-weight:800;color:var(--success)">${tcData.present}</div>
-        <div style="font-size:11px;color:var(--text3);margin-top:4px">Days Present</div>
-      </div>
-      <div style="text-align:center;padding:16px;background:var(--surface2);border-radius:var(--radius2)">
-        <div style="font-size:28px;font-weight:800;color:${tcData.pct>=PCT_WARN?"var(--success)":"var(--danger)"}">${tcData.pct}%</div>
-        <div style="font-size:11px;color:var(--text3);margin-top:4px">Attendance %</div>
-      </div>
-    </div>
-    <div class="mt12 flex gap8">
-      <button class="btn btn-primary btn-sm" data-action="print-tc" data-sid="${stu.id}">&#128424;&#65039; Print TC Attendance</button>
-    </div>
-  </div>
-</div>`:""}`;
+  let tc=null;if(stu){tc=calcAtt(stu.id,"2025-06-01",todayDk());}
+  return'<div class="card mb16"><div class="card-header"><h3>&#128196; Transfer Certificate &mdash; Attendance</h3></div>'
+    +'<div class="card-body"><div class="form-row mb12">'
+    +'<div><label class="form-label">Select Student</label><select id="tc-stu">'+stuOpts+'</select></div>'
+    +'<div><label class="form-label">TC Date</label><input type="date" id="tc-date" value="'+todayDk()+'"/></div>'
+    +'</div></div></div>'
+    +(stu&&tc?'<div class="card"><div class="card-header"><h3>'+stu.name+'</h3><span class="text-muted text-sm">'+(div?'Std '+div.std+' Div '+div.div:"")+'</span></div>'
+    +'<div class="card-body"><div class="form-row3">'
+    +'<div style="text-align:center;padding:16px;background:var(--surface2);border-radius:var(--radius2)"><div style="font-size:28px;font-weight:800;color:var(--primary)">'+tc.working+'</div><div style="font-size:11px;color:var(--text3);margin-top:4px">Working Days</div></div>'
+    +'<div style="text-align:center;padding:16px;background:var(--surface2);border-radius:var(--radius2)"><div style="font-size:28px;font-weight:800;color:var(--success)">'+tc.present+'</div><div style="font-size:11px;color:var(--text3);margin-top:4px">Days Present</div></div>'
+    +'<div style="text-align:center;padding:16px;background:var(--surface2);border-radius:var(--radius2)"><div style="font-size:28px;font-weight:800;color:'+(tc.pct>=PCT_WARN?"var(--success)":"var(--danger)")+'">'+tc.pct+'%</div><div style="font-size:11px;color:var(--text3);margin-top:4px">Attendance %</div></div>'
+    +'</div><div class="mt12 flex gap8"><button class="btn btn-primary btn-sm" data-action="print-tc" data-sid="'+stu.id+'">&#128424; Print TC Attendance</button></div></div></div>':"");
 }
 
-// HOLIDAYS
 function renderHolidays(){
-  const holList=Object.entries(S.holidays).sort(([a],[b])=>a.localeCompare(b));
-  const rows=holList.map(([dk,h])=>'<tr><td>'+fmtDate(dk)+'</td><td class="fw600">'+h.name+'</td>'
-    +'<td>'+(h.type||"Holiday")+'</td>'
-    +'<td><button class="btn btn-sm" style="background:#fee2e2;color:#dc2626;border-color:#fca5a5" data-action="del-holiday" data-dk="'+dk+'">Remove</button></td></tr>').join("");
-  return`<div class="card mb16">
-  <div class="card-header"><h3>&#128197; Holidays &amp; Vacations</h3>
-    <div class="flex gap8">
-      <button class="btn btn-secondary btn-sm" data-action="load-kerala-holidays">Load Kerala Holidays</button>
-      <button class="btn btn-primary btn-sm" data-action="add-holiday">+ Add Holiday</button>
-    </div>
-  </div>
-  <div class="card-body p0">
-    ${holList.length===0
-      ?'<div style="text-align:center;padding:24px;color:var(--text3)">No holidays added. Click "Load Kerala Holidays" to pre-load.</div>'
-      :'<table class="tbl"><thead><tr><th>Date</th><th>Name</th><th>Type</th><th>Action</th></tr></thead><tbody>'+rows+'</tbody></table>'}
-  </div></div>`;
+  const hols=Object.entries(S.holidays).sort(([a],[b])=>a.localeCompare(b));
+  const rows=hols.map(([dk,h])=>'<tr><td>'+fmtDate(dk)+'</td><td class="fw600">'+h.name+'</td><td>'+(h.type||"Holiday")+'</td>'
+    +'<td><button class="btn btn-sm" style="background:#fee2e2;color:#dc2626;border-color:#fca5a5" data-action="del-hol" data-dk="'+dk+'">Remove</button></td></tr>').join("");
+  const isHM=S.role==="hm";
+  return'<div class="card mb16"><div class="card-header"><h3>&#128197; Holidays &amp; Vacations</h3>'
+    +'<div class="flex gap8"><button class="btn btn-secondary btn-sm" data-action="load-kerala">Load Kerala Holidays</button>'
+    +'<button class="btn btn-primary btn-sm" data-action="add-hol">+ Add Holiday</button></div></div>'
+    +'<div class="card-body p0">'+(hols.length===0?'<div style="text-align:center;padding:24px;color:var(--text3)">No holidays added.</div>'
+    :'<table class="tbl"><thead><tr><th>Date</th><th>Name</th><th>Type</th><th>Action</th></tr></thead><tbody>'+rows+'</tbody></table>')
+    +'</div></div>';
 }
 
-// SETTINGS
 function renderSettings(){
-  const p=S.profile||{};const tList=S.teacherLinks||[];const tLink=S.teacherLink;
-  const baseUrl=window.location.href.split("?")[0].split("#")[0];
-  const tLinkUrl=tLink?.token?baseUrl+"?teacher="+tLink.token:"";
-  const distOpts=DISTRICT.map(d=>'<option'+(p.district===d?' selected':'')+'>'+d+'</option>').join("");
-  return`
-<div class="card mb16">
-  <div class="card-header" style="justify-content:space-between">
-    <h3>&#128105;&#8205;&#127979; Class Teacher Accounts</h3>
-    ${tList.length<10?'<button class="btn btn-primary btn-sm" data-action="tch-add">+ Add Teacher</button>':""}
-  </div>
-  <div class="card-body p0">
-    ${tList.length===0?'<div style="text-align:center;padding:20px;color:var(--text3)">No class teachers added.</div>':""}
-    ${tList.map((t,idx)=>'<div style="padding:12px 16px;border-bottom:1px solid var(--border);display:flex;align-items:center;gap:12px">'
-      +'<div style="flex:1"><div class="fw600">'+t.name+'</div>'
-      +'<div style="font-size:11px;color:var(--text3)">'+(t.active?'<span style="color:var(--success)">&#9679; Active</span>':'<span style="color:var(--danger)">&#9679; Inactive</span>')
-      +' &middot; Divisions: '+(t.divIds?.map(did=>{const d=S.divisions.find(x=>x.id===did);return d?'Std '+d.std+d.div:did;}).join(", ")||"None")+'</div></div>'
-      +'<button class="btn btn-secondary btn-sm" data-action="tch-edit" data-idx="'+idx+'">Edit</button>'
-      +' <button class="btn btn-sm" style="background:#fee2e2;color:#dc2626;border-color:#fca5a5" data-action="tch-delete" data-idx="'+idx+'">&times;</button></div>').join("")}
-  </div>
-</div>
-<div class="card mb16">
-  <div class="card-header"><h3>&#128279; Class Teacher Link</h3></div>
-  <div class="card-body">
-    <p class="text-sm text-muted mb12">Share this link with class teachers. They enter PIN and mark attendance for their assigned divisions.</p>
-    ${tLinkUrl?`<div class="form-group"><label class="form-label">Active Link</label>
-      <div class="flex gap8">
-        <input value="${tLinkUrl}" readonly style="font-size:11px;background:var(--surface2)"/>
-        <button class="btn btn-secondary btn-sm" style="flex-shrink:0" onclick="navigator.clipboard?.writeText(this.dataset.url).then(()=>toast('Copied!'))" data-url="${tLinkUrl}">Copy</button>
-      </div></div>
-      <div class="flex gap8 mt8">
-        <button class="btn btn-primary btn-sm" data-action="tch-share" data-url="${tLinkUrl}">&#128228; Share</button>
-        <button class="btn btn-sm" style="background:#fee2e2;color:#dc2626;border-color:#fca5a5" data-action="tch-revoke">Revoke</button>
-        <button class="btn btn-secondary btn-sm" data-action="tch-generate">&#8635; New Link</button>
-      </div>`:'<button class="btn btn-primary" data-action="tch-generate">Generate Teacher Link</button>'}
-  </div>
-</div>
-<div class="card mb16">
-  <div class="card-header"><h3>&#127979; School Profile</h3></div>
-  <div class="card-body">
-    <div class="form-row mb12">
-      <div><label class="form-label">School Name</label><input id="set-school" value="${p.schoolName||""}"/></div>
-      <div><label class="form-label">UDISE Code</label><input id="set-udise" value="${p.udise||""}" placeholder="e.g. 32040100101"/></div>
-    </div>
-    <div class="form-row mb12">
-      <div><label class="form-label">District</label><select id="set-district">${distOpts}</select></div>
-      <div><label class="form-label">Block / Panchayath</label><input id="set-block" value="${p.block||""}"/></div>
-    </div>
-    <div class="form-row mb12">
-      <div><label class="form-label">HM / Principal Name</label><input id="set-hm" value="${p.hmName||""}"/></div>
-      <div><label class="form-label">Phone</label><input id="set-phone" value="${p.phone||""}" inputmode="tel"/></div>
-    </div>
-    <div class="form-row mb12">
-      <div><label class="form-label">Academic Year</label><input id="set-year" value="${p.academicYear||"2025-2026"}"/></div>
-      <div><label class="form-label">Threshold (%)</label><input type="number" id="set-pct" value="${p.threshold||75}" min="50" max="100"/></div>
-    </div>
-    <button class="btn btn-primary" data-action="save-profile">Save Profile</button>
-  </div>
-</div>
-<div class="card mb16">
-  <div class="card-header"><h3>&#128272; Change PIN</h3></div>
-  <div class="card-body">
-    <div class="form-row">
-      <div><label class="form-label">New PIN (4 digits)</label><input type="password" id="set-pin" maxlength="4" inputmode="numeric" placeholder="4-digit PIN"/></div>
-      <div style="padding-top:22px"><button class="btn btn-primary" data-action="change-pin">Update PIN</button></div>
-    </div>
-  </div>
-</div>
-<div class="card">
-  <div class="card-header"><h3>Account</h3></div>
-  <div class="card-body">
-    <p class="text-sm text-muted mb12">Signed in as <strong>${S.user?.email||""}</strong></p>
-    <button class="btn btn-secondary" data-action="sign-out">Sign Out</button>
-  </div>
-</div>`;
+  const p=S.profile||{};const isHM=S.role==="hm";const distOpts=DISTRICT.map(d=>'<option'+(p.district===d?' selected':'')+'>'+d+'</option>').join("");
+  const linked=S.schoolLink;
+  return(isHM?"":'<div class="card mb16"><div class="card-header"><h3>&#128279; School Link</h3></div><div class="card-body">'
+    +(linked?'<div class="info-box info-box-green mb12">&#9989; Linked to <strong>'+linked.schoolName+'</strong></div>'
+    +'<button class="btn btn-sm" style="background:#fee2e2;color:#dc2626;border-color:#fca5a5" data-action="unlink-school">Unlink from School</button>'
+    :'<p class="text-sm text-muted mb12">Enter the 6-digit school code from your HM to link your account.</p>'
+    +'<div class="form-row"><div><label class="form-label">School Code</label><input id="set-code" placeholder="e.g. 847291" maxlength="6" inputmode="numeric"/></div>'
+    +'<div style="padding-top:22px"><button class="btn btn-primary" data-action="join-school">Join School</button></div></div>')
+    +'</div></div>')
+    +'<div class="card mb16"><div class="card-header"><h3>'+(isHM?"&#127979; School Profile":"&#128100; My Profile")+'</h3></div><div class="card-body">'
+    +(isHM?'<div class="form-row mb12">'
+    +'<div><label class="form-label">School Name</label><input id="set-school" value="'+(p.schoolName||"")+'"/></div>'
+    +'<div><label class="form-label">UDISE Code</label><input id="set-udise" value="'+(p.udise||"")+'"/></div></div>'
+    +'<div class="form-row mb12">'
+    +'<div><label class="form-label">HM Name</label><input id="set-name" value="'+(p.name||p.hmName||"")+'"/></div>'
+    +'<div><label class="form-label">District</label><select id="set-district">'+distOpts+'</select></div></div>'
+    +'<div class="form-row mb12">'
+    +'<div><label class="form-label">Phone</label><input id="set-phone" value="'+(p.phone||"")+'"/></div>'
+    +'<div><label class="form-label">Academic Year</label><input id="set-acyear" value="'+(p.academicYear||"2025-2026")+'"/></div></div>'
+    :'<div class="form-row mb12">'
+    +'<div><label class="form-label">Teacher Name</label><input id="set-name" value="'+(p.name||"")+'"/></div>'
+    +'<div><label class="form-label">School Name</label><input id="set-school" value="'+(p.schoolName||"")+'"/></div></div>'
+    +'<div class="form-row mb12">'
+    +'<div><label class="form-label">District</label><select id="set-district">'+distOpts+'</select></div>'
+    +'<div><label class="form-label">Phone</label><input id="set-phone" value="'+(p.phone||"")+'"/></div></div>'
+    +'<div class="form-group"><label class="form-label">Academic Year</label><input id="set-acyear" value="'+(p.academicYear||"2025-2026")+'" style="max-width:200px"/></div>')
+    +'<button class="btn btn-primary" data-action="save-profile">Save Profile</button></div></div>'
+    +'<div class="card mb16"><div class="card-header"><h3>&#128272; Change PIN</h3></div><div class="card-body">'
+    +'<div class="form-row"><div><label class="form-label">New PIN (4 digits)</label><input type="password" id="set-pin" maxlength="4" inputmode="numeric" placeholder="4-digit PIN"/></div>'
+    +'<div style="padding-top:22px"><button class="btn btn-primary" data-action="change-pin">Update PIN</button></div></div></div></div>'
+    +'<div class="card"><div class="card-header"><h3>Account</h3></div><div class="card-body">'
+    +'<p class="text-sm text-muted mb12">Signed in as <strong>'+S.user?.email+'</strong></p>'
+    +'<button class="btn btn-secondary" data-action="sign-out">Sign Out</button></div></div>';
 }
 
-// PRINT FUNCTIONS
+// ── PRINT FUNCTIONS ──
 function printMonthly(){
-  const{divId,year,month}=S.monthRep;
-  const divObj=S.divisions.find(d=>d.id===divId);
-  const students=getStudentsInDiv(divId);
-  const from=year+"-"+pad(month+1)+"-01",to=year+"-"+pad(month+1)+"-"+pad(daysInMonth(year,month));
-  const wDays=workingDays(year,month).length;const pd=S.printDetails;
+  const{divId,year,month}=S.monthRep;const isHM=S.role==="hm";
+  const allDivs=isHM?getAllDivisions():S.divisions;
+  const selDiv=allDivs.find(d=>d.id===divId);const owner=selDiv?._owner||"me";
+  const att=isHM?getAttFor(owner):S.attendance;
+  const students=isHM?getAllStudents().filter(s=>s.divId===divId&&s._owner===owner):stusInDiv(divId);
+  const from=year+"-"+pad(month+1)+"-01",to=year+"-"+pad(month+1)+"-"+pad(dIM(year,month));
+  const wDays=workDays(year,month).length;const pd=S.printDetails;
   const school=pd.schoolName||S.profile?.schoolName||"School";
-  const hm=pd.hmName||S.profile?.hmName||"";
-  const rows=students.map((s,i)=>{const r=calcAtt(s.id,from,to);
+  const hm=pd.hmName||S.profile?.name||S.profile?.hmName||"";
+  const dateStr=pd.printDate?new Date().toLocaleDateString("en-IN"):"";
+  const rows=students.map((s,i)=>{const r=calcAtt(s.id,from,to,att);
     const pc=r.pct>=PCT_WARN?"color:#166534":"color:#c00;font-weight:700";
-    return'<tr><td>'+i+1+'</td><td>'+(s.roll||"")+'</td><td style="text-align:left;font-weight:600">'+s.name+'</td>'
+    return'<tr><td>'+(i+1)+'</td><td>'+(s.roll||"")+'</td><td style="text-align:left;font-weight:600">'+s.name+'</td>'
       +'<td>'+wDays+'</td><td>'+r.present+'</td><td>'+r.absent+'</td><td>'+r.leave+'</td>'
       +'<td style="'+pc+'">'+r.pct+'%</td><td style="color:#c00;font-size:10px">'+(r.pct<PCT_WARN?"Short":"")+'</td></tr>';}).join("");
-  const dateStr=pd.printDate?new Date().toLocaleDateString("en-IN"):"";
   const win=window.open("","_blank","width=800,height=700");
   win.document.write('<!DOCTYPE html><html><head><meta charset="UTF-8"><title>Monthly Report</title>'
     +'<style>*{box-sizing:border-box;margin:0;padding:0}body{font-family:Arial,sans-serif;font-size:11px;padding:12mm}'
-    +'h1{font-size:16px;font-weight:700;text-transform:uppercase;text-align:center}'
-    +'h2{font-size:13px;font-weight:700;text-align:center;margin:4px 0}'
-    +'h3{font-size:11px;font-weight:600;text-align:center;margin:4px 0}'
-    +'hr{border:none;border-top:2px solid #000;margin:6px 0}'
-    +'table{width:100%;border-collapse:collapse;margin-top:10px}'
-    +'th{background:#e0e0e0;border:1px solid #000;padding:5px;font-size:10px;font-weight:700;text-align:center}'
-    +'td{border:1px solid #000;padding:4px 6px;text-align:center;font-size:11px}'
-    +'td:nth-child(3){text-align:left}'
-    +'.sign{display:flex;justify-content:space-between;margin-top:40px}'
-    +'.sign-box{text-align:center;min-width:160px;border-top:1px solid #000;padding-top:4px;font-size:10px;font-weight:700}'
+    +'table{width:100%;border-collapse:collapse;margin-top:10px}th{background:#e0e0e0;border:1px solid #000;padding:5px;font-size:10px;font-weight:700;text-align:center}'
+    +'td{border:1px solid #000;padding:4px 6px;text-align:center;font-size:11px}td:nth-child(3){text-align:left}'
+    +'.sign{display:flex;justify-content:space-between;margin-top:40px}.sign-box{text-align:center;min-width:160px;border-top:1px solid #000;padding-top:4px;font-size:10px;font-weight:700}'
     +'@page{margin:0;size:A4 portrait}</style></head><body>'
-    +'<h1>'+school+'</h1>'
-    +'<h2>Monthly Attendance Register</h2>'
-    +'<h3>'+(divObj?'Standard '+divObj.std+' Division '+divObj.div:'')+'  &mdash;  '+MONTHS[month]+' '+year+'</h3>'
-    +'<hr><div style="font-size:10px;text-align:center;color:#555;margin-top:2px">Working Days: '+wDays+' | Threshold: '+PCT_WARN+'% | Academic Year: '+(S.profile?.academicYear||"2025-2026")+'</div>'
-    +'<table><thead><tr><th>#</th><th>Roll</th><th>Name</th><th>Working Days</th><th>Present</th><th>Absent</th><th>Leave</th><th>%</th><th>Remark</th></tr></thead>'
-    +'<tbody>'+rows+'</tbody></table>'
-    +'<div class="sign">'
-      +'<div class="sign-box">'+(dateStr?"Date: "+dateStr:"")+'<br>&nbsp;</div>'
-      +'<div class="sign-box">Class Teacher<br>&nbsp;</div>'
-      +'<div class="sign-box">'+(hm||"Headmaster/Headmistress")+'<br><small style="font-weight:400">HM/Principal</small></div>'
+    +'<h1 style="font-size:16px;font-weight:700;text-transform:uppercase;text-align:center">'+school+'</h1>'
+    +'<h2 style="font-size:13px;font-weight:700;text-align:center;margin:4px 0">Monthly Attendance Register</h2>'
+    +'<h3 style="font-size:11px;font-weight:600;text-align:center;margin:4px 0">'+(selDiv?'Standard '+selDiv.std+' Division '+selDiv.div:"")+" &mdash; "+MONTHS[month]+" "+year+'</h3>'
+    +'<hr style="border:none;border-top:2px solid #000;margin:6px 0">'
+    +'<div style="font-size:10px;text-align:center;color:#555">Working Days: '+wDays+' | Threshold: '+PCT_WARN+'%</div>'
+    +'<table><thead><tr><th>#</th><th>Roll</th><th>Name</th><th>Working Days</th><th>Present</th><th>Absent</th><th>Leave</th><th>%</th><th>Remark</th></tr></thead><tbody>'+rows+'</tbody></table>'
+    +'<div class="sign"><div class="sign-box">'+(dateStr?"Date: "+dateStr:"")+'</div><div class="sign-box">Class Teacher</div>'
+    +'<div class="sign-box">'+(hm||"Headmaster")+'<br><small style="font-weight:400">HM/Principal</small></div></div>'
+    +'<script>window.onload=()=>{window.print()}<\/script></body></html>');win.document.close();
+}
+
+// A4 LANDSCAPE SINGLE PAGE ATTENDANCE BOOK
+function printAttBook(){
+  const{divId,year,month}=S.abState;const isHM=S.role==="hm";
+  const allDivs=isHM?getAllDivisions():S.divisions;
+  const selDiv=allDivs.find(d=>d.id===divId);const owner=selDiv?._owner||"me";
+  const att=isHM?getAttFor(owner):S.attendance;
+  const students=isHM?getAllStudents().filter(s=>s.divId===divId&&s._owner===owner):stusInDiv(divId);
+  const totalDays=dIM(year,month);const days=Array.from({length:totalDays},(_,i)=>i+1);
+  const school=S.profile?.schoolName||"School";const hm=S.profile?.name||S.profile?.hmName||"";
+  const acYear=S.profile?.academicYear||"2025-2026";
+  const dHdr=days.map(d=>{
+    const dk=year+"-"+pad(month+1)+"-"+pad(d);const dt=new Date(dk+"T00:00:00");
+    const dow=dt.getDay();const isSun=dow===0,isHol=!!S.holidays[dk];
+    const dn=["Su","Mo","Tu","We","Th","Fr","Sa"][dow];
+    const bg=isSun?"background:#fee2e2":isHol?"background:#fed7aa":"";
+    return'<th style="min-width:14px;font-size:6px;padding:1px;'+bg+';border:1px solid #000;text-align:center">'+d+'<br><span style="font-size:5px;font-weight:400">'+dn+'</span></th>';
+  }).join("");
+  const sRows=students.map((s,idx)=>{
+    let poss=0,pres=0;
+    const cells=days.map(d=>{
+      const dk=year+"-"+pad(month+1)+"-"+pad(d);const dt=new Date(dk+"T00:00:00");
+      const isSun=dt.getDay()===0,isHol=!!S.holidays[dk];
+      if(isSun)return'<td style="background:#fee2e2;border:1px solid #000">-</td>';
+      if(isHol)return'<td style="background:#fed7aa;border:1px solid #000;font-size:6px">H</td>';
+      const r=att[dk]?.[s.id];const st=typeof r==="object"?r?.status:r;
+      let mark="",col="";poss++;
+      if(st==="P"){pres++;mark="\u2713";col="#166534";}else if(st==="OD"){pres++;mark="O";col="#7c3aed";}
+      else if(st==="Late"){pres++;mark="L";col="#c2410c";}else if(st==="A"){mark="A";col="#c00";}
+      else if(st==="L"){mark="C";col="#1d4ed8";}else if(st==="ML"){mark="M";col="#b45309";}
+      return'<td style="border:1px solid #000;text-align:center;font-size:7px;font-weight:700;color:'+col+'">'+mark+'</td>';
+    }).join("");
+    const pct=poss>0?Math.round(pres/poss*100):0;
+    const pStyle=pct<PCT_WARN?"color:#c00;font-weight:700":"color:#166534;font-weight:700";
+    return'<tr><td style="border:1px solid #000;text-align:center;font-size:7px">'+(idx+1)+'</td>'
+      +'<td style="border:1px solid #000;text-align:center;font-size:7px">'+(s.roll||"")+'</td>'
+      +'<td style="border:1px solid #000;text-align:left;padding:0 3px;font-size:8px;font-weight:500;min-width:90px">'+s.name+'</td>'
+      +cells
+      +'<td style="border:1px solid #000;text-align:center;font-size:8px;font-weight:700">'+pres+'</td>'
+      +'<td style="border:1px solid #000;text-align:center;font-size:8px;'+pStyle+'">'+pct+'%</td></tr>';
+  }).join("");
+  const totRow=days.map(d=>{
+    const dk=year+"-"+pad(month+1)+"-"+pad(d);const dt=new Date(dk+"T00:00:00");
+    if(dt.getDay()===0||S.holidays[dk])return'<td style="border:1px solid #000;background:#f5f5f5"></td>';
+    const cnt=students.filter(s=>{const r=att[dk]?.[s.id];const st=typeof r==="object"?r?.status:r;return st==="P"||st==="OD"||st==="Late";}).length;
+    return'<td style="border:1px solid #000;text-align:center;font-size:7px;font-weight:700">'+cnt+'</td>';
+  }).join("");
+  const signRow=days.map(d=>{const dk=year+"-"+pad(month+1)+"-"+pad(d);const dt=new Date(dk+"T00:00:00");
+    if(dt.getDay()===0||S.holidays[dk])return'<td style="border:1px solid #000;background:#f5f5f5"></td>';
+    return'<td style="border:1px solid #000;height:18px"></td>';}).join("");
+  const win=window.open("","_blank","width=1400,height=700");
+  win.document.write('<!DOCTYPE html><html><head><meta charset="UTF-8"><title>Attendance Register</title>'
+    +'<style>*{box-sizing:border-box;margin:0;padding:0}body{font-family:Arial,sans-serif;padding:6mm 5mm}'
+    +'@page{margin:0;size:A4 landscape}</style></head><body>'
+    +'<div style="text-align:center;margin-bottom:5px">'
+    +'<h1 style="font-size:14px;font-weight:900;text-transform:uppercase">'+school+'</h1>'
+    +'<h2 style="font-size:11px;font-weight:700;margin:2px 0">Attendance Register &mdash; '+(selDiv?'Std '+selDiv.std+' Div '+selDiv.div:"")+" &mdash; "+MONTHS[month]+" "+year+'</h2>'
+    +'<h3 style="font-size:9px;font-weight:600;margin:2px 0">Academic Year: '+acYear+' | UDISE: '+(S.profile?.udise||"")+'</h3>'
+    +'<hr style="border:none;border-top:2px solid #000;margin:3px 0"/>'
+    +'<div style="font-size:8px;color:#555">'+hm+' | HM/Principal</div>'
     +'</div>'
+    +'<table style="width:100%;border-collapse:collapse"><thead><tr>'
+    +'<th style="border:1px solid #000;min-width:18px;font-size:7px;background:#f0f4f8">#</th>'
+    +'<th style="border:1px solid #000;min-width:24px;font-size:7px;background:#f0f4f8">Roll</th>'
+    +'<th style="border:1px solid #000;min-width:90px;text-align:left;padding:0 3px;font-size:7px;background:#f0f4f8">Name</th>'
+    +dHdr
+    +'<th style="border:1px solid #000;min-width:20px;font-size:7px;background:#f0f4f8">Pres</th>'
+    +'<th style="border:1px solid #000;min-width:22px;font-size:7px;background:#f0f4f8">%</th>'
+    +'</tr></thead><tbody>'+sRows
+    +'<tr style="background:#e8f5e9"><td colspan="3" style="border:1px solid #000;text-align:right;font-size:7px;font-weight:700;padding-right:3px">Total Present</td>'+totRow+'<td colspan="2" style="border:1px solid #000"></td></tr>'
+    +'<tr style="height:20px;background:#f0f4f8"><td colspan="3" style="border:1px solid #000;text-align:right;font-size:6px;font-weight:600;padding-right:3px">Class Teacher Sign</td>'+signRow+'<td colspan="2" style="border:1px solid #000"></td></tr>'
+    +'<tr style="height:20px;background:#f8f8f8"><td colspan="3" style="border:1px solid #000;text-align:right;font-size:6px;font-weight:600;padding-right:3px">HM Sign</td>'+signRow+'<td colspan="2" style="border:1px solid #000"></td></tr>'
+    +'</tbody></table>'
+    +'<div style="margin-top:4px;font-size:6px;color:#555">\u2713=P &nbsp; A=Absent &nbsp; C=CL &nbsp; M=ML &nbsp; O=OD &nbsp; L=Late &nbsp; H=Holiday &nbsp; -=Sunday</div>'
     +'<script>window.onload=()=>{window.print()}<\/script></body></html>');
   win.document.close();
 }
 
-function printAttBook(){
-  const{divId,year,month}=S.attBookState;
-  const divObj=S.divisions.find(d=>d.id===divId);const students=getStudentsInDiv(divId);
-  const totalDays=daysInMonth(year,month);const days=Array.from({length:totalDays},(_,i)=>i+1);
-  const school=S.profile?.schoolName||"School";const hm=S.profile?.hmName||"";
-  const acYear=S.profile?.academicYear||"2025-2026";
-  const half1=days.filter(d=>d<=16),half2=days.filter(d=>d>16);
-  function buildPage(halfDays,pageNum){
-    const isP1=pageNum===1;
-    const dHdr=halfDays.map(d=>{
-      const dk=year+"-"+pad(month+1)+"-"+pad(d);const dt=new Date(dk+"T00:00:00");
-      const dow=dt.getDay();const isSun=dow===0;const isHol=!!S.holidays[dk];
-      const dn=["Su","Mo","Tu","We","Th","Fr","Sa"][dow];
-      const bg=isSun?"background:#fee2e2":isHol?"background:#fed7aa":"";
-      return'<th style="min-width:16px;font-size:7px;padding:2px 1px;'+bg+';border:1px solid #000">'+d+'<br><span style="font-size:6px;font-weight:400">'+dn+'</span></th>';
-    }).join("");
-    const sRows=students.map((s,idx)=>{
-      let poss=0,pres=0;
-      days.forEach(d=>{const dk=year+"-"+pad(month+1)+"-"+pad(d);const dt=new Date(dk+"T00:00:00");
-        if(dt.getDay()===0||S.holidays[dk])return;poss++;
-        const r=S.attendance[dk]?.[s.id];const st=typeof r==="object"?r?.status:r;
-        if(st==="P"||st==="OD"||st==="Late")pres++;});
-      const pct=poss>0?Math.round(pres/poss*100):0;
-      const pStyle=pct<PCT_WARN?"color:#c00;font-weight:700":"color:#166534";
-      const cells=halfDays.map(d=>{
-        const dk=year+"-"+pad(month+1)+"-"+pad(d);const dt=new Date(dk+"T00:00:00");
-        const isSun=dt.getDay()===0;const isHol=!!S.holidays[dk];
-        if(isSun)return'<td style="background:#fee2e2;border:1px solid #000">-</td>';
-        if(isHol)return'<td style="background:#fed7aa;border:1px solid #000;font-size:7px">H</td>';
-        const r=S.attendance[dk]?.[s.id];const st=typeof r==="object"?r?.status:r;
-        let mark="",col="";
-        if(st==="P"){mark="\u2713";col="#166534";}else if(st==="OD"){mark="OD";col="#7c3aed";}
-        else if(st==="Late"){mark="L8";col="#c2410c";}else if(st==="A"){mark="A";col="#c00";}
-        else if(st==="L"){mark="CL";col="#1d4ed8";}else if(st==="ML"){mark="ML";col="#b45309";}
-        return'<td style="border:1px solid #000;text-align:center;font-size:8px;font-weight:700;color:'+col+'">'+mark+'</td>';
-      }).join("");
-      return'<tr><td style="border:1px solid #000;text-align:center;font-size:8px">'+(idx+1)+'</td>'
-        +'<td style="border:1px solid #000;text-align:center;font-size:8px">'+(s.roll||"")+'</td>'
-        +'<td style="border:1px solid #000;text-align:left;padding-left:3px;font-size:9px;font-weight:600;min-width:100px">'+s.name+'</td>'
-        +cells
-        +(isP1?'':'<td style="border:1px solid #000;text-align:center;font-size:9px;font-weight:700">'+pres+'</td>'
-          +'<td style="border:1px solid #000;text-align:center;font-size:9px;font-weight:700;'+pStyle+'">'+pct+'%</td>')+'</tr>';
-    }).join("");
-    const totRow=halfDays.map(d=>{
-      const dk=year+"-"+pad(month+1)+"-"+pad(d);const dt=new Date(dk+"T00:00:00");
-      if(dt.getDay()===0||S.holidays[dk])return'<td style="border:1px solid #000;background:#f5f5f5"></td>';
-      const cnt=students.filter(s=>{const r=S.attendance[dk]?.[s.id];const st=typeof r==="object"?r?.status:r;return st==="P"||st==="OD"||st==="Late";}).length;
-      return'<td style="border:1px solid #000;text-align:center;font-size:8px;font-weight:700">'+cnt+'</td>';
-    }).join("");
-    const extraCols=isP1?'':'<th style="border:1px solid #000;min-width:22px;font-size:7px">Pres</th><th style="border:1px solid #000;min-width:22px;font-size:7px">%</th>';
-    const totExtra=isP1?'':'<td style="border:1px solid #000" colspan="2"></td>';
-    const signRow=(lbl)=>halfDays.map(d=>{const dk=year+"-"+pad(month+1)+"-"+pad(d);const dt=new Date(dk+"T00:00:00");
-      if(dt.getDay()===0||S.holidays[dk])return'<td style="border:1px solid #000;background:#f5f5f5"></td>';
-      return'<td style="border:1px solid #000;border-bottom:1px solid #888"></td>';}).join("") + totExtra;
-    return'<div style="page-break-after:'+(isP1?"always":"avoid")+';padding:6mm 5mm 4mm 10mm;font-family:Arial,sans-serif">'
-      +'<div style="text-align:center;margin-bottom:6px">'
-        +'<h1 style="font-size:15px;font-weight:900;text-transform:uppercase">'+school+'</h1>'
-        +'<h2 style="font-size:12px;font-weight:700;margin:2px 0">Attendance Register &mdash; '+(divObj?'Std '+divObj.std+' Div '+divObj.div:"")+' &mdash; '+MONTHS[month]+' '+year+'</h2>'
-        +'<h3 style="font-size:10px;font-weight:600;margin:2px 0">Academic Year: '+acYear+' | Page '+pageNum+' of 2 | Days '+halfDays[0]+'&ndash;'+halfDays[halfDays.length-1]+'</h3>'
-        +'<hr style="border:none;border-top:2px solid #000;margin:4px 0"/>'
-        +'<div style="font-size:9px;color:#555">'+hm+' | HM/Principal</div>'
-      +'</div>'
-      +'<table style="width:100%;border-collapse:collapse"><thead><tr>'
-        +'<th style="border:1px solid #000;min-width:16px;font-size:8px">#</th>'
-        +'<th style="border:1px solid #000;min-width:22px;font-size:8px">Roll</th>'
-        +'<th style="border:1px solid #000;min-width:100px;text-align:left;padding-left:3px;font-size:8px">Name</th>'
-        +dHdr+extraCols+'</tr></thead><tbody>'+sRows
-        +'<tr style="background:#e8f5e9"><td colspan="3" style="border:1px solid #000;text-align:right;font-size:8px;font-weight:700;padding-right:4px">Total Present</td>'+totRow+totExtra+'</tr>'
-        +'<tr style="height:20px;background:#f0f4f8"><td colspan="3" style="border:1px solid #000;text-align:right;font-size:7px;font-weight:600;padding-right:4px">Sign: Class Teacher</td>'+signRow()+'</tr>'
-        +'<tr style="height:20px;background:#f8f8f8"><td colspan="3" style="border:1px solid #000;text-align:right;font-size:7px;font-weight:600;padding-right:4px">Sign: HM/Principal</td>'+signRow()+'</tr>'
-      +'</tbody></table>'
-      +'<div style="margin-top:4px;font-size:7px;color:#555">\u2713=Present &nbsp; A=Absent &nbsp; CL=Casual Leave &nbsp; ML=Medical Leave &nbsp; OD=On Duty &nbsp; L8=Late &nbsp; H=Holiday</div>'
-      +'</div>';
-  }
-  const win=window.open("","_blank","width=1200,height=800");
-  win.document.write('<!DOCTYPE html><html><head><meta charset="UTF-8"><title>Attendance Register</title><style>@page{margin:0;size:A4 portrait}body{margin:0;padding:0}</style></head><body>'+buildPage(half1,1)+buildPage(half2,2)+'<script>window.onload=()=>{window.print()}<\/script></body></html>');
-  win.document.close();
-}
-
-function printDefaulters(){
-  const{year,month}=S.monthRep;const from=year+"-"+pad(month+1)+"-01",to=year+"-"+pad(month+1)+"-"+pad(daysInMonth(year,month));
-  const school=S.profile?.schoolName||"School";const hm=S.profile?.hmName||"";
-  const defaulters=S.students.map(s=>{const div=S.divisions.find(d=>d.id===s.divId);const r=calcAtt(s.id,from,to);return{...s,div,att:r};})
+function printDef(){
+  const{year,month}=S.monthRep;const isHM=S.role==="hm";
+  const from=year+"-"+pad(month+1)+"-01",to=year+"-"+pad(month+1)+"-"+pad(dIM(year,month));
+  const allStus=isHM?getAllStudents():S.students;
+  const defaulters=allStus.map(s=>{const div=(isHM?getAllDivisions():S.divisions).find(d=>d.id===s.divId);const att=isHM?getAttFor(s._owner||"me"):S.attendance;const r=calcAtt(s.id,from,to,att);return{...s,div,att:r};})
     .filter(s=>s.att.working>0&&s.att.pct<PCT_WARN).sort((a,b)=>a.att.pct-b.att.pct);
+  const school=S.profile?.schoolName||"School";const hm=S.profile?.name||S.profile?.hmName||"";
   const rows=defaulters.map((s,i)=>'<tr><td>'+(i+1)+'</td><td>'+(s.roll||"")+'</td><td style="text-align:left;font-weight:600">'+s.name+'</td>'
     +'<td>'+(s.div?'Std '+s.div.std+' Div '+s.div.div:"")+'</td>'
     +'<td>'+s.att.working+'</td><td>'+s.att.present+'</td>'
     +'<td style="color:#c00;font-weight:700">'+s.att.pct+'%</td>'
-    +'<td style="color:#c00">'+Math.ceil(s.att.working*PCT_WARN/100)-s.att.present+' days</td>'
+    +'<td style="color:#c00">'+(Math.ceil(s.att.working*PCT_WARN/100)-s.att.present)+' days</td>'
     +'<td>'+(s.parentPhone||"")+'</td></tr>').join("");
   const win=window.open("","_blank","width=800,height=700");
   win.document.write('<!DOCTYPE html><html><head><meta charset="UTF-8"><title>Defaulter List</title>'
     +'<style>*{box-sizing:border-box;margin:0;padding:0}body{font-family:Arial,sans-serif;font-size:11px;padding:12mm}'
-    +'h1{font-size:15px;font-weight:700;text-align:center;text-transform:uppercase}h2{font-size:12px;text-align:center;margin:3px 0}'
-    +'hr{border:none;border-top:2px solid #000;margin:5px 0}table{width:100%;border-collapse:collapse;margin-top:10px}'
-    +'th{background:#e0e0e0;border:1px solid #000;padding:5px;font-size:9px;font-weight:700;text-align:center}'
+    +'table{width:100%;border-collapse:collapse;margin-top:10px}th{background:#e0e0e0;border:1px solid #000;padding:5px;font-size:9px;font-weight:700;text-align:center}'
     +'td{border:1px solid #000;padding:4px;text-align:center;font-size:10px}'
-    +'.sign{display:flex;justify-content:space-between;margin-top:30px}'
-    +'.sign-box{text-align:center;min-width:140px;border-top:1px solid #000;padding-top:3px;font-size:9px;font-weight:700}'
+    +'.sign{display:flex;justify-content:space-between;margin-top:30px}.sign-box{text-align:center;min-width:140px;border-top:1px solid #000;padding-top:3px;font-size:9px;font-weight:700}'
     +'@page{margin:0;size:A4 portrait}</style></head><body>'
-    +'<h1>'+school+'</h1>'
-    +'<h2>Attendance Defaulter List &mdash; '+MONTHS[month]+' '+year+'</h2>'
-    +'<h2 style="color:#c00">Students with Attendance Below '+PCT_WARN+'%</h2><hr>'
+    +'<h1 style="font-size:15px;font-weight:700;text-align:center;text-transform:uppercase">'+school+'</h1>'
+    +'<h2 style="font-size:12px;text-align:center;margin:3px 0">Attendance Defaulter List &mdash; '+MONTHS[month]+' '+year+'</h2>'
+    +'<h2 style="font-size:11px;text-align:center;color:#c00;margin:2px 0">Students with Attendance Below '+PCT_WARN+'%</h2>'
+    +'<hr style="border:none;border-top:2px solid #000;margin:5px 0">'
     +'<table><thead><tr><th>#</th><th>Roll</th><th>Name</th><th>Division</th><th>Working</th><th>Present</th><th>%</th><th>Shortage</th><th>Parent Phone</th></tr></thead>'
     +'<tbody>'+rows+'</tbody></table>'
-    +'<div style="margin-top:12px;font-size:10px;color:#555">Total defaulters: '+defaulters.length+' students</div>'
     +'<div class="sign"><div class="sign-box">Date: '+new Date().toLocaleDateString("en-IN")+'</div>'
     +'<div class="sign-box">Class Teacher</div>'
     +'<div class="sign-box">'+hm+'<br><small style="font-weight:400">HM/Principal</small></div></div>'
-    +'<script>window.onload=()=>{window.print()}<\/script></body></html>');
-  win.document.close();
+    +'<script>window.onload=()=>{window.print()}<\/script></body></html>');win.document.close();
 }
 
 function printTC(sid){
@@ -1072,165 +1054,147 @@ function printTC(sid){
   const div=S.divisions.find(d=>d.id===stu.divId);
   const tcDate=document.getElementById("tc-date")?.value||todayDk();
   const r=calcAtt(stu.id,"2025-06-01",tcDate);
-  const school=S.profile?.schoolName||"School";const hm=S.profile?.hmName||"";const udise=S.profile?.udise||"";
+  const school=S.profile?.schoolName||"School";const hm=S.profile?.name||S.profile?.hmName||"";const udise=S.profile?.udise||"";
   const win=window.open("","_blank","width=700,height=500");
   win.document.write('<!DOCTYPE html><html><head><meta charset="UTF-8"><title>TC Attendance</title>'
     +'<style>body{font-family:Arial,sans-serif;font-size:12px;padding:15mm}'
-    +'h1{font-size:16px;font-weight:700;text-align:center;text-transform:uppercase}'
-    +'h2{font-size:13px;text-align:center;margin:3px 0}hr{border:none;border-top:2px solid #000;margin:6px 0}'
-    +'.info{display:grid;grid-template-columns:1fr 1fr;gap:8px;margin:16px 0;font-size:12px}'
+    +'.info{display:grid;grid-template-columns:1fr 1fr;gap:8px;margin:16px 0}'
     +'.info div{padding:8px 12px;background:#f5f5f5;border-radius:4px;text-align:center}'
     +'.info div strong{display:block;font-size:20px;font-weight:800;margin-bottom:2px}'
     +'.sign{display:flex;justify-content:space-between;margin-top:40px}'
     +'.sign-box{text-align:center;min-width:150px;border-top:1px solid #000;padding-top:4px;font-size:11px;font-weight:700}'
     +'@page{margin:0;size:A4 portrait}</style></head><body>'
-    +'<h1>'+school+'</h1>'+(udise?'<div style="text-align:center;font-size:11px;color:#555">UDISE: '+udise+'</div>':"")
-    +'<h2>Attendance Certificate for Transfer Certificate</h2><hr>'
+    +'<h1 style="font-size:16px;font-weight:700;text-align:center;text-transform:uppercase">'+school+'</h1>'
+    +(udise?'<div style="text-align:center;font-size:11px;color:#555">UDISE: '+udise+'</div>':"")
+    +'<h2 style="font-size:13px;text-align:center;margin:3px 0">Attendance Certificate for Transfer Certificate</h2>'
+    +'<hr style="border:none;border-top:2px solid #000;margin:6px 0">'
     +'<table style="width:100%;margin:16px 0;font-size:12px"><tbody>'
-    +'<tr><td style="padding:6px 0"><strong>Student Name:</strong></td><td style="padding:6px 0;font-weight:700">'+stu.name+'</td>'
-    +'<td style="padding:6px 0"><strong>Adm No:</strong></td><td>'+(stu.admNo||"&mdash;")+'</td></tr>'
-    +'<tr><td><strong>Standard:</strong></td><td>'+(div?'Std '+div.std+' Div '+div.div:"&mdash;")+'</td>'
-    +'<td><strong>Roll No:</strong></td><td>'+(stu.roll||"&mdash;")+'</td></tr>'
-    +'<tr><td><strong>Academic Year:</strong></td><td>'+(S.profile?.academicYear||"2025-2026")+'</td>'
-    +'<td><strong>TC Date:</strong></td><td>'+fmtDate(tcDate)+'</td></tr></tbody></table>'
-    +'<div class="info">'
-    +'<div><strong>'+r.working+'</strong>Total Working Days</div>'
-    +'<div><strong>'+r.present+'</strong>Days Present</div>'
-    +'<div><strong>'+r.absent+'</strong>Days Absent</div>'
-    +'<div style="'+(r.pct>=PCT_WARN?"":"color:#c00")+'"><strong>'+r.pct+'%</strong>Attendance Percentage</div>'
-    +'</div>'
-    +'<p style="font-size:11px;color:#555;margin-top:12px">This is to certify that the above student attended <strong>'+r.present+' days</strong> out of <strong>'+r.working+' working days</strong> from the commencement of the academic year to the date of TC.</p>'
+    +'<tr><td><strong>Student Name:</strong></td><td style="font-weight:700">'+stu.name+'</td><td><strong>Adm No:</strong></td><td>'+(stu.admNo||"&mdash;")+'</td></tr>'
+    +'<tr><td><strong>Standard:</strong></td><td>'+(div?'Std '+div.std+' Div '+div.div:"&mdash;")+'</td><td><strong>Roll No:</strong></td><td>'+(stu.roll||"&mdash;")+'</td></tr>'
+    +'<tr><td><strong>Academic Year:</strong></td><td>'+(S.profile?.academicYear||"2025-2026")+'</td><td><strong>TC Date:</strong></td><td>'+fmtDate(tcDate)+'</td></tr>'
+    +'</tbody></table>'
+    +'<div class="info"><div><strong>'+r.working+'</strong>Total Working Days</div><div><strong>'+r.present+'</strong>Days Present</div>'
+    +'<div><strong>'+r.absent+'</strong>Days Absent</div><div style="'+(r.pct>=PCT_WARN?"":"color:#c00")+'"><strong>'+r.pct+'%</strong>Attendance %</div></div>'
+    +'<p style="font-size:11px;color:#555;margin-top:12px">Certified that '+stu.name+' attended <strong>'+r.present+' days</strong> out of <strong>'+r.working+' working days</strong>.</p>'
     +'<div class="sign"><div class="sign-box">Date: '+fmtDate(tcDate)+'</div><div class="sign-box">Class Teacher</div>'
     +'<div class="sign-box">'+hm+'<br><small style="font-weight:400">HM/Principal</small></div></div>'
-    +'<script>window.onload=()=>{window.print()}<\/script></body></html>');
-  win.document.close();
+    +'<script>window.onload=()=>{window.print()}<\/script></body></html>');win.document.close();
 }
 
-// HANDLE CLICK
+// ── HANDLE CLICK ──
 async function handleClick(e){
   const btn=e.target.closest("[data-action]");if(!btn)return;
   const a=btn.dataset.action;
-  if(a==="mark-att"){
+  if(a==="mark"){
     const{sid,dk,val}=btn.dataset;const lbl=currentUser();
-    const cur=S.attendance[dk]?.[sid];
-    const meta=buildMeta(lbl,typeof cur==="object"?cur:null);
-    const record={status:val,...meta};
-    if(!S.attendance[dk])S.attendance[dk]={};S.attendance[dk][sid]=record;
-    refreshPage();saveAtt(dk,sid,val,meta).catch(e=>toast(e.message,"error"));return;
+    const cur=S.attendance[dk]?.[sid];const meta=buildMeta(lbl,typeof cur==="object"?cur:null);
+    const rec={status:val,...meta};
+    if(!S.attendance[dk])S.attendance[dk]={};S.attendance[dk][sid]=rec;
+    refreshPage();saveAtt(dk,sid,val,meta).catch(err=>toast(err.message,"error"));return;
   }
   if(a==="mark-all"){
     const val=btn.dataset.val;const{divId,year,month,day}=S.attState;
-    const d=Math.min(day,daysInMonth(year,month));const dk=year+"-"+pad(month+1)+"-"+pad(d);
-    const students=getStudentsInDiv(divId);const lbl=currentUser();
-    students.forEach(s=>{const cur=S.attendance[dk]?.[s.id];const meta=buildMeta(lbl,typeof cur==="object"?cur:null);
+    const d=Math.min(day,dIM(year,month));const dk=year+"-"+pad(month+1)+"-"+pad(d);
+    const stus=stusInDiv(divId);const lbl=currentUser();
+    stus.forEach(s=>{const cur=S.attendance[dk]?.[s.id];const meta=buildMeta(lbl,typeof cur==="object"?cur:null);
       if(!S.attendance[dk])S.attendance[dk]={};S.attendance[dk][s.id]={status:val,...meta};});
-    refreshPage();markAllAtt(dk,students.map(s=>s.id),val,lbl).catch(e=>toast(e.message,"error"));return;
-  }
-  if(a==="sync-teacher"){
-    const{year,month,day}=S.attState;const d=Math.min(day,daysInMonth(year,month));
-    const dk=year+"-"+pad(month+1)+"-"+pad(d);
-    setLoading(true,"Syncing teacher marks...");
-    try{await syncTeacherMarks(dk);refreshPage();toast("Teacher marks synced");}
-    catch(e){toast(e.message,"error");}finally{setLoading(false);}return;
+    refreshPage();markAllAtt(dk,stus.map(s=>s.id),val,lbl).catch(err=>toast(err.message,"error"));return;
   }
   if(a==="go-att"){S.attState.divId=btn.dataset.divid;S.page="attendance";loadAttPageData();return;}
   if(a==="print-monthly"){
-    S.printDetails.hmName=document.getElementById("mr-hm")?.value||S.printDetails.hmName;
-    S.printDetails.schoolName=document.getElementById("mr-school")?.value||S.printDetails.schoolName;
+    S.printDetails.hmName=document.getElementById("mr-hm")?.value||"";
+    S.printDetails.schoolName=document.getElementById("mr-school")?.value||"";
     S.printDetails.printDate=document.getElementById("mr-date")?.checked??true;
     printMonthly();return;
   }
-  if(a==="print-attbook"){printAttBook();return;}
-  if(a==="print-defaulters"){printDefaulters();return;}
+  if(a==="print-ab"){printAttBook();return;}
+  if(a==="print-def"){printDef();return;}
   if(a==="print-tc"){printTC(btn.dataset.sid);return;}
-
+  if(a==="share-att"){shareModal();return;}
+  // Divisions
   if(a==="add-div"){divModal();return;}
   if(a==="edit-div"){divModal(btn.dataset.id);return;}
   if(a==="del-div"){
-    const id=btn.dataset.id;const stuCount=getStudentsInDiv(id).length;
-    if(!confirm("Delete this division"+(stuCount>0?" and "+stuCount+" students":"")+"?"))return;
-    setLoading(true);
-    try{
-      await deleteDoc(divRef(id));
-      const batch=writeBatch(db);getStudentsInDiv(id).forEach(s=>batch.delete(stuRef(s.id)));await batch.commit();
-      S.divisions=S.divisions.filter(d=>d.id!==id);S.students=S.students.filter(s=>s.divId!==id);
-      refreshPage();toast("Division deleted");
-    }catch(e){toast(e.message,"error");}finally{setLoading(false);}return;
+    if(!confirm("Delete this division and all its students?"))return;
+    const id=btn.dataset.id;setLoading(true);
+    try{await deleteDoc(divRef(id));const batch=writeBatch(db);stusInDiv(id).forEach(s=>batch.delete(stuRef(s.id)));await batch.commit();
+      S.divisions=S.divisions.filter(d=>d.id!==id);S.students=S.students.filter(s=>s.divId!==id);refreshPage();toast("Division deleted");}
+    catch(e){toast(e.message,"error");}finally{setLoading(false);}return;
   }
   if(a==="save-div"){
     const id=btn.dataset.id||uid();
-    const std=document.getElementById("div-std")?.value;const div=document.getElementById("div-div")?.value;
-    const medium=document.getElementById("div-medium")?.value;const classTeacher=document.getElementById("div-ct")?.value.trim().toUpperCase();
+    const std=document.getElementById("div-std")?.value,div=document.getElementById("div-div")?.value;
+    const medium=document.getElementById("div-medium")?.value,ct=document.getElementById("div-ct")?.value.trim().toUpperCase();
     if(!std||!div){toast("Standard and Division required","error");return;}
     if(S.divisions.find(d=>d.std===std&&d.div===div&&d.id!==id)){toast("Std "+std+" Div "+div+" already exists","error");return;}
     setLoading(true);
-    try{const obj={id,std,div,medium,classTeacher};await setDoc(divRef(id),obj);
+    try{const obj={id,std,div,medium,classTeacher:ct};await setDoc(divRef(id),obj);
       if(S.divisions.find(d=>d.id===id))S.divisions=S.divisions.map(d=>d.id===id?obj:d);else S.divisions.push(obj);
       S.divisions.sort((a,b)=>parseInt(a.std)-parseInt(b.std)||a.div.localeCompare(b.div));
-      closeModal();refreshPage();toast("Division saved");
-    }catch(e){toast(e.message,"error");}finally{setLoading(false);}return;
+      closeModal();refreshPage();toast("Division saved");}
+    catch(e){toast(e.message,"error");}finally{setLoading(false);}return;
   }
-  if(a==="add-student"){studentModal();return;}
-  if(a==="edit-student"){studentModal(btn.dataset.id);return;}
-  if(a==="del-student"){
-    const id=btn.dataset.id;const stu=S.students.find(s=>s.id===id);
-    if(!confirm("Delete "+stu?.name+"?"))return;
-    setLoading(true);
+  // Students
+  if(a==="add-stu"){stuModal();return;}
+  if(a==="edit-stu"){stuModal(btn.dataset.id);return;}
+  if(a==="del-stu"){
+    if(!confirm("Delete student?"))return;const id=btn.dataset.id;setLoading(true);
     try{await deleteDoc(stuRef(id));S.students=S.students.filter(s=>s.id!==id);refreshPage();toast("Student deleted");}
     catch(e){toast(e.message,"error");}finally{setLoading(false);}return;
   }
-  if(a==="save-student"){
+  if(a==="save-stu"){
     const id=btn.dataset.id||uid();
     const name=document.getElementById("stu-name")?.value.trim().toUpperCase();
     const roll=document.getElementById("stu-roll")?.value.trim();
     const admNo=document.getElementById("stu-adm")?.value.trim();
-    const divId=document.getElementById("stu-div")?.value;
-    const parentPhone=document.getElementById("stu-phone")?.value.trim();
+    const divId=document.getElementById("stu-divid")?.value;
+    const phone=document.getElementById("stu-phone")?.value.trim();
     if(!name||!divId){toast("Name and Division required","error");return;}
-    if(roll&&S.students.find(s=>s.roll===roll&&s.divId===divId&&s.id!==id)){toast("Roll "+roll+" already exists","error");return;}
+    if(roll&&S.students.find(s=>s.roll===roll&&s.divId===divId&&s.id!==id)){toast("Roll "+roll+" exists in this division","error");return;}
     setLoading(true);
     try{const div=S.divisions.find(d=>d.id===divId);
-      const obj={id,name,roll,admNo,divId,std:div?.std||"",div:div?.div||"",parentPhone};
+      const obj={id,name,roll,admNo,divId,std:div?.std||"",div:div?.div||"",parentPhone:phone};
       await setDoc(stuRef(id),obj);
       if(S.students.find(s=>s.id===id))S.students=S.students.map(s=>s.id===id?obj:s);else S.students.push(obj);
-      S.students.sort((a,b)=>{const ra=parseInt(a.roll)||9999,rb=parseInt(b.roll)||9999;return ra-rb||a.name.localeCompare(b.name);});
-      closeModal();refreshPage();toast("Student saved");
-    }catch(e){toast(e.message,"error");}finally{setLoading(false);}return;
+      S.students.sort((a,b)=>(parseInt(a.roll)||9999)-(parseInt(b.roll)||9999)||a.name.localeCompare(b.name));
+      closeModal();refreshPage();toast("Student saved");}
+    catch(e){toast(e.message,"error");}finally{setLoading(false);}return;
   }
-  if(a==="add-holiday"){holidayModal();return;}
-  if(a==="save-holiday"){
-    const dk=document.getElementById("hol-date")?.value;const name=document.getElementById("hol-name")?.value.trim();
+  // Holidays
+  if(a==="add-hol"){holModal();return;}
+  if(a==="save-hol"){
+    const dk=document.getElementById("hol-date")?.value,name=document.getElementById("hol-name")?.value.trim();
     const type=document.getElementById("hol-type")?.value;
     if(!dk||!name){toast("Date and name required","error");return;}
     setLoading(true);
     try{await setDoc(holRef(dk),{name,date:dk,type});S.holidays[dk]={name,date:dk,type};closeModal();refreshPage();toast("Holiday saved");}
     catch(e){toast(e.message,"error");}finally{setLoading(false);}return;
   }
-  if(a==="del-holiday"){
-    if(!confirm("Remove this holiday?"))return;const dk=btn.dataset.dk;
-    setLoading(true);
+  if(a==="del-hol"){
+    if(!confirm("Remove holiday?"))return;const dk=btn.dataset.dk;setLoading(true);
     try{await deleteDoc(holRef(dk));delete S.holidays[dk];refreshPage();toast("Holiday removed");}
     catch(e){toast(e.message,"error");}finally{setLoading(false);}return;
   }
-  if(a==="load-kerala-holidays"){
-    setLoading(true,"Loading Kerala holidays...");
+  if(a==="load-kerala"){
+    setLoading(true);
     try{const batch=writeBatch(db);
       KERALA_HOLIDAYS.forEach(h=>{batch.set(holRef(h.date),{name:h.name,date:h.date,type:"Public Holiday"});S.holidays[h.date]={name:h.name,date:h.date,type:"Public Holiday"};});
-      await batch.commit();refreshPage();toast(KERALA_HOLIDAYS.length+" Kerala holidays loaded");
-    }catch(e){toast(e.message,"error");}finally{setLoading(false);}return;
+      await batch.commit();refreshPage();toast(KERALA_HOLIDAYS.length+" holidays loaded");}
+    catch(e){toast(e.message,"error");}finally{setLoading(false);}return;
   }
+  // Settings
   if(a==="save-profile"){
-    const obj={schoolName:document.getElementById("set-school")?.value.trim(),
-      udise:document.getElementById("set-udise")?.value.trim(),
+    const isHM=S.role==="hm";
+    const obj={...S.profile,
+      name:document.getElementById("set-name")?.value.trim().toUpperCase(),
+      schoolName:document.getElementById("set-school")?.value.trim(),
+      ...(isHM?{udise:document.getElementById("set-udise")?.value.trim(),hmName:document.getElementById("set-name")?.value.trim().toUpperCase()}:{}),
       district:document.getElementById("set-district")?.value,
-      block:document.getElementById("set-block")?.value.trim(),
-      hmName:document.getElementById("set-hm")?.value.trim(),
       phone:document.getElementById("set-phone")?.value.trim(),
-      academicYear:document.getElementById("set-year")?.value.trim(),
-      threshold:parseInt(document.getElementById("set-pct")?.value)||75,
-      email:S.user.email,pinHash:S.profile?.pinHash};
+      academicYear:document.getElementById("set-acyear")?.value.trim(),
+      email:S.user.email,role:S.role};
     setLoading(true);
-    try{await saveProfile(obj);S.printDetails.hmName=obj.hmName;S.printDetails.schoolName=obj.schoolName;refreshPage();toast("Profile saved");}
+    try{await saveProfile(obj);toast("Profile saved");refreshPage();}
     catch(e){toast(e.message,"error");}finally{setLoading(false);}return;
   }
   if(a==="change-pin"){
@@ -1241,55 +1205,31 @@ async function handleClick(e){
     catch(e){toast(e.message,"error");}finally{setLoading(false);}return;
   }
   if(a==="sign-out"){if(confirm("Sign out?"))signOut(auth);return;}
-  if(a==="share-att"){shareAttModal();return;}
-  if(a==="tch-add"){tchModal(-1);return;}
-  if(a==="tch-edit"){tchModal(parseInt(btn.dataset.idx));return;}
-  if(a==="tch-delete"){
-    const idx=parseInt(btn.dataset.idx);const t=S.teacherLinks[idx];
-    if(!confirm("Remove "+t?.name+"?"))return;
-    S.teacherLinks.splice(idx,1);setLoading(true);
-    try{await setDoc(tchInstRef(),{list:S.teacherLinks});refreshPage();toast("Teacher removed");}
+  // School link
+  if(a==="join-school"){
+    const code=document.getElementById("set-code")?.value.trim();
+    if(!code||code.length!==6){toast("Enter a valid 6-digit code","error");return;}
+    setLoading(true);
+    try{await joinSchool(code);refreshPage();toast("Successfully linked to school!");}
     catch(e){toast(e.message,"error");}finally{setLoading(false);}return;
   }
-  if(a==="tch-save"){
-    const idx=parseInt(btn.dataset.idx);
-    const name=(document.getElementById("tch-name")?.value||"").trim().toUpperCase();
-    const pin=document.getElementById("tch-pin")?.value||"";
-    const active=document.getElementById("tch-active")?.checked!==false;
-    const divIds=[...document.querySelectorAll(".tch-div-cb:checked")].map(cb=>cb.value);
-    if(!name){toast("Name required","error");return;}
-    setLoading(true);
-    try{
-      let pinHash;
-      if(pin){if(pin.length!==4||!/^\d{4}$/.test(pin)){toast("PIN must be 4 digits","error");setLoading(false);return;}pinHash=await hashPin(pin);}
-      else if(idx>=0)pinHash=S.teacherLinks[idx].pinHash;
-      else{toast("PIN required","error");setLoading(false);return;}
-      const rec={id:idx>=0?S.teacherLinks[idx].id:uid(),name,pinHash,divIds,active};
-      if(idx>=0)S.teacherLinks[idx]=rec;else S.teacherLinks.push(rec);
-      await setDoc(tchInstRef(),{list:S.teacherLinks});closeModal();refreshPage();toast("Teacher saved");
-    }catch(e){toast(e.message,"error");}finally{setLoading(false);}return;
-  }
-  if(a==="tch-generate"){
-    setLoading(true);
-    try{const token=genToken();
-      const payload={token,uid:S.user.uid,inst:S.profile?.schoolName||"School",
-        teacherList:S.teacherLinks.map(t=>({id:t.id,name:t.name,pinHash:t.pinHash,divIds:t.divIds||[],active:t.active})),
-        divisions:S.divisions.map(d=>({id:d.id,std:d.std,div:d.div,medium:d.medium})),
-        students:S.students.map(s=>({id:s.id,name:s.name,roll:s.roll,divId:s.divId})),
-        created:Date.now(),active:true};
-      await Promise.all([setDoc(tchLinkRef(),{token,created:Date.now()}),setDoc(pubTchRef(token),payload)]);
-      S.teacherLink={token,created:Date.now()};refreshPage();toast("Teacher link generated");
-    }catch(e){toast(e.message,"error");}finally{setLoading(false);}return;
-  }
-  if(a==="tch-revoke"){
-    if(!confirm("Revoke teacher link?"))return;setLoading(true);
-    try{if(S.teacherLink?.token)await setDoc(pubTchRef(S.teacherLink.token),{active:false},{merge:true});
-      S.teacherLink=null;refreshPage();toast("Link revoked");}
+  if(a==="unlink-school"){
+    if(!confirm("Unlink from school?"))return;setLoading(true);
+    try{if(S.schoolLink?.linkId)await updateDoc(linkRef(S.schoolLink.linkId),{status:"removed"});
+      S.schoolLink=null;refreshPage();toast("Unlinked");}
     catch(e){toast(e.message,"error");}finally{setLoading(false);}return;
   }
-  if(a==="tch-share"){const url=btn.dataset.url;
-    if(navigator.share)navigator.share({title:"Teacher Link",url}).catch(()=>{});
-    else navigator.clipboard?.writeText(url).then(()=>toast("Copied!"));return;
+  if(a==="gen-code"||a==="regen-code"){
+    setLoading(true);
+    try{const code=await generateSchoolCode();refreshPage();toast("School code: "+code);}
+    catch(e){toast(e.message,"error");}finally{setLoading(false);}return;
+  }
+  if(a==="unlink-teacher"){
+    if(!confirm("Unlink this teacher?"))return;const lid=btn.dataset.lid;setLoading(true);
+    try{await updateDoc(linkRef(lid),{status:"removed"});
+      S.linkedTeachers=S.linkedTeachers.filter(t=>t.linkId!==lid);delete S.teacherData[S.linkedTeachers.find(t=>t.linkId===lid)?.teacherUid||""];
+      await loadTeacherData();refreshPage();toast("Teacher unlinked");}
+    catch(e){toast(e.message,"error");}finally{setLoading(false);}return;
   }
 }
 
@@ -1299,439 +1239,264 @@ function handleChange(e){
   else if(t.id==="att-month"){S.attState.month=parseInt(v);loadAttPageData();}
   else if(t.id==="att-year"){S.attState.year=parseInt(v)||TODAY.getFullYear();loadAttPageData();}
   else if(t.id==="att-day"){S.attState.day=parseInt(v);refreshPage();}
-  else if(t.id==="mr-div"){S.monthRep.divId=v;refreshPage();}
+  else if(t.id==="mr-div"){const[id]=v.split("|");S.monthRep.divId=id;refreshPage();}
   else if(t.id==="mr-month"){S.monthRep.month=parseInt(v);refreshPage();}
   else if(t.id==="mr-year"){S.monthRep.year=parseInt(v)||TODAY.getFullYear();refreshPage();}
-  else if(t.id==="ab-div"){S.attBookState.divId=v;refreshPage();}
-  else if(t.id==="ab-month"){S.attBookState.month=parseInt(v);loadAttBookData();}
-  else if(t.id==="ab-year"){S.attBookState.year=parseInt(v)||TODAY.getFullYear();loadAttBookData();}
+  else if(t.id==="ab-div"){const[id]=v.split("|");S.abState.divId=id;refreshPage();}
+  else if(t.id==="ab-month"){S.abState.month=parseInt(v);loadABData();}
+  else if(t.id==="ab-year"){S.abState.year=parseInt(v)||TODAY.getFullYear();loadABData();}
   else if(t.id==="def-month"){S.monthRep.month=parseInt(v);refreshPage();}
   else if(t.id==="def-year"){S.monthRep.year=parseInt(v)||TODAY.getFullYear();refreshPage();}
-  else if(t.id==="stu-div-filter"||t.id==="tc-student"){refreshPage();}
+  else if(t.id==="stu-div-filter"||t.id==="tc-stu"){refreshPage();}
   else if(t.id==="mr-date"){S.printDetails.printDate=t.checked;}
 }
 
-// MODALS
+// ── MODALS ──
 function divModal(id){
   const d=id?S.divisions.find(x=>x.id===id):null;
   const stdOpts=STANDARDS.map(s=>'<option'+(d?.std===s?" selected":"")+'>'+s+'</option>').join("");
   const divOpts=DIVISIONS.map(v=>'<option'+(d?.div===v?" selected":"")+'>'+v+'</option>').join("");
   const medOpts=MEDIUM.map(m=>'<option'+(d?.medium===m?" selected":"")+'>'+m+'</option>').join("");
   showModal('<div class="modal-header"><h3>'+(id?"Edit":"Add")+' Division</h3><button class="btn-icon" onclick="closeModal()">&times;</button></div>'
-    +'<div class="modal-body">'
-      +'<div class="form-row mb12"><div><label class="form-label">Standard</label><select id="div-std">'+stdOpts+'</select></div>'
-      +'<div><label class="form-label">Division</label><select id="div-div">'+divOpts+'</select></div></div>'
-      +'<div class="form-group"><label class="form-label">Medium</label><select id="div-medium">'+medOpts+'</select></div>'
-      +'<div class="form-group"><label class="form-label">Class Teacher</label><input id="div-ct" value="'+(d?.classTeacher||"")+'" placeholder="Teacher name"/></div>'
-    +'</div>'
-    +'<div class="modal-footer"><button class="btn btn-secondary" onclick="closeModal()">Cancel</button>'
+    +'<div class="modal-body"><div class="form-row mb12">'
+    +'<div><label class="form-label">Standard</label><select id="div-std">'+stdOpts+'</select></div>'
+    +'<div><label class="form-label">Division</label><select id="div-div">'+divOpts+'</select></div></div>'
+    +'<div class="form-group"><label class="form-label">Medium</label><select id="div-medium">'+medOpts+'</select></div>'
+    +'<div class="form-group"><label class="form-label">Class Teacher</label><input id="div-ct" value="'+(d?.classTeacher||"")+'" placeholder="Teacher name"/></div>'
+    +'</div><div class="modal-footer"><button class="btn btn-secondary" onclick="closeModal()">Cancel</button>'
     +'<button class="btn btn-primary" data-action="save-div" data-id="'+(id||"")+'">Save</button></div>');
 }
-
-function studentModal(id){
+function stuModal(id){
   const s=id?S.students.find(x=>x.id===id):null;
   const divOpts=S.divisions.map(d=>'<option value="'+d.id+'"'+(s?.divId===d.id?" selected":"")+'>Std '+d.std+' Div '+d.div+'</option>').join("");
   showModal('<div class="modal-header"><h3>'+(id?"Edit":"Add")+' Student</h3><button class="btn-icon" onclick="closeModal()">&times;</button></div>'
-    +'<div class="modal-body">'
-      +'<div class="form-group"><label class="form-label">Full Name</label><input id="stu-name" value="'+(s?.name||"")+'" placeholder="Student full name"/></div>'
-      +'<div class="form-row mb12"><div><label class="form-label">Roll Number</label><input id="stu-roll" value="'+(s?.roll||"")+'" inputmode="numeric"/></div>'
-      +'<div><label class="form-label">Admission Number</label><input id="stu-adm" value="'+(s?.admNo||"")+'" /></div></div>'
-      +'<div class="form-group"><label class="form-label">Division</label><select id="stu-div">'+divOpts+'</select></div>'
-      +'<div class="form-group"><label class="form-label">Parent Phone</label><input id="stu-phone" value="'+(s?.parentPhone||"")+'" inputmode="tel"/></div>'
-    +'</div>'
-    +'<div class="modal-footer"><button class="btn btn-secondary" onclick="closeModal()">Cancel</button>'
-    +'<button class="btn btn-primary" data-action="save-student" data-id="'+(id||"")+'">Save</button></div>');
+    +'<div class="modal-body"><div class="form-group"><label class="form-label">Full Name</label><input id="stu-name" value="'+(s?.name||"")+'" placeholder="Student full name"/></div>'
+    +'<div class="form-row mb12"><div><label class="form-label">Roll No</label><input id="stu-roll" value="'+(s?.roll||"")+'" inputmode="numeric"/></div>'
+    +'<div><label class="form-label">Adm No</label><input id="stu-adm" value="'+(s?.admNo||"")+'"/></div></div>'
+    +'<div class="form-group"><label class="form-label">Division</label><select id="stu-divid">'+divOpts+'</select></div>'
+    +'<div class="form-group"><label class="form-label">Parent Phone</label><input id="stu-phone" value="'+(s?.parentPhone||"")+'" inputmode="tel"/></div>'
+    +'</div><div class="modal-footer"><button class="btn btn-secondary" onclick="closeModal()">Cancel</button>'
+    +'<button class="btn btn-primary" data-action="save-stu" data-id="'+(id||"")+'">Save</button></div>');
 }
-
-function holidayModal(){
-  const typeOpts=["Public Holiday","School Holiday","Hartal","Exam","Vacation"].map(t=>'<option>'+t+'</option>').join("");
+function holModal(){
   showModal('<div class="modal-header"><h3>Add Holiday</h3><button class="btn-icon" onclick="closeModal()">&times;</button></div>'
-    +'<div class="modal-body">'
-      +'<div class="form-group"><label class="form-label">Date</label><input type="date" id="hol-date" value="'+todayDk()+'"/></div>'
-      +'<div class="form-group"><label class="form-label">Holiday Name</label><input id="hol-name" placeholder="e.g. Onam, Independence Day"/></div>'
-      +'<div class="form-group"><label class="form-label">Type</label><select id="hol-type">'+typeOpts+'</select></div>'
-    +'</div>'
-    +'<div class="modal-footer"><button class="btn btn-secondary" onclick="closeModal()">Cancel</button>'
-    +'<button class="btn btn-primary" data-action="save-holiday">Save</button></div>');
+    +'<div class="modal-body"><div class="form-group"><label class="form-label">Date</label><input type="date" id="hol-date" value="'+todayDk()+'"/></div>'
+    +'<div class="form-group"><label class="form-label">Name</label><input id="hol-name" placeholder="e.g. Onam, Independence Day"/></div>'
+    +'<div class="form-group"><label class="form-label">Type</label><select id="hol-type"><option>Public Holiday</option><option>School Holiday</option><option>Hartal</option><option>Exam</option><option>Vacation</option></select></div>'
+    +'</div><div class="modal-footer"><button class="btn btn-secondary" onclick="closeModal()">Cancel</button>'
+    +'<button class="btn btn-primary" data-action="save-hol">Save</button></div>');
 }
-
-function tchModal(idx){
-  const t=idx>=0?S.teacherLinks[idx]:null;
-  const divOpts=S.divisions.map(d=>'<label style="display:flex;align-items:center;gap:8px;cursor:pointer;padding:5px 0">'
-    +'<input type="checkbox" class="tch-div-cb" value="'+d.id+'" style="width:auto"'+(t?.divIds?.includes(d.id)?" checked":"")+'/>'
-    +'<span>Std '+d.std+' Div '+d.div+(d.medium?" ("+d.medium+")":"")+'</span></label>').join("");
-  showModal('<div class="modal-header"><h3>'+(idx>=0?"Edit":"Add")+' Class Teacher</h3><button class="btn-icon" onclick="closeModal()">&times;</button></div>'
-    +'<div class="modal-body">'
-      +'<div class="form-group"><label class="form-label">Teacher Name</label><input id="tch-name" value="'+(t?.name||"")+'" placeholder="Teacher full name"/></div>'
-      +'<div class="form-group"><label class="form-label">'+(idx>=0?"New PIN (blank to keep)":"PIN (4 digits)")+'</label>'
-      +'<input id="tch-pin" type="password" maxlength="4" inputmode="numeric" placeholder="4-digit PIN"/></div>'
-      +'<div class="form-group"><label class="form-label">Assigned Divisions</label>'
-      +'<div style="border:1px solid var(--border);border-radius:var(--radius);padding:8px 12px;max-height:200px;overflow-y:auto">'
-      +(divOpts||'<p class="text-sm text-muted">Add divisions first.</p>')+'</div></div>'
-      +'<div class="form-group"><label style="display:flex;align-items:center;gap:8px;cursor:pointer">'
-      +'<input type="checkbox" id="tch-active" style="width:auto"'+(!t||t.active?" checked":"")+'/>'
-      +'<span>Active &mdash; can mark attendance</span></label></div>'
-    +'</div>'
-    +'<div class="modal-footer"><button class="btn btn-secondary" onclick="closeModal()">Cancel</button>'
-    +'<button class="btn btn-primary" data-action="tch-save" data-idx="'+idx+'">Save</button></div>');
-}
-
-function shareAttModal(){
-  const{divId,year,month,day}=S.attState;const d=Math.min(day,daysInMonth(year,month));
-  const dk=year+"-"+pad(month+1)+"-"+pad(d);
-  const students=getStudentsInDiv(divId);const divObj=S.divisions.find(x=>x.id===divId);
+function shareModal(){
+  const{divId,year,month,day}=S.attState;const d=Math.min(day,dIM(year,month));
+  const dk=year+"-"+pad(month+1)+"-"+pad(d);const students=stusInDiv(divId);
+  const divObj=S.divisions.find(x=>x.id===divId);
   let present=0,absent=0;
   students.forEach(s=>{const r=S.attendance[dk]?.[s.id];const st=typeof r==="object"?r?.status:r;
     if(st==="P"||st==="OD"||st==="Late")present++;else if(st==="A")absent++;});
   showModal('<div class="modal-header"><h3>&#128228; Share Attendance</h3><button class="btn-icon" onclick="closeModal()">&times;</button></div>'
     +'<div class="modal-body">'
-      +'<div style="background:var(--surface2);border-radius:var(--radius);padding:10px 12px;margin-bottom:14px;font-size:12px">'
-        +'<div class="fw600">'+(divObj?'Std '+divObj.std+' Div '+divObj.div:"")+'</div>'
-        +'<div class="text-muted">'+fmtDate(dk)+'</div>'
-        +'<div class="flex gap12 mt8 text-sm">'
-          +'<span style="color:var(--success)">&#9989; Present: <strong>'+present+'</strong></span>'
-          +'<span style="color:var(--danger)">&#10060; Absent: <strong>'+absent+'</strong></span>'
-        +'</div>'
-      +'</div>'
-      +'<div style="display:flex;flex-direction:column;gap:10px">'
-        +'<label style="display:flex;align-items:flex-start;gap:10px;cursor:pointer;padding:12px;border:1px solid var(--border);border-radius:var(--radius)">'
-          +'<input type="radio" name="share-type" value="absent" checked style="width:auto;margin-top:2px"/>'
-          +'<div><div class="fw600 text-sm">Absent students only</div></div></label>'
-        +'<label style="display:flex;align-items:flex-start;gap:10px;cursor:pointer;padding:12px;border:1px solid var(--border);border-radius:var(--radius)">'
-          +'<input type="radio" name="share-type" value="all" style="width:auto;margin-top:2px"/>'
-          +'<div><div class="fw600 text-sm">All students</div></div></label>'
-      +'</div>'
-    +'</div>'
+    +'<div style="background:var(--surface2);border-radius:var(--radius);padding:10px 12px;margin-bottom:14px;font-size:12px">'
+    +'<div class="fw600">'+(divObj?'Std '+divObj.std+' Div '+divObj.div:"")+'</div><div class="text-muted">'+fmtDate(dk)+'</div>'
+    +'<div style="display:flex;gap:14px;margin-top:6px"><span style="color:var(--success)">&#9989; Present: <strong>'+present+'</strong></span>'
+    +'<span style="color:var(--danger)">&#10060; Absent: <strong>'+absent+'</strong></span></div></div>'
+    +'<div style="display:flex;flex-direction:column;gap:8px">'
+    +'<label style="display:flex;gap:10px;cursor:pointer;padding:10px;border:1px solid var(--border);border-radius:var(--radius)">'
+    +'<input type="radio" name="share-type" value="absent" checked style="width:auto;margin-top:2px"/>'
+    +'<div><div class="fw600 text-sm">Absent students only</div></div></label>'
+    +'<label style="display:flex;gap:10px;cursor:pointer;padding:10px;border:1px solid var(--border);border-radius:var(--radius)">'
+    +'<input type="radio" name="share-type" value="all" style="width:auto;margin-top:2px"/>'
+    +'<div><div class="fw600 text-sm">All students</div></div></label></div></div>'
     +'<div class="modal-footer"><button class="btn btn-secondary" onclick="closeModal()">Cancel</button>'
     +'<button class="btn btn-primary" onclick="doShare(\''+dk+'\',\''+divId+'\')">&#128228; Share</button></div>');
 }
-
 window.doShare=function(dk,divId){
   const mode=document.querySelector("input[name='share-type']:checked")?.value||"absent";
-  const students=getStudentsInDiv(divId);const divObj=S.divisions.find(x=>x.id===divId);
+  const students=stusInDiv(divId);const divObj=S.divisions.find(x=>x.id===divId);
   const school=S.profile?.schoolName||"School";const NL="\n";
   let msg="*"+school+"*"+NL+"*"+(divObj?'Std '+divObj.std+' Div '+divObj.div:"")+"*"+NL+"Date: "+fmtDate(dk)+NL+"------------------------------"+NL+NL;
   if(mode==="absent"){
     const absent=[];
-    students.forEach(s=>{const r=S.attendance[dk]?.[s.id];const st=typeof r==="object"?r?.status:r;if(!st||st==="A"||st==="L"||st==="ML")absent.push("- "+s.name+" (Roll "+(s.roll||"?")+")"+(st?" ["+st+"]":" [Not marked]"));});
+    students.forEach(s=>{const r=S.attendance[dk]?.[s.id];const st=typeof r==="object"?r?.status:r;
+      if(!st||st==="A"||st==="L"||st==="ML")absent.push("- "+s.name+" (Roll "+(s.roll||"?")+")"+(st?" ["+st+"]":" [Not marked]"));});
     msg+=absent.length===0?"All students present!"+NL:"*ABSENT/LEAVE ("+absent.length+"):*"+NL+absent.join(NL)+NL;
     const pres=students.filter(s=>{const r=S.attendance[dk]?.[s.id];const st=typeof r==="object"?r?.status:r;return st==="P"||st==="OD"||st==="Late";}).length;
     msg+=NL+"------------------------------"+NL+"Present: "+pres+" | Total: "+students.length;
-  } else {
-    students.forEach((s,i)=>{const r=S.attendance[dk]?.[s.id];const st=typeof r==="object"?r?.status:r;msg+=(i+1)+". "+s.name+" ("+s.roll+") \u2014 "+(st||"Not marked")+NL;});
-  }
-  msg+=NL+NL+"_Sent via School Attendance System_";
+  }else{students.forEach((s,i)=>{const r=S.attendance[dk]?.[s.id];const st=typeof r==="object"?r?.status:r;msg+=(i+1)+". "+s.name+" ("+(s.roll||"?")+") \u2014 "+(st||"Not marked")+NL;});}
+  msg+=NL+"_Sent via School Attendance System_";
   closeModal();
-  if(navigator.share)navigator.share({title:"Attendance Report",text:msg}).catch(()=>{});
+  if(navigator.share)navigator.share({title:"Attendance",text:msg}).catch(()=>{});
   else navigator.clipboard?.writeText(msg).then(()=>toast("Copied to clipboard"));
 };
 
-// DATA LOADERS
+// ── DATA LOADERS ──
 async function loadAttPageData(){
   setLoading(true);
-  try{await Promise.all([loadDivisions(),loadStudents()]);await loadAttendanceMonth(S.attState.year,S.attState.month);
-    if(!S.attState.divId&&S.divisions.length)S.attState.divId=S.divisions[0].id;refreshPage();}
+  try{await Promise.all([loadDivisions(),loadStudents()]);
+    await loadAttMonth(S.attState.year,S.attState.month);
+    if(!S.attState.divId&&S.divisions.length)S.attState.divId=S.divisions[0].id;
+    refreshPage();}
   catch(e){toast(e.message,"error");refreshPage();}finally{setLoading(false);}
 }
-async function loadAttBookData(){
+async function loadABData(){
   setLoading(true);
-  try{await Promise.all([loadStudents(),loadAllAttendance(),loadHolidays()]);
-    if(!S.attBookState.divId&&S.divisions.length)S.attBookState.divId=S.divisions[0].id;refreshPage();}
+  try{await Promise.all([loadStudents(),loadAllAtt(),loadHolidays()]);
+    if(!S.abState.divId&&S.divisions.length)S.abState.divId=S.divisions[0].id;
+    refreshPage();}
   catch(e){toast(e.message,"error");refreshPage();}finally{setLoading(false);}
 }
 
-// TEACHER VIEW
-async function checkTeacherView(){
-  const params=new URLSearchParams(window.location.search);const token=params.get("teacher");if(!token)return false;
-  const root=document.getElementById("root");
-  root.innerHTML='<div class="loading-overlay" style="position:fixed"><div class="spinner"></div><p style="color:#64748b;margin-top:12px">Loading...</p></div>';
-  try{
-    const snap=await getDoc(pubTchRef(token));
-    if(!snap.exists()||!snap.data().active){root.innerHTML='<div style="display:flex;align-items:center;justify-content:center;min-height:100vh;background:#f4f6f9;font-family:sans-serif"><div style="text-align:center;padding:40px"><div style="font-size:48px">&#128279;</div><h2 style="font-size:20px;font-weight:700;margin:16px 0 8px">Link Expired</h2><p style="color:#666">Ask your HM for a new link.</p></div></div>';return true;}
-    renderTeacherLogin(snap.data());
-  }catch(e){root.innerHTML='<div style="text-align:center;padding:60px;font-family:sans-serif"><h2>Error</h2><p>'+e.message+'</p></div>';}
-  return true;
-}
-
-function renderTeacherLogin(linkData){
-  const root=document.getElementById("root");const{inst,teacherList=[]}=linkData;
-  const today=new Date();const dk=today.getFullYear()+"-"+pad(today.getMonth()+1)+"-"+pad(today.getDate());
-  const todayStr=today.toLocaleDateString("en-IN",{weekday:"long",day:"numeric",month:"long",year:"numeric"});
-  const activeTch=teacherList.filter(t=>t.active);
-  const userBtns=activeTch.map(t=>'<button onclick="selectTch(\''+t.id+'\',\''+t.name+'\')" '
-    +'style="padding:14px 16px;border:2px solid #e5e7eb;border-radius:10px;background:#fff;text-align:left;cursor:pointer;font-size:14px;font-weight:600;color:#374151;width:100%" '
-    +'id="tch-btn-'+t.id+'">&#128105;&#8205;&#127979; '+t.name+'</button>').join("");
-  const pinKeys=[1,2,3,4,5,6,7,8,9,"",0,"&#9003;"].map((k,i)=>
-    k===""?"<div></div>":'<button onclick="tchPinKey(\''+([1,2,3,4,5,6,7,8,9,"",0,"⌫"][i])+'\')" style="padding:14px;border:1px solid #e5e7eb;border-radius:8px;background:#fff;font-size:18px;font-weight:600;cursor:pointer;color:#1f2937">'+k+"</button>"
-  ).join("");
-  root.innerHTML='<div style="max-width:420px;margin:0 auto;font-family:-apple-system,BlinkMacSystemFont,Segoe UI,sans-serif;min-height:100vh;background:#f4f6f9">'
-    +'<div style="background:#1565c0;color:#fff;padding:20px 16px">'
-      +'<div style="font-size:11px;opacity:.8;text-transform:uppercase;letter-spacing:.05em;margin-bottom:4px">Class Teacher Portal</div>'
-      +'<div style="font-size:18px;font-weight:700">'+inst+'</div>'
-      +'<div style="font-size:12px;opacity:.8;margin-top:4px">&#128197; '+todayStr+'</div>'
-    +'</div>'
-    +'<div style="padding:20px 16px">'
-      +'<div id="tch-login-area">'
-        +'<p style="font-size:14px;color:#374151;margin-bottom:16px;font-weight:600">Select your name:</p>'
-        +'<div style="display:flex;flex-direction:column;gap:10px;margin-bottom:16px">'+userBtns+'</div>'
-        +'<div id="tch-pin-area" style="display:none">'
-          +'<p style="font-size:13px;color:#6b7280;margin-bottom:12px">Enter PIN for <strong id="tch-selected-name"></strong>:</p>'
-          +'<div style="display:flex;gap:12px;justify-content:center;margin-bottom:16px">'
-            +[0,1,2,3].map(i=>'<div id="tch-dot-'+i+'" style="width:14px;height:14px;border-radius:50%;background:#e5e7eb;border:2px solid #d1d5db"></div>').join("")
-          +'</div>'
-          +'<div id="tch-pin-err" style="text-align:center;color:#dc2626;font-size:12px;margin-bottom:10px;display:none">Incorrect PIN</div>'
-          +'<div style="display:grid;grid-template-columns:repeat(3,1fr);gap:8px;max-width:220px;margin:0 auto">'+pinKeys+'</div>'
-          +'<button onclick="cancelTch()" style="display:block;margin:16px auto 0;background:none;border:none;color:#6b7280;cursor:pointer;font-size:13px">\u2190 Back</button>'
-        +'</div>'
-      +'</div>'
-      +'<div id="tch-att-area" style="display:none"></div>'
-    +'</div></div>';
-
-  window._tchState={linkData,dk,selectedId:null,selectedName:null,pinBuf:"",ownerUid:linkData.uid};
-  window.selectTch=function(id,name){
-    window._tchState.selectedId=id;window._tchState.selectedName=name;window._tchState.pinBuf="";
-    document.getElementById("tch-selected-name").textContent=name;
-    document.getElementById("tch-pin-area").style.display="block";
-    document.querySelectorAll("[id^='tch-btn-']").forEach(b=>b.style.opacity="0.4");
-    updateTchDots();
-  };
-  window.cancelTch=function(){
-    window._tchState.selectedId=null;window._tchState.pinBuf="";
-    document.getElementById("tch-pin-area").style.display="none";
-    document.querySelectorAll("[id^='tch-btn-']").forEach(b=>b.style.opacity="1");
-    updateTchDots();
-  };
-  function updateTchDots(){const buf=window._tchState.pinBuf;for(let i=0;i<4;i++){const d=document.getElementById("tch-dot-"+i);if(d)d.style.background=i<buf.length?"#1565c0":"#e5e7eb";}}
-  window.tchPinKey=async function(k){
-    const st=window._tchState;if(!st.selectedId)return;
-    if(k==="⌫")st.pinBuf=st.pinBuf.slice(0,-1);
-    else if(st.pinBuf.length<4)st.pinBuf+=String(k);
-    updateTchDots();
-    if(st.pinBuf.length===4){
-      const h=await hashPin(st.pinBuf);
-      const tch=st.linkData.teacherList.find(t=>t.id===st.selectedId);
-      if(h===tch?.pinHash){document.getElementById("tch-pin-err").style.display="none";buildTeacherAttUI(tch,st);}
-      else{st.pinBuf="";updateTchDots();const err=document.getElementById("tch-pin-err");if(err){err.style.display="block";setTimeout(()=>err.style.display="none",2000);}}
-    }
-  };
-}
-
-function buildTeacherAttUI(tch,state){
-  const{linkData,dk,ownerUid}=state;
-  const allowedDivIds=tch.divIds||[];
-  const divisions=(linkData.divisions||[]).filter(d=>allowedDivIds.includes(d.id));
-  const students=(linkData.students||[]).filter(s=>allowedDivIds.includes(s.divId));
-  const attData={};const area=document.getElementById("tch-att-area");
-  document.getElementById("tch-login-area").style.display="none";area.style.display="block";
-  const marksKey=linkData.token+"_"+dk;
-  getDoc(doc(db,"schoolmarks",marksKey)).then(snap=>{if(snap.exists())Object.assign(attData,snap.data());renderTchCards();}).catch(()=>renderTchCards());
-  const STATUSES=["P","A","L","ML","OD","Late"];
-  const BS={P:"background:#dcfce7;color:#15803d;border-color:#86efac",A:"background:#fee2e2;color:#dc2626;border-color:#fca5a5",L:"background:#dbeafe;color:#1d4ed8;border-color:#93c5fd",ML:"background:#fef3c7;color:#b45309;border-color:#fcd34d",OD:"background:#f3e8ff;color:#7c3aed;border-color:#c4b5fd",Late:"background:#fff7ed;color:#c2410c;border-color:#fdba74"};
-  let saved=false;
-  function renderTchCards(){
-    const present=students.filter(s=>{const st=attData[s.id]?.status;return st==="P"||st==="OD"||st==="Late";}).length;
-    const unmarked=students.filter(s=>!attData[s.id]).length;
-    const cards=students.map((s,idx)=>{
-      const r=attData[s.id];const st=r?.status;
-      const chip=st?'<span style="font-size:11px;font-weight:600;padding:2px 8px;border-radius:12px;border:1px solid #e5e7eb;'+BS[st]+'">'+st+'</span>':'<span style="font-size:11px;color:#9ca3af;font-style:italic">&mdash;</span>';
-      const div=divisions.find(d=>d.id===s.divId);
-      const btns=STATUSES.map(v=>'<button onclick="tchMark(\''+s.id+'\',\''+v+'\')" style="padding:6px 10px;border-radius:6px;border:1px solid #e5e7eb;font-size:12px;font-weight:600;cursor:pointer;'+(st===v?BS[v]:"")+'" >'+v+'</button>').join("");
-      return'<div style="background:#fff;border:1px solid #e5e7eb;border-radius:10px;margin-bottom:8px;overflow:hidden">'
-        +'<div style="display:flex;align-items:center;gap:10px;padding:10px 12px">'
-          +'<span style="font-size:13px;font-weight:700;background:#f0f4f8;border-radius:50%;width:26px;height:26px;display:flex;align-items:center;justify-content:center;flex-shrink:0">'+(idx+1)+'</span>'
-          +'<div style="flex:1"><div style="font-weight:600;font-size:14px">'+s.name+'</div>'
-          +'<div style="font-size:10px;color:#9ca3af">Roll: '+(s.roll||"?")+(div?" | Std "+div.std+" Div "+div.div:"")+'</div></div>'+chip+'</div>'
-        +'<div style="padding:8px 12px 10px;border-top:1px solid #f3f4f6;display:flex;gap:6px;flex-wrap:wrap">'+btns+'</div></div>';
-    }).join("");
-    area.innerHTML='<div style="margin-bottom:8px;padding:8px 12px;background:#fff;border:1px solid #e5e7eb;border-radius:8px;font-size:12px;display:flex;gap:12px;flex-wrap:wrap">'
-      +'<span>Present: <strong style="color:#16a34a">'+present+'</strong></span>'
-      +'<span>Unmarked: <strong style="color:#d97706">'+unmarked+'</strong></span>'
-      +'<span>Total: <strong>'+students.length+'</strong></span>'
-      +'<span style="margin-left:auto;color:#9ca3af;font-size:11px">'+dk+'</span></div>'
-      +'<div style="font-size:11px;color:#6b7280;margin-bottom:8px">Marking as: <strong>'+tch.name+'</strong></div>'
-      +cards
-      +'<div id="tch-saved-msg" style="text-align:center;margin-top:16px;padding:12px;background:#f0fdf4;border:1px solid #bbf7d0;border-radius:8px;font-size:13px;color:#15803d;display:'+(saved?"block":"none")+'">&#9989; Saved!</div>';
-  }
-  window.tchMark=async function(sid,val){
-    const now=Date.now();const cur=attData[sid];
-    attData[sid]=cur?{status:val,by:tch.name,byId:tch.id,at:cur.at||now,editedAt:now}:{status:val,by:tch.name,byId:tch.id,at:now};
-    renderTchCards();
-    try{
-      const ref=doc(db,"schoolmarks",marksKey);const snap=await getDoc(ref);
-      const upd={[sid]:attData[sid],_uid:ownerUid,_dk:dk,_updated:now};
-      if(snap.exists())await updateDoc(ref,upd);else await setDoc(ref,{...upd,active:true});
-      saved=true;const msg=document.getElementById("tch-saved-msg");if(msg)msg.style.display="block";
-    }catch(e){alert("Save error: "+e.message);}
-  };
-}
-
-// AUTH SCREENS
-function renderLogin(tab="signin"){
+// ── AUTH SCREENS ──
+function renderAuth(mode="signin",role="teacher"){
+  const isHM=role==="hm";
   document.getElementById("root").innerHTML='<div class="auth-wrap"><div class="auth-card">'
-    +'<div class="auth-logo"><div class="icon">&#127979;</div><h1>School Attendance</h1><p>Kerala Government School</p></div>'
-    +'<div class="auth-tabs">'
-      +'<div class="auth-tab '+(tab==="signin"?"active":"")+'" onclick="switchTab(\'signin\')">Sign In</div>'
-      +'<div class="auth-tab '+(tab==="register"?"active":"")+'" onclick="switchTab(\'register\')">Register</div>'
-    +'</div>'
-    +(tab==="signin"
-      ?'<div class="form-group"><label class="form-label">Email</label><input id="si-email" type="email" placeholder="school@email.com"/></div>'
-        +'<div class="form-group"><label class="form-label">Password</label><input id="si-pw" type="password" placeholder="Password"/></div>'
-        +'<button class="btn btn-primary" style="width:100%" onclick="doSignIn()">Sign In</button>'
-        +'<p style="text-align:center;margin-top:12px;font-size:12px"><a href="#" onclick="switchTab(\'forgot\')">Forgot password?</a></p>'
-      :tab==="forgot"
-      ?'<div class="form-group"><label class="form-label">Email</label><input id="fp-email" type="email" placeholder="school@email.com"/></div>'
-        +'<button class="btn btn-primary" style="width:100%" onclick="doReset()">Send Reset Link</button>'
-        +'<p style="text-align:center;margin-top:12px;font-size:12px"><a href="#" onclick="switchTab(\'signin\')">\u2190 Back to Sign In</a></p>'
-      :'<div class="form-group"><label class="form-label">School Name</label><input id="rg-school" placeholder="School name"/></div>'
-        +'<div class="form-group"><label class="form-label">HM Name</label><input id="rg-hm" placeholder="Headmaster/Headmistress name"/></div>'
-        +'<div class="form-group"><label class="form-label">District</label><select id="rg-district">'+DISTRICT.map(d=>'<option>'+d+'</option>').join("")+'</select></div>'
-        +'<div class="form-group"><label class="form-label">Email</label><input id="rg-email" type="email" placeholder="school@email.com"/></div>'
-        +'<div class="form-group"><label class="form-label">Password</label><input id="rg-pw" type="password" placeholder="Min 6 characters"/></div>'
-        +'<div class="form-group"><label class="form-label">PIN (4 digits)</label><input id="rg-pin" type="password" maxlength="4" inputmode="numeric" placeholder="4-digit PIN"/></div>'
-        +'<button class="btn btn-primary" style="width:100%" onclick="doRegister()">Register</button>')
+    +'<div class="auth-logo"><div style="font-size:44px">&#127979;</div>'
+    +'<h1>School Attendance</h1><p>Kerala Government School</p></div>'
+    // Role selector on register only
+    +(mode==="register"?'<div class="role-tabs" id="role-tabs">'
+      +'<div class="role-tab'+(isHM?"":" active")+'" onclick="setRole(\'teacher\')">'
+      +'<span class="icon">&#128105;&#8205;&#127979;</span><span class="label">Class Teacher</span></div>'
+      +'<div class="role-tab'+(isHM?" active":"")+'" onclick="setRole(\'hm\')">'
+      +'<span class="icon">&#128218;</span><span class="label">Headmaster / Principal</span></div>'
+      +'</div>':
+      '<div class="auth-tabs"><div class="auth-tab'+(mode==="signin"?" active":"")+'" onclick="switchMode(\'signin\')">Sign In</div>'
+      +'<div class="auth-tab'+(mode==="register"?" active":"")+'" onclick="switchMode(\'register\')">Register</div></div>')
+    +(mode==="signin"
+      ?'<div class="form-group"><label class="form-label">Email</label><input id="a-email" type="email" placeholder="email@example.com"/></div>'
+      +'<div class="form-group"><label class="form-label">Password</label><input id="a-pw" type="password" placeholder="Password"/></div>'
+      +'<button class="btn btn-primary" style="width:100%;margin-bottom:10px" onclick="doSignIn()">Sign In</button>'
+      +'<div class="flex gap8" style="justify-content:space-between"><a href="#" style="font-size:12px;color:var(--primary)" onclick="switchMode(\'register\')">Register new account</a>'
+      +'<a href="#" style="font-size:12px;color:var(--text3)" onclick="switchMode(\'forgot\')">Forgot password?</a></div>'
+      :mode==="forgot"
+      ?'<div class="form-group"><label class="form-label">Email</label><input id="a-email" type="email"/></div>'
+      +'<button class="btn btn-primary" style="width:100%;margin-bottom:10px" onclick="doReset()">Send Reset Link</button>'
+      +'<a href="#" style="font-size:12px;color:var(--text3)" onclick="switchMode(\'signin\')">\u2190 Back to Sign In</a>'
+      // REGISTER
+      :'<div class="info-box '+(isHM?"info-box-blue":"info-box-green")+' mb12">'+(isHM?"&#128218; HM/Principal: You will get a school code to share with teachers.":"&#128105;&#8205;&#127979; Class Teacher: You can work standalone or link to your school HM.")+'</div>'
+      +(isHM?'<div class="form-group"><label class="form-label">School Name</label><input id="a-school" placeholder="Full school name"/></div>':'')
+      +'<div class="form-group"><label class="form-label">'+(isHM?"HM / Principal Name":"Teacher Name")+'</label><input id="a-name" placeholder="Your full name"/></div>'
+      +(isHM?'<div class="form-row mb12"><div><label class="form-label">UDISE Code</label><input id="a-udise" placeholder="14-digit code"/></div><div><label class="form-label">District</label><select id="a-district">'+DISTRICT.map(d=>'<option>'+d+'</option>').join("")+'</select></div></div>':'<div class="form-group"><label class="form-label">School Name</label><input id="a-school" placeholder="Your school name"/></div>')
+      +(isHM?"":"")
+      +'<div class="form-group"><label class="form-label">Email</label><input id="a-email" type="email" placeholder="email@example.com"/></div>'
+      +'<div class="form-group"><label class="form-label">Password</label><input id="a-pw" type="password" placeholder="Min 6 characters"/></div>'
+      +'<div class="form-group"><label class="form-label">PIN (4 digits — for quick unlock)</label><input id="a-pin" type="password" maxlength="4" inputmode="numeric" placeholder="4-digit PIN"/></div>'
+      +(isHM?"":"")
+      +'<button class="btn btn-primary" style="width:100%;margin-bottom:10px" onclick="doRegister(\''+role+'\')">Register as '+(isHM?"Headmaster":"Class Teacher")+'</button>'
+      +'<a href="#" style="font-size:12px;color:var(--text3)" onclick="switchMode(\'signin\')">\u2190 Already have account? Sign In</a>')
     +'</div></div>';
 }
-window.switchTab=(tab)=>renderLogin(tab);
+window.switchMode=(m)=>renderAuth(m);
+window.setRole=(r)=>renderAuth("register",r);
 window.doSignIn=async function(){
-  const email=document.getElementById("si-email")?.value,pw=document.getElementById("si-pw")?.value;
+  const email=document.getElementById("a-email")?.value,pw=document.getElementById("a-pw")?.value;
   try{setLoading(true);await signInWithEmailAndPassword(auth,email,pw);}catch(e){toast(e.message,"error");}finally{setLoading(false);}
 };
-window.doRegister=async function(){
-  const school=document.getElementById("rg-school")?.value.trim(),hm=document.getElementById("rg-hm")?.value.trim().toUpperCase();
-  const district=document.getElementById("rg-district")?.value,email=document.getElementById("rg-email")?.value;
-  const pw=document.getElementById("rg-pw")?.value,pin=document.getElementById("rg-pin")?.value;
-  if(!school||!hm){toast("School name and HM name required","error");return;}
+window.doRegister=async function(role){
+  const name=(document.getElementById("a-name")?.value||"").trim().toUpperCase();
+  const school=(document.getElementById("a-school")?.value||"").trim();
+  const email=document.getElementById("a-email")?.value;
+  const pw=document.getElementById("a-pw")?.value;
+  const pin=document.getElementById("a-pin")?.value;
+  const isHM=role==="hm";
+  if(!name){toast("Name required","error");return;}
+  if(isHM&&!school){toast("School name required","error");return;}
   if(!pin||pin.length!==4){toast("PIN must be 4 digits","error");return;}
   setLoading(true);
-  try{await createUserWithEmailAndPassword(auth,email,pw);const pinHash=await hashPin(pin);
-    await setDoc(profileRef(),{schoolName:school,hmName:hm,district,email,pinHash,academicYear:"2025-2026",threshold:75});}
-  catch(e){toast(e.message,"error");}finally{setLoading(false);}
+  try{
+    const cred=await createUserWithEmailAndPassword(auth,email,pw);
+    const pinHash=await hashPin(pin);
+    const profile={name,schoolName:school,email,role,pinHash,academicYear:"2025-2026",threshold:75,
+      ...(isHM?{hmName:name,udise:document.getElementById("a-udise")?.value.trim(),district:document.getElementById("a-district")?.value}:{})};
+    await setDoc(doc(db,"schools",cred.user.uid,"_meta","profile"),profile);
+    // If HM, auto-generate school code
+    if(isHM){const code=genCode();await setDoc(codeRef(code),{hmUid:cred.user.uid,schoolName:school,active:true,created:Date.now()});
+      await updateDoc(doc(db,"schools",cred.user.uid,"_meta","profile"),{schoolCode:code});}
+  }catch(e){toast(e.message,"error");}finally{setLoading(false);}
 };
 window.doReset=async function(){
-  const email=document.getElementById("fp-email")?.value;
-  try{setLoading(true);await sendPasswordResetEmail(auth,email);toast("Reset link sent");renderLogin();}
-  catch(e){toast(e.message,"error");}finally{setLoading(false);}
+  const email=document.getElementById("a-email")?.value;
+  try{setLoading(true);await sendPasswordResetEmail(auth,email);toast("Reset link sent");renderAuth();}catch(e){toast(e.message,"error");}finally{setLoading(false);}
 };
 
 function renderPin(err){
+  const p=S.profile;
   document.getElementById("root").innerHTML='<div class="pin-wrap"><div class="pin-card">'
-    +'<div style="font-size:36px;margin-bottom:8px">&#127979;</div>'
-    +'<h2 style="font-size:18px;font-weight:700;margin-bottom:4px">Enter PIN</h2>'
-    +'<p style="font-size:13px;color:var(--text3);margin-bottom:4px">'+(S.profile?.schoolName||"School Attendance")+'</p>'
-    +(err?'<p style="color:var(--danger);font-size:13px;margin-bottom:8px">'+err+'</p>':"")
-    +'<div class="pin-dots" id="pin-dots"><div class="pin-dot"></div><div class="pin-dot"></div><div class="pin-dot"></div><div class="pin-dot"></div></div>'
-    +'<div class="pin-keypad">'
-    +[1,2,3,4,5,6,7,8,9,"",0,"⌫"].map(k=>k===""?"<div></div>":'<button class="pin-key" onclick="pinKey(\''+k+'\')">'+k+'</button>').join("")
-    +'</div>'
-    +'<button style="margin-top:16px;background:none;border:none;color:var(--text3);cursor:pointer;font-size:12px" onclick="signOut(auth).catch(()=>{})">Sign out</button>'
+    +'<div style="font-size:36px">&#127979;</div>'
+    +'<h2 style="font-size:17px;font-weight:700;margin:8px 0 2px">'+(p?.schoolName||"School Attendance")+'</h2>'
+    +'<div style="font-size:11px;margin-bottom:4px"><span class="user-role '+(S.role==="hm"?"role-hm":"role-teacher")+'">'+(S.role==="hm"?"Headmaster":"Class Teacher")+'</span></div>'
+    +'<p style="font-size:12px;color:var(--text3)">'+(p?.name||"")+'</p>'
+    +(err?'<p style="color:var(--danger);font-size:12px;margin-top:6px">'+err+'</p>':"")
+    +'<div class="pin-dots" id="pin-dots">'+[0,1,2,3].map(()=>'<div class="pin-dot"></div>').join("")+'</div>'
+    +'<div class="pin-keypad">'+[1,2,3,4,5,6,7,8,9,"",0,"\u232B"].map(k=>k===""?"<div></div>":'<button class="pin-key" onclick="pinKey(\''+k+'\')">'+k+'</button>').join("")+'</div>'
+    +'<button style="margin-top:14px;background:none;border:none;color:var(--text3);cursor:pointer;font-size:12px" onclick="signOut(auth)">Sign out</button>'
     +'</div></div>';
 }
 let pinBuf="";
 window.pinKey=async function(k){
-  if(k==="⌫")pinBuf=pinBuf.slice(0,-1);else if(pinBuf.length<4)pinBuf+=String(k);
+  if(k==="\u232B")pinBuf=pinBuf.slice(0,-1);else if(pinBuf.length<4)pinBuf+=String(k);
   document.querySelectorAll(".pin-dot").forEach((d,i)=>d.classList.toggle("filled",i<pinBuf.length));
   if(pinBuf.length===4){
     const h=await hashPin(pinBuf);
-    if(h===S.profile.pinHash){
-      S.isUnlocked=true;sessionStorage.setItem("sch_pin_ok","1");
-      setLoading(true,"Loading school data...");
+    if(h===S.profile?.pinHash){
+      S.isUnlocked=true;sessionStorage.setItem("sch_unlocked","1");
+      setLoading(true,"Loading data...");
       try{await loadAll();}catch(e){toast(e.message,"error");}finally{setLoading(false);}
       renderApp();
     }else{pinBuf="";renderPin("Incorrect PIN. Try again.");}
   }
 };
 
-function renderProfileSetup(){
-  document.getElementById("root").innerHTML='<div class="auth-wrap"><div class="auth-card">'
-    +'<div class="auth-logo"><div class="icon">&#127979;</div><h1>School Setup</h1><p>Complete your school profile</p></div>'
-    +'<div class="form-group"><label class="form-label">School Name</label><input id="ps-school" placeholder="Full school name"/></div>'
-    +'<div class="form-group"><label class="form-label">UDISE Code</label><input id="ps-udise" placeholder="e.g. 32040100101"/></div>'
-    +'<div class="form-group"><label class="form-label">HM / Principal Name</label><input id="ps-hm" placeholder="Name"/></div>'
-    +'<div class="form-group"><label class="form-label">District</label><select id="ps-district">'+DISTRICT.map(d=>'<option>'+d+'</option>').join("")+'</select></div>'
-    +'<div class="form-group"><label class="form-label">Academic Year</label><input id="ps-year" value="2025-2026"/></div>'
-    +'<div class="form-group"><label class="form-label">PIN (4 digits)</label><input id="ps-pin" type="password" maxlength="4" inputmode="numeric" placeholder="4-digit PIN"/></div>'
-    +'<button class="btn btn-primary" style="width:100%" onclick="doProfileSetup()">Complete Setup</button>'
-    +'</div></div>';
-}
-window.doProfileSetup=async function(){
-  const school=document.getElementById("ps-school")?.value.trim(),udise=document.getElementById("ps-udise")?.value.trim();
-  const hm=document.getElementById("ps-hm")?.value.trim().toUpperCase(),district=document.getElementById("ps-district")?.value;
-  const acYear=document.getElementById("ps-year")?.value.trim(),pin=document.getElementById("ps-pin")?.value;
-  if(!school||!hm){toast("School name and HM name required","error");return;}
-  if(!pin||pin.length!==4){toast("PIN must be 4 digits","error");return;}
-  setLoading(true);
-  try{const pinHash=await hashPin(pin);
-    const p={schoolName:school,udise,hmName:hm,district,academicYear:acYear||"2025-2026",threshold:75,email:S.user.email,pinHash};
-    await saveProfile(p);S.isUnlocked=true;sessionStorage.setItem("sch_pin_ok","1");
-    await loadAll();renderApp();}
-  catch(e){toast(e.message,"error");}finally{setLoading(false);}
-};
-
 function renderApp(){
-  const navItems=NAV.map(n=>n.sep?'<div class="nav-sep"></div>':
+  const nav=getNav();
+  const navHTML=nav.map(n=>n.sep?'<div class="nav-sep"></div>':
     '<div class="nav-item'+(S.page===n.id?" active":"")+'" data-page="'+n.id+'">'+n.icon+' '+n.label+'</div>').join("");
+  const isHM=S.role==="hm";
   const todayFmt=TODAY.toLocaleDateString("en-IN",{weekday:"short",day:"numeric",month:"short",year:"numeric"});
-  document.getElementById("root").innerHTML='<div class="mobile-overlay" id="mobile-overlay"></div>'
-    +'<div class="app">'
-      +'<div class="sidebar" id="main-sidebar">'
-        +'<div class="sidebar-logo"><div class="flex gap8">'
-          +'<div class="avatar">&#127979;</div>'
-          +'<div style="overflow:hidden">'
-            +'<div class="school-name">'+(S.profile?.schoolName||"School")+'</div>'
-            +'<div class="hm-name">'+(S.profile?.hmName||"")+'</div>'
-          +'</div></div></div>'
-        +'<nav>'+navItems+'</nav>'
-        +'<div class="sidebar-footer">'
-          +'<div style="font-size:11px;color:var(--text3);margin-bottom:6px">'
-            +'<span class="sync-dot sync-ok" id="sync-dot"></span> Synced'
-          +'</div>'
-          +'<button class="btn btn-secondary" style="width:100%;font-size:12px" data-page="settings">&#9881;&#65039; Settings</button>'
-        +'</div>'
-      +'</div>'
-      +'<div class="main">'
-        +'<div class="topbar">'
-          +'<button class="sidebar-toggle" onclick="toggleSidebar()">&#9776;</button>'
-          +'<h2 id="page-title"></h2>'
-          +'<span style="font-size:12px;color:var(--text3)">'+todayFmt+'</span>'
-        +'</div>'
-        +'<div class="content"><div class="page-content" id="page-content"></div></div>'
-      +'</div>'
-    +'</div>';
-  refreshPage();bindPage();
+  document.getElementById("root").innerHTML='<div class="mobile-overlay" id="mob-ov"></div>'
+    +'<div class="app"><div class="sidebar" id="main-sidebar">'
+    +'<div class="sidebar-logo">'
+    +'<div style="font-size:11px;font-weight:700;color:var(--primary);line-height:1.3;word-break:break-word">'+(S.profile?.schoolName||"School")+'</div>'
+    +'<div style="margin-top:4px"><span class="user-role '+(isHM?"role-hm":"role-teacher")+'">'+(isHM?"&#128218; HM":"&#128105;&#8205;&#127979; Teacher")+'</span></div>'
+    +'<div style="font-size:11px;color:var(--text3);margin-top:2px">'+(S.profile?.name||"")+'</div>'
+    +'</div>'
+    +'<nav>'+navHTML+'</nav>'
+    +'<div class="sidebar-footer">'
+    +'<div style="font-size:11px;color:var(--text3);margin-bottom:6px"><span class="sync-dot sync-ok" id="sync-dot"></span>Synced</div>'
+    +'<button class="btn btn-secondary" style="width:100%;font-size:12px" data-page="settings">&#9881;&#65039; Settings</button>'
+    +'</div></div>'
+    +'<div class="main">'
+    +'<div class="topbar">'
+    +'<button class="sidebar-toggle" onclick="toggleSB()">&#9776;</button>'
+    +'<h2 id="page-title"></h2>'
+    +'<span style="font-size:12px;color:var(--text3)">'+todayFmt+'</span>'
+    +'</div>'
+    +'<div class="content"><div class="page-content" id="page-content"></div></div>'
+    +'</div></div>';
+  refreshPage();
+  bindEvents(document.getElementById("root"));
+  document.getElementById("mob-ov")?.addEventListener("click",()=>{document.getElementById("main-sidebar")?.classList.remove("open");document.getElementById("mob-ov")?.classList.remove("show");});
 }
-window.toggleSidebar=function(){
-  const sb=document.getElementById("main-sidebar"),ov=document.getElementById("mobile-overlay");if(!sb)return;
-  const open=sb.classList.contains("mobile-open");
-  sb.classList.toggle("mobile-open",!open);if(ov)ov.classList.toggle("show",!open);
+window.toggleSB=function(){
+  document.getElementById("main-sidebar")?.classList.toggle("open");
+  document.getElementById("mob-ov")?.classList.toggle("show");
 };
-document.addEventListener("click",e=>{
-  const ov=document.getElementById("mobile-overlay");
-  if(ov&&ov.classList.contains("show")&&e.target===ov){document.getElementById("main-sidebar")?.classList.remove("mobile-open");ov.classList.remove("show");}
-});
 
-// AUTH STATE
-checkTeacherView().then(isTeacher=>{
-  if(isTeacher)return true;
-  return false;
-}).then(done=>{
-  if(done)return;
-  onAuthStateChanged(auth,async(user)=>{
-    if(user){
-      S.user=user;setLoading(true,"Loading...");
-      try{S.profile=await loadProfile();
-        if(!S.profile){setLoading(false);renderProfileSetup();return;}
-        S.printDetails.hmName=S.profile.hmName||"";S.printDetails.schoolName=S.profile.schoolName||"";
-        if(sessionStorage.getItem("sch_pin_ok")==="1"){
-          S.isUnlocked=true;await loadAll();setLoading(false);renderApp();
-        }else{setLoading(false);renderPin("");}
-      }catch(e){setLoading(false);toast(e.message,"error");}
-    }else{
-      S.user=null;S.profile=null;S.isUnlocked=false;
-      sessionStorage.removeItem("sch_pin_ok");renderLogin();
-    }
-  });
+// ── AUTH STATE ──
+onAuthStateChanged(auth,async user=>{
+  if(user){
+    S.user=user;setLoading(true);
+    try{
+      S.profile=await loadProfile();
+      if(!S.profile){setLoading(false);renderAuth("register");return;}
+      S.role=S.profile.role||"teacher";
+      S.printDetails.hmName=S.profile.name||S.profile.hmName||"";
+      S.printDetails.schoolName=S.profile.schoolName||"";
+      if(sessionStorage.getItem("sch_unlocked")==="1"){
+        S.isUnlocked=true;await loadAll();setLoading(false);renderApp();
+      }else{setLoading(false);renderPin("");}
+    }catch(e){setLoading(false);toast(e.message,"error");}
+  }else{
+    S.user=null;S.profile=null;S.role=null;S.isUnlocked=false;
+    sessionStorage.removeItem("sch_unlocked");renderAuth();
+  }
 });
-
-</script>
-</body>
-</html>
+</script></body></html>
