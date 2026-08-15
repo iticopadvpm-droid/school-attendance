@@ -692,6 +692,52 @@ function renderStudents(){
 }
 
 function renderAttendance(){
+  const isHM=S.role==="hm";
+  const allDivs=isHM?getAllDivisions():S.divisions;
+
+  // HM: read-only view of today's attendance across all divisions
+  if(isHM){
+    const dk=todayDk();const dt=new Date(dk+"T00:00:00");
+    const isSun=dt.getDay()===0,isHol=!!S.holidays[dk];
+    const dow=["Sunday","Monday","Tuesday","Wednesday","Thursday","Friday","Saturday"][dt.getDay()];
+    const selDivId=document.getElementById("hm-att-div")?.value||allDivs[0]?.id||"";
+    const selDiv=allDivs.find(d=>d.id===selDivId);
+    const owner=selDiv?._owner||"me";
+    const att=getAttFor(owner);
+    const students=isHM
+      ?getAllStudents().filter(s=>s.divId===selDivId&&s._owner===owner)
+      :stusInDiv(selDivId);
+    const divOpts=allDivs.map(d=>'<option value="'+d.id+'"'+(selDivId===d.id?" selected":"")+'>Std '+d.std+' Div '+d.div+(d._ownerName?" ("+d._ownerName+")":"")+'</option>').join("");
+    let present=0,absent=0,leave=0,unmarked=0;
+    students.forEach(s=>{const r=att[dk]?.[s.id];const st=typeof r==="object"?r?.status:r;
+      if(!st)unmarked++;else if(st==="P"||st==="OD"||st==="Late")present++;else if(st==="A")absent++;else leave++;});
+    const cards=students.map((s,idx)=>{
+      const r=att[dk]?.[s.id];const st=typeof r==="object"?r?.status:r;const by=typeof r==="object"?r:null;
+      const chip=st?'<span class="chip chip-'+st+'">'+st+'</span>':'<span class="chip chip-none">&mdash;</span>';
+      const byLine=by?.by?'<div style="font-size:10px;color:var(--text3)">&#x1F4DD; '+by.by+'</div>':"";
+      return'<div class="att-card"><div class="att-card-header">'
+        +'<span class="att-sl">'+(idx+1)+'</span>'
+        +'<div style="flex:1"><div style="font-weight:600;font-size:14px">'+s.name+'</div>'
+        +'<div style="font-size:11px;color:var(--text3)">Roll: '+(s.roll||"&mdash;")+'</div>'+byLine+'</div>'+chip+'</div></div>';
+    }).join("");
+    return'<div class="info-box info-box-blue mb12">&#128218; HM view &mdash; read only. Teachers mark their own divisions.</div>'
+      +'<div class="card mb12"><div class="card-body" style="padding:12px 14px">'
+      +'<div class="form-row mb8">'
+      +'<div><label class="form-label">Division</label><select id="hm-att-div">'+divOpts+'</select></div>'
+      +'<div style="padding-top:18px"><span style="font-size:13px;font-weight:600;color:'+(isSun?"var(--danger)":"var(--text2)")+'">'+dow+' &mdash; '+dk+'</span>'
+      +(isHol?'<div style="font-size:11px;color:var(--warn)">&#127881; '+S.holidays[dk].name+'</div>':"")+'</div>'
+      +'</div></div></div>'
+      +(isSun||isHol?'<div style="text-align:center;padding:30px;background:#fff;border:1px solid var(--border);border-radius:var(--radius2);color:var(--text3)">'+(isSun?"&#127774; Sunday":"&#127881; "+S.holidays[dk].name)+" &mdash; No School</div>"
+      :students.length?'<div style="margin-bottom:8px;padding:8px 12px;background:var(--surface);border:1px solid var(--border);border-radius:var(--radius2);font-size:12px;display:flex;gap:14px;flex-wrap:wrap">'
+        +'<span>&#9989; <strong style="color:var(--success)">'+present+'</strong> Present</span>'
+        +'<span>&#10060; <strong style="color:var(--danger)">'+absent+'</strong> Absent</span>'
+        +'<span>&#128203; <strong style="color:var(--warn)">'+leave+'</strong> Leave</span>'
+        +'<span style="color:var(--text3)">'+unmarked+' unmarked</span>'
+        +'</div>'+cards
+      :'<div style="text-align:center;padding:30px;color:var(--text3)">No students in this division.</div>');
+  }
+
+  // TEACHER: full mark attendance view
   const{divId,year,month,day}=S.attState;
   const maxDay=dIM(year,month);const d=Math.min(day,maxDay);
   const dk=year+"-"+pad(month+1)+"-"+pad(d);
@@ -739,7 +785,6 @@ function renderAttendance(){
       +'<span style="margin-left:auto;font-size:11px;color:var(--text3)">'+dk+'</span></div>'+cards
     :'<div style="text-align:center;padding:30px;color:var(--text3)">No students in this division. <button class="btn-icon text-primary" data-page="students">Add students &#8594;</button></div>');
 }
-
 function renderMonthly(){
   const{divId,year,month}=S.monthRep;
   const isHM=S.role==="hm";
@@ -1313,6 +1358,7 @@ async function handleClick(e){
 function handleChange(e){
   const t=e.target;const v=t.value;
   if(t.id==="att-div"){S.attState.divId=v;refreshPage();}
+  else if(t.id==="hm-att-div"){refreshPage();}
   else if(t.id==="att-month"){S.attState.month=parseInt(v);loadAttPageData();}
   else if(t.id==="att-year"){S.attState.year=parseInt(v)||TODAY.getFullYear();loadAttPageData();}
   else if(t.id==="att-day"){S.attState.day=parseInt(v);refreshPage();}
@@ -1408,11 +1454,14 @@ window.doShare=function(dk,divId){
 // ── DATA LOADERS ──
 async function loadAttPageData(){
   setLoading(true);
-  try{await Promise.all([loadDivisions(),loadStudents()]);
+  try{
+    await Promise.all([loadDivisions(),loadStudents()]);
     await loadAttMonth(S.attState.year,S.attState.month);
-    if(!S.attState.divId&&S.divisions.length)S.attState.divId=S.divisions[0].id;
-    refreshPage();}
-  catch(e){toast(e.message,"error");refreshPage();}finally{setLoading(false);}
+    if(S.role==="hm")await loadTeacherData();
+    const allDivs=S.role==="hm"?getAllDivisions():S.divisions;
+    if(!S.attState.divId&&allDivs.length)S.attState.divId=allDivs[0].id;
+    refreshPage();
+  }catch(e){toast(e.message,"error");refreshPage();}finally{setLoading(false);}
 }
 async function loadABData(){
   setLoading(true);
