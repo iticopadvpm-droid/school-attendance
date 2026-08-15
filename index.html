@@ -442,9 +442,10 @@ function pctCls(p){return p>=PCT_WARN?"pct-ok":p>=(PCT_WARN-10)?"pct-warn":"pct-
 async function loadTeacherData(){
   if(S.role!=="hm")return;
   try{
-    // Get all active links for this HM
-    const s=await getDocs(query(linksCol(),where("hmUid","==",S.user.uid),where("status","==","active")));
-    S.linkedTeachers=s.docs.map(d=>({linkId:d.id,...d.data()}));
+    // Use single where to avoid needing composite index, filter status in JS
+    const s=await getDocs(query(linksCol(),where("hmUid","==",S.user.uid)));
+    S.linkedTeachers=s.docs.map(d=>({linkId:d.id,...d.data()})).filter(t=>t.status==="active");
+    console.log("loadTeacherData: found",S.linkedTeachers.length,"active links");
     // Load each teacher's profile, divisions, students, attendance
     S.teacherData={};
     await Promise.all(S.linkedTeachers.map(async t=>{
@@ -493,9 +494,11 @@ function getAttFor(owner){
 async function loadSchoolLink(){
   if(S.role!=="teacher")return;
   try{
-    const s=await getDocs(query(linksCol(),where("teacherUid","==",S.user.uid),where("status","==","active")));
-    S.schoolLink=s.docs.length?{linkId:s.docs[0].id,...s.docs[0].data()}:null;
-  }catch(e){}
+    const s=await getDocs(query(linksCol(),where("teacherUid","==",S.user.uid)));
+    const active=s.docs.map(d=>({linkId:d.id,...d.data()})).filter(t=>t.status==="active");
+    S.schoolLink=active.length?active[0]:null;
+    console.log("loadSchoolLink:", S.schoolLink);
+  }catch(e){console.error("loadSchoolLink error:",e);}
 }
 async function joinSchool(code){
   const snap=await getDoc(codeRef(code));
@@ -1252,9 +1255,12 @@ async function handleClick(e){
   }
   if(a==="unlink-teacher"){
     if(!confirm("Unlink this teacher?"))return;const lid=btn.dataset.lid;setLoading(true);
-    try{await updateDoc(linkRef(lid),{status:"removed"});
-      S.linkedTeachers=S.linkedTeachers.filter(t=>t.linkId!==lid);delete S.teacherData[S.linkedTeachers.find(t=>t.linkId===lid)?.teacherUid||""];
-      await loadTeacherData();refreshPage();toast("Teacher unlinked");}
+    try{
+      const t=S.linkedTeachers.find(x=>x.linkId===lid);
+      await updateDoc(linkRef(lid),{status:"removed"});
+      if(t)delete S.teacherData[t.teacherUid];
+      S.linkedTeachers=S.linkedTeachers.filter(t=>t.linkId!==lid);
+      refreshPage();toast("Teacher unlinked");}
     catch(e){toast(e.message,"error");}finally{setLoading(false);}return;
   }
 }
@@ -1385,9 +1391,13 @@ async function loadDivisionsPage(){
   setLoading(true);
   try{
     await loadDivisions();
-    if(S.role==="hm")await loadTeacherData();
+    if(S.role==="hm"){
+      await loadTeacherData();
+      console.log("Teacher data loaded. linkedTeachers:", S.linkedTeachers.length, "teacherData keys:", Object.keys(S.teacherData).length);
+      Object.entries(S.teacherData).forEach(([uid,d])=>console.log("Teacher",uid,"divisions:",d.divisions?.length,"students:",d.students?.length));
+    }
     refreshPage();
-  }catch(e){toast(e.message,"error");refreshPage();}finally{setLoading(false);}
+  }catch(e){console.error(e);toast(e.message,"error");refreshPage();}finally{setLoading(false);}
 }
 async function loadMonthlyData(){
   setLoading(true);
