@@ -337,10 +337,11 @@ function bindEvents(root){
     el.addEventListener("click",()=>{
       const p=el.dataset.page;S.page=p;
       if(p==="attendance")loadAttPageData();
-      else if(p==="students")loadStudents().then(refreshPage);
+      else if(p==="students")loadStudentsPage();
       else if(p==="attbook")loadABData();
       else if(p==="monthly"||p==="defaulters"||p==="tc")loadMonthlyData();
       else if(p==="settings")refreshPage();
+      else if(p==="divisions")loadDivisionsPage();
       else if(p==="teachers")loadTeacherData().then(refreshPage);
       else if(p==="dashboard")loadAll().then(refreshPage);
       else refreshPage();
@@ -634,34 +635,55 @@ function renderTeachers(){
 }
 
 function renderDivisions(){
-  const rows=S.divisions.map((d,i)=>'<tr><td>'+(i+1)+'</td><td class="fw600">Std '+d.std+' &mdash; Div '+d.div+'</td>'
-    +'<td>'+(d.medium||"&mdash;")+'</td><td>'+(d.classTeacher||"&mdash;")+'</td><td>'+stusInDiv(d.id).length+'</td>'
-    +'<td><button class="btn btn-secondary btn-sm" data-action="edit-div" data-id="'+d.id+'">Edit</button>'
-    +' <button class="btn btn-sm" style="background:#fee2e2;color:#dc2626;border-color:#fca5a5;margin-left:4px" data-action="del-div" data-id="'+d.id+'">&times;</button></td></tr>').join("");
-  return'<div class="card"><div class="card-header"><h3>Divisions ('+S.divisions.length+')</h3>'
-    +'<button class="btn btn-primary btn-sm" data-action="add-div">+ Add Division</button></div>'
-    +'<div class="card-body p0">'+(S.divisions.length===0?'<div style="text-align:center;padding:30px;color:var(--text3)">No divisions yet.</div>'
-    :'<table class="tbl"><thead><tr><th>#</th><th>Division</th><th>Medium</th><th>Class Teacher</th><th>Students</th><th>Actions</th></tr></thead><tbody>'+rows+'</tbody></table>')
+  const isHM=S.role==="hm";
+  const allDivs=isHM?getAllDivisions():S.divisions;
+  const rows=allDivs.map((d,i)=>{
+    const isOwn=!d._owner||d._owner==="me";
+    const stuCount=isHM
+      ?(d._owner==="me"?stusInDiv(d.id).length:( S.teacherData[d._owner]?.students||[]).filter(s=>s.divId===d.id).length)
+      :stusInDiv(d.id).length;
+    return'<tr><td>'+(i+1)+'</td><td class="fw600">Std '+d.std+' &mdash; Div '+d.div+'</td>'
+      +'<td>'+(d.medium||"&mdash;")+'</td><td>'+(d.classTeacher||"&mdash;")+'</td>'
+      +'<td>'+stuCount+'</td>'
+      +(isHM&&!isOwn?'<td><span class="badge badge-blue">'+d._ownerName+'</span></td>'
+        :'<td><button class="btn btn-secondary btn-sm" data-action="edit-div" data-id="'+d.id+'">Edit</button>'
+        +' <button class="btn btn-sm" style="background:#fee2e2;color:#dc2626;border-color:#fca5a5;margin-left:4px" data-action="del-div" data-id="'+d.id+'">&times;</button></td>')
+      +'</tr>';
+  }).join("");
+  const thActions=isHM?'<th>Owner</th>':'<th>Actions</th>';
+  return'<div class="card"><div class="card-header"><h3>Divisions ('+allDivs.length+')</h3>'
+    +(isHM?'<span class="text-muted text-sm">Own + linked teachers</span>':'<button class="btn btn-primary btn-sm" data-action="add-div">+ Add Division</button>')+'</div>'
+    +'<div class="card-body p0">'+(allDivs.length===0?'<div style="text-align:center;padding:30px;color:var(--text3)">No divisions yet. Teachers need to add their divisions.</div>'
+    :'<table class="tbl"><thead><tr><th>#</th><th>Division</th><th>Medium</th><th>Class Teacher</th><th>Students</th>'+thActions+'</tr></thead><tbody>'+rows+'</tbody></table>')
     +'</div></div>';
 }
 
 function renderStudents(){
+  const isHM=S.role==="hm";
+  const allDivs=isHM?getAllDivisions():S.divisions;
+  const allStus=isHM?getAllStudents():S.students;
   const fv=document.getElementById("stu-div-filter")?.value||"all";
-  const studs=fv==="all"?S.students:S.students.filter(s=>s.divId===fv);
-  const divOpts='<option value="all">All Divisions</option>'+S.divisions.map(d=>'<option value="'+d.id+'"'+(fv===d.id?' selected':'')+'>Std '+d.std+' Div '+d.div+'</option>').join("");
+  const studs=fv==="all"?allStus:allStus.filter(s=>s.divId===fv);
+  const divOpts='<option value="all">All Divisions ('+allStus.length+')</option>'
+    +allDivs.map(d=>'<option value="'+d.id+'"'+(fv===d.id?' selected':'')+'>Std '+d.std+' Div '+d.div+(d._ownerName&&isHM?" - "+d._ownerName:"")+'</option>').join("");
   const rows=studs.map((s,i)=>{
-    const div=S.divisions.find(d=>d.id===s.divId);
+    const div=allDivs.find(d=>d.id===s.divId);
+    const isOwn=!s._owner||s._owner==="me";
     return'<tr><td>'+(i+1)+'</td><td>'+(s.roll||"&mdash;")+'</td><td class="fw600">'+s.name+'</td>'
       +'<td>'+(div?'Std '+div.std+' Div '+div.div:"&mdash;")+'</td>'
+      +(isHM?'<td><span class="text-xs text-muted">'+(s._ownerName||"HM")+'</span></td>':"")
       +'<td>'+(s.admNo||"&mdash;")+'</td><td>'+(s.parentPhone||"&mdash;")+'</td>'
-      +'<td><button class="btn btn-secondary btn-sm" data-action="edit-stu" data-id="'+s.id+'">Edit</button>'
-      +' <button class="btn btn-sm" style="background:#fee2e2;color:#dc2626;border-color:#fca5a5;margin-left:4px" data-action="del-stu" data-id="'+s.id+'">&times;</button></td></tr>';
+      +(isOwn?'<td><button class="btn btn-secondary btn-sm" data-action="edit-stu" data-id="'+s.id+'">Edit</button>'
+        +' <button class="btn btn-sm" style="background:#fee2e2;color:#dc2626;border-color:#fca5a5;margin-left:4px" data-action="del-stu" data-id="'+s.id+'">&times;</button></td>'
+        :'<td><span class="text-xs text-muted">Teacher managed</span></td>')
+      +'</tr>';
   }).join("");
+  const thOwner=isHM?'<th>Teacher</th>':"";
   return'<div class="card"><div class="card-header"><h3>Students ('+studs.length+')</h3>'
-    +'<div class="flex gap8"><select id="stu-div-filter" style="width:180px">'+divOpts+'</select>'
-    +'<button class="btn btn-primary btn-sm" data-action="add-stu">+ Add Student</button></div></div>'
+    +'<div class="flex gap8"><select id="stu-div-filter" style="width:200px">'+divOpts+'</select>'
+    +(isHM?'':'<button class="btn btn-primary btn-sm" data-action="add-stu">+ Add Student</button>')+'</div></div>'
     +'<div class="card-body p0">'+(studs.length===0?'<div style="text-align:center;padding:30px;color:var(--text3)">No students found.</div>'
-    :'<div style="overflow-x:auto"><table class="tbl"><thead><tr><th>#</th><th>Roll</th><th>Name</th><th>Division</th><th>Adm No</th><th>Parent Phone</th><th>Actions</th></tr></thead><tbody>'+rows+'</tbody></table></div>')
+    :'<div style="overflow-x:auto"><table class="tbl"><thead><tr><th>#</th><th>Roll</th><th>Name</th><th>Division</th>'+thOwner+'<th>Adm No</th><th>Parent Phone</th><th>Actions</th></tr></thead><tbody>'+rows+'</tbody></table></div>')
     +'</div></div>';
 }
 
@@ -1348,6 +1370,22 @@ async function loadABData(){
     if(S.role==="hm")await loadTeacherData();
     const allDivs=S.role==="hm"?getAllDivisions():S.divisions;
     if(!S.abState.divId&&allDivs.length)S.abState.divId=allDivs[0].id;
+    refreshPage();
+  }catch(e){toast(e.message,"error");refreshPage();}finally{setLoading(false);}
+}
+async function loadStudentsPage(){
+  setLoading(true);
+  try{
+    await Promise.all([loadDivisions(),loadStudents()]);
+    if(S.role==="hm")await loadTeacherData();
+    refreshPage();
+  }catch(e){toast(e.message,"error");refreshPage();}finally{setLoading(false);}
+}
+async function loadDivisionsPage(){
+  setLoading(true);
+  try{
+    await loadDivisions();
+    if(S.role==="hm")await loadTeacherData();
     refreshPage();
   }catch(e){toast(e.message,"error");refreshPage();}finally{setLoading(false);}
 }
