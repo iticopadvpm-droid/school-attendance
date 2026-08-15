@@ -267,7 +267,12 @@ async function hashPin(pin){
   const buf=await crypto.subtle.digest("SHA-256",new TextEncoder().encode(raw));
   return Array.from(new Uint8Array(buf)).map(b=>b.toString(16).padStart(2,"0")).join("");
 }
-function showModal(html){document.getElementById("modal-slot").innerHTML='<div class="modal-backdrop"><div class="modal">'+html+'</div></div>';}
+function showModal(html){
+  document.getElementById("modal-slot").innerHTML='<div class="modal-backdrop"><div class="modal">'+html+'</div></div>';
+  // Bind actions inside modal
+  document.querySelectorAll("#modal-slot [data-action]").forEach(btn=>btn.addEventListener("click",e=>handleClick(e)));
+  document.querySelectorAll("#modal-slot input,#modal-slot select").forEach(el=>{el.addEventListener("change",e=>handleChange(e));});
+}
 function closeModal(){document.getElementById("modal-slot").innerHTML="";}
 window.closeModal=closeModal;
 
