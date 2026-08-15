@@ -869,10 +869,19 @@ function renderDefaulters(){
 }
 
 function renderTC(){
-  const stuOpts=S.students.map(s=>{const div=S.divisions.find(d=>d.id===s.divId);return'<option value="'+s.id+'">'+s.name+' (Roll '+(s.roll||"?")+(div?', Std '+div.std+' Div '+div.div:"")+')';}).join("");
-  const selId=document.getElementById("tc-stu")?.value||S.students[0]?.id||"";
-  const stu=S.students.find(s=>s.id===selId);const div=stu?S.divisions.find(d=>d.id===stu.divId):null;
-  let tc=null;if(stu){tc=calcAtt(stu.id,"2025-06-01",todayDk());}
+  const isHM=S.role==="hm";
+  const allStus=isHM?getAllStudents():S.students;
+  const allDivs=isHM?getAllDivisions():S.divisions;
+  const stuOpts=allStus.map(s=>{
+    const div=allDivs.find(d=>d.id===s.divId);
+    return'<option value="'+s.id+'|'+( s._owner||"me")+'">'+s.name+' (Roll '+(s.roll||"?")+(div?', Std '+div.std+' Div '+div.div:"")+')';
+  }).join("");
+  const selVal=document.getElementById("tc-stu")?.value||( allStus[0]?.id+"|"+(allStus[0]?._owner||"me"))||"";
+  const [selId,selOwner]=(selVal+"|me").split("|");
+  const stu=allStus.find(s=>s.id===selId);
+  const div=stu?allDivs.find(d=>d.id===stu.divId):null;
+  const att=isHM?getAttFor(selOwner):S.attendance;
+  let tc=null;if(stu){tc=calcAtt(stu.id,"2025-06-01",todayDk(),att);}
   return'<div class="card mb16"><div class="card-header"><h3>&#128196; Transfer Certificate &mdash; Attendance</h3></div>'
     +'<div class="card-body"><div class="form-row mb12">'
     +'<div><label class="form-label">Select Student</label><select id="tc-stu">'+stuOpts+'</select></div>'
@@ -1080,10 +1089,14 @@ function printDef(){
 }
 
 function printTC(sid){
-  const stu=S.students.find(s=>s.id===sid);if(!stu)return;
-  const div=S.divisions.find(d=>d.id===stu.divId);
+  const isHM=S.role==="hm";
+  const allStus=isHM?getAllStudents():S.students;
+  const allDivs=isHM?getAllDivisions():S.divisions;
+  const stu=allStus.find(s=>s.id===sid);if(!stu)return;
+  const div=allDivs.find(d=>d.id===stu.divId);
+  const att=isHM?getAttFor(stu._owner||"me"):S.attendance;
   const tcDate=document.getElementById("tc-date")?.value||todayDk();
-  const r=calcAtt(stu.id,"2025-06-01",tcDate);
+  const r=calcAtt(stu.id,"2025-06-01",tcDate,att);
   const school=S.profile?.schoolName||"School";const hm=S.profile?.name||S.profile?.hmName||"";const udise=S.profile?.udise||"";
   const win=window.open("","_blank","width=700,height=500");
   win.document.write('<!DOCTYPE html><html><head><meta charset="UTF-8"><title>TC Attendance</title>'
@@ -1280,7 +1293,7 @@ function handleChange(e){
   else if(t.id==="ab-year"){S.abState.year=parseInt(v)||TODAY.getFullYear();loadABData();}
   else if(t.id==="def-month"){S.monthRep.month=parseInt(v);refreshPage();}
   else if(t.id==="def-year"){S.monthRep.year=parseInt(v)||TODAY.getFullYear();refreshPage();}
-  else if(t.id==="stu-div-filter"||t.id==="tc-stu"){refreshPage();}
+  else if(t.id==="stu-div-filter"||t.id==="tc-stu"){if(t.id==="tc-stu"){const[id,own]=(t.value+"|me").split("|");}refreshPage();}
   else if(t.id==="mr-date"){S.printDetails.printDate=t.checked;}
 }
 
