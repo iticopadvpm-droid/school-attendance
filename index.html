@@ -1205,7 +1205,7 @@ async function handleClick(e){
     try{const h=await hashPin(pin);await saveProfile({...S.profile,pinHash:h});toast("PIN updated");}
     catch(e){toast(e.message,"error");}finally{setLoading(false);}return;
   }
-  if(a==="sign-out"){if(confirm("Sign out?"))signOut(auth);return;}
+  if(a==="sign-out"){if(confirm("Sign out?"))doSignOut();return;}
   // School link
   if(a==="join-school"){
     const code=document.getElementById("set-code")?.value.trim();
@@ -1438,7 +1438,7 @@ function renderPin(err){
     +(err?'<p style="color:var(--danger);font-size:12px;margin-top:6px">'+err+'</p>':"")
     +'<div class="pin-dots" id="pin-dots">'+[0,1,2,3].map(()=>'<div class="pin-dot"></div>').join("")+'</div>'
     +'<div class="pin-keypad">'+[1,2,3,4,5,6,7,8,9,"",0,"\u232B"].map(k=>k===""?"<div></div>":'<button class="pin-key" onclick="pinKey(\''+k+'\')">'+k+'</button>').join("")+'</div>'
-    +'<button style="margin-top:14px;background:none;border:none;color:var(--text3);cursor:pointer;font-size:12px" onclick="signOut(auth)">Sign out</button>'
+    +'<button style="margin-top:14px;background:none;border:none;color:var(--text3);cursor:pointer;font-size:12px" onclick="doSignOut()">Sign out</button>'
     +'</div></div>';
 }
 let pinBuf="";
@@ -1486,6 +1486,7 @@ function renderApp(){
   bindEvents(document.getElementById("root"));
   document.getElementById("mob-ov")?.addEventListener("click",()=>{document.getElementById("main-sidebar")?.classList.remove("open");document.getElementById("mob-ov")?.classList.remove("show");});
 }
+window.doSignOut=function(){signOut(auth).then(()=>{sessionStorage.removeItem('sch_unlocked');}).catch(e=>toast(e.message,'error'));}
 window.toggleSB=function(){
   document.getElementById("main-sidebar")?.classList.toggle("open");
   document.getElementById("mob-ov")?.classList.toggle("show");
